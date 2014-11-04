@@ -24,7 +24,11 @@ public class NewProActivity extends BaseSecondActivity{
 		// TODO Auto-generated method stub
 		
 		setTitle("新建项目");
+		setLeftBtn();
+		setRightBtn();
 		
 	}
+	
+	
 
 }

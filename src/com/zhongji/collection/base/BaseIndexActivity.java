@@ -6,7 +6,6 @@ import java.util.Map;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.slidingmenu.lib.SlidingMenu;
 import com.zhongji.collection.android.phone.R;
 import com.zhongji.collection.entity.UserListBean;
 import com.zhongji.collection.login.LoginActivity;
@@ -27,8 +25,6 @@ import com.zhongji.collection.util.JsonUtils;
 public abstract class BaseIndexActivity extends BaseActivity implements OnClickListener{
 
 	private TextView tv_left, tv_right;
-	private SlidingMenu menu;
-	private TextView tv_name;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,30 +44,11 @@ public abstract class BaseIndexActivity extends BaseActivity implements OnClickL
 		
 		//侧滑设置
 	    initMenu();
+	    setLeftBtn();
 				
 		init();
-		
 	}
 
-	private void initMenu() {
-		DisplayMetrics dm = new DisplayMetrics();getWindowManager().getDefaultDisplay().getMetrics(dm);
-		int width = dm.widthPixels;//宽度
-//		int height = dm.heightPixels ;//高度
-		menu = new SlidingMenu(this);
-		menu.setMode(SlidingMenu.LEFT);
-	    menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);//设置滑动的屏幕局限，该设置为全屏区域都可以滑动
-	    menu.setShadowWidthRes(R.dimen.shadow_width);//设置暗影的宽度
-	    menu.setShadowDrawable(R.drawable.shadow);//设置暗影
-	    menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);//SlidingMenu划出时主页面显示的剩余宽度
-	    menu.setBehindWidth((int)(width*(5.0/6.0)));//设置SlidingMenu菜单的宽度
-	    menu.setFadeDegree(0.35f);//SlidingMenu滑动时的渐变程度
-	    menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);//使SlidingMenu附加在Activity上
-	    menu.setMenu(R.layout.activity_retreat);//设置menu的布局文件
-		tv_name = (TextView) menu.findViewById(R.id.tv_name);// 用户名显示
-		setLeftBtn();
-	
-	}
-	
 	public void setMenuName(String name){
 		tv_name.setText(name);
 	}
