@@ -15,7 +15,7 @@ import com.zhongji.collection.util.ToastUtils;
 public abstract class BaseActivity extends FinalActivity{
 	
 	protected SlidingMenu menu;
-	protected TextView tv_name,abc,abcc;  
+	protected TextView tv_name,abc,abcc,bcdd;  
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
