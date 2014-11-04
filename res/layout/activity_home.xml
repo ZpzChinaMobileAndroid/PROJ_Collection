@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3.35"
+        android:background="@drawable/home_img"
+        android:padding="20dp" >
+
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/home_img"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_job"
+            android:layout_marginBottom="10dp"
+            android:text="小黄人"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_18_size" />
+
+        <TextView
+            android:id="@+id/tv_job"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_img"
+            android:text="区域经理"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_16_size" />
+
+        <TextView 
+            android:id="@+id/tv_district"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_city"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/tv_city"
+            android:drawableLeft="@drawable/home_city"
+            android:text="上海市"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_16_size" />
+
+        <TextView
+            android:id="@+id/tv_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_img"
+            android:layout_alignRight="@+id/iv_img"
+            android:text="上海恩恩"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_16_size" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:onClick="onClick"
+            android:id="@+id/btn_newpro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/home_newpro" />
+
+        <View style="@style/view_line2" />
+
+        <Button
+            android:onClick="onClick"
+            android:id="@+id/btn_allpro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/home_allpro" />
+
+        <View style="@style/view_line2" />
+
+        <Button
+            android:onClick="onClick"
+            android:id="@+id/btn_mypro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/home_mypro" />
+    </LinearLayout>
+
+    <View
+        style="@style/view_line"
+        android:background="@color/blue_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/blue_bg"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="20dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系方式"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_18_size" />
+
+        <TextView
+            android:id="@+id/tv_mobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="11111111111"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_16_size" />
+    </LinearLayout>
+
+    <View
+        style="@style/view_line"
+        android:background="@color/blue_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/blue_bg"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="20dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="所属公司"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_18_size" />
+
+        <TextView
+            android:id="@+id/tv_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="上海中技"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_16_size" />
+    </LinearLayout>
+
+</LinearLayout>
