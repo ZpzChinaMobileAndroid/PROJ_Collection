@@ -14,10 +14,15 @@ public class HttpAPI {
 	public static final int HTTP_TIME_OUT = 0;
 	public static final int HTTP_NOT_FOUND_SERVICE = 404;
 	public static final int HTTP_SERVER_ERROR = 500;
+	public static final int HTTP_MISDAKE_CODE = 400;
+	
 	
 	/** 用户登录 */
 	public static final String USERS_LOGIN = "Users/login";
 	
 	/** 用户登出 */
 	public static final String USERS_LOGOUT = "Users/LogOut";
+	
+	/**密码修改 */
+	public static final String USERS_MODIFICATION="Users/";
 }

@@ -75,6 +75,11 @@ public class HttpRestClient {
 		httpClient.post(context, getAbsoluteUrl(url), requestParams, "application/json; charset=UTF-8", responseUtils);
 	}
 	
+	public static void put(Context context, String url, StringEntity requestParams, ResponseUtils responseUtils) {
+
+		httpClient.put(context, getAbsoluteUrl(url), requestParams, "application/json; charset=UTF-8", responseUtils);
+	}
+	
 	@SuppressWarnings("unused")
 	private static String javatophptime(String time) {
 		// TODO Auto-generated method stub

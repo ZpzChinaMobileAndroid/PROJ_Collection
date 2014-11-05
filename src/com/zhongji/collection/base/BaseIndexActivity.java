@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.zhongji.collection.android.phone.R;
 import com.zhongji.collection.entity.UserListBean;
+import com.zhongji.collection.login.EditPasswordActivity;
 import com.zhongji.collection.login.LoginActivity;
 import com.zhongji.collection.network.HttpAPI;
 import com.zhongji.collection.network.HttpRestClient;
@@ -126,8 +127,8 @@ public abstract class BaseIndexActivity extends BaseActivity implements OnClickL
 			});
 		} else if (v.getId() == R.id.tv_editpass) {
 			// 修改密码
-//			Intent intent = new Intent(BaseIndexActivity.this, Modification.class);
-//			startActivity(intent);
+			Intent intent = new Intent(BaseIndexActivity.this, EditPasswordActivity.class);
+			startActivity(intent);
 		} else if (v.getId() == R.id.tv_logout) {
 			// 退出登录 
 			showAkertDialog("退出后将清除所有本地数据！", new DialogInterface.OnClickListener() {

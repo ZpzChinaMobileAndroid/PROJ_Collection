@@ -15,7 +15,7 @@ import com.zhongji.collection.util.ToastUtils;
 public abstract class BaseActivity extends FinalActivity{
 	
 	protected SlidingMenu menu;
-	protected TextView tv_name,abc,abcc,bcdd;  
+	protected TextView tv_name;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +26,15 @@ public abstract class BaseActivity extends FinalActivity{
 	protected abstract void init();
 	 
 	public void showProgressDialog() {
-		ProgressDialogUtils.getStance(this).showProgressDialog();
+		ProgressDialogUtils.showProgressDialog(this);
 	}
 	
 	public void showProgressDialog(String msg) {
-		ProgressDialogUtils.getStance(this).showProgressDialog(msg);
+		ProgressDialogUtils.showProgressDialog(this, msg);
 	}
 	
 	public void dismissProgressDialog() {
-		ProgressDialogUtils.getStance(this).dismissProgressDialog();
+		ProgressDialogUtils.dismissProgressDialog(this);
 	}
 	
 	public void showShortToast(String msg) {

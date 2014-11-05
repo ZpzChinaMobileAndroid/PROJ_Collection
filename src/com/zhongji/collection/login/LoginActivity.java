@@ -39,7 +39,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
-		init();
+		init();//初始化(继承父类的时候)
 	}
 
 	@Override
@@ -84,15 +84,13 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		HttpRestClient.post(LoginActivity.this, HttpAPI.USERS_LOGIN,
 				JsonUtils.change(params,false),
 				new ResponseUtils(LoginActivity.this) {
-
+ 
 					@Override
 					public void getResult(int httpCode, String result) {
 						// TODO Auto-generated method stub
 						dismissProgressDialog();
 						if (httpCode == HttpAPI.HTTP_SUCCESS_CODE) {
-							UserListBean bean = JSON.parseObject(
-									JsonUtils.parseString(result),
-									UserListBean.class);
+							UserListBean bean = JSON.parseObject(JsonUtils.parseString(result),UserListBean.class);
 							if (getData(bean)) {
 								return; 
 							}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    
+    <RelativeLayout 
+        
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/pro_marginall" 
+        android:background="@color/gray_pro_bg_title"
+        >
+    
+  
+
+        <TextView
+            style="@style/pro_tv_style"
+            android:textColor="@color/gray_pro_txt"
+            android:id="@+id/textView1"
+            android:drawableLeft="@drawable/pro_jian_w"
+            android:text="项目立项" />
+
+        <TextView
+            android:id="@+id/textView1"
+            style="@style/pro_tv_style"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableRight="@drawable/pro_jian_r"
+            android:text="设计阶段"
+            android:textColor="@color/gray_pro_txt" />
+    
+   </RelativeLayout> 
+    
+    
+
+    <GridView
+        android:background="@color/gray_pro_bg_photo"
+        android:id="@+id/gridView1"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:numColumns="3" >
+    </GridView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/pro_marginall" >
+
+        <TextView
+            style="@style/pro_tv_style"
+            android:id="@+id/tv_explorationcompany"
+            android:drawableRight="@drawable/pro_add_lv"
+            android:text="地勘公司" />
+
+		  <View
+            android:layout_marginTop="@dimen/pro_margintopbom"
+            android:layout_marginBottom="@dimen/pro_margintopbom"
+            style="@style/view_line"
+            android:background="@color/black" />
+		  
+		
+    </LinearLayout>
+    
+  
+     
+
+</LinearLayout>
