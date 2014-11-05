@@ -67,6 +67,7 @@
         
         <!-- 新建项目 -->
         <activity 
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:name="com.zhongji.collection.project.NewProActivity"
             android:screenOrientation="portrait" >
         </activity>
@@ -86,6 +87,12 @@
         <!-- 搜索项目 -->
         <activity 
             android:name="com.zhongji.collection.project.SearchProActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+        <!-- 项目阶段 -->
+        <activity 
+            android:name="com.zhongji.collection.project.ProjectStageActivity"
             android:screenOrientation="portrait" >
         </activity>
     </application>

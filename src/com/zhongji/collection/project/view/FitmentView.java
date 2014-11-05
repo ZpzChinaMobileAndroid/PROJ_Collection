@@ -1,4 +1,4 @@
-package com.zhongji.collection.project;
+package com.zhongji.collection.project.view;
 
 import android.content.Context;
 import android.view.View;

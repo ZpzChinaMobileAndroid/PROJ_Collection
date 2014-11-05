@@ -1,142 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="wrap_content" >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/gray_pro_bg_title"
-        android:gravity="right"
-        android:padding="@dimen/pro_marginall" >
-
-        <TextView
-            style="@style/pro_tv_style"
-            android:textColor="@color/gray_pro_txt"
-            android:id="@+id/textView1"
-            android:drawableRight="@drawable/pro_jian_r"
-            android:text="项目立项" />
-    </LinearLayout>
-
-    <GridView
-        android:background="@color/gray_pro_bg_photo"
-        android:id="@+id/gridView1"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:numColumns="3" >
-    </GridView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/pro_marginall" >
-
-        <EditText
-            style="@style/pro_et_style"
-            android:hint="地块名称"
-            android:id="@+id/et_landname" >
-        </EditText>
-
-        <View
-            android:layout_marginTop="@dimen/pro_margintopbom"
-            android:layout_marginBottom="@dimen/pro_margintopbom"
-            style="@style/view_line"
-            android:background="@color/black" />
-
-        <TextView
-            style="@style/pro_tv_style"
-            android:id="@+id/tv_provinces"
-            android:drawableRight="@drawable/pro_jian_r"
-            android:text="所在区域/省市" />
-
-        <View
-            android:layout_marginTop="@dimen/pro_margintopbom"
-            android:layout_marginBottom="@dimen/pro_margintopbom"
-            style="@style/view_line"
-            android:background="@color/black" />
-        
-        <EditText
-            style="@style/pro_et_style"
-            android:hint="地块地址(限20个字)"
-            android:id="@+id/et_address"
-            android:maxLength="20" >
-        </EditText>
-        
-        <View
-            android:layout_marginTop="@dimen/pro_margintopbom"
-            android:layout_marginBottom="@dimen/pro_margintopbom"
-            style="@style/view_line"
-            android:background="@color/black" />
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:background="@color/gray_pro_bg_title"
+            android:gravity="right"
+            android:padding="@dimen/pro_marginall" >
 
             <TextView
+                android:id="@+id/textView1"
                 style="@style/pro_tv_style"
-                android:id="@+id/textView3"
-                android:text="土地面积:  " />
-
-            <EditText
-                android:inputType="number"
-                style="@style/pro_et_style"
-                android:text="0"
-                android:id="@+id/et_landarea" >
-
-            </EditText>
-
+                android:drawableRight="@drawable/pro_jian_r"
+                android:text="项目立项"
+                android:textColor="@color/gray_pro_txt" />
         </LinearLayout>
-        
-        <View
-            android:layout_marginTop="@dimen/pro_margintopbom"
-            android:layout_marginBottom="@dimen/pro_margintopbom"
-            style="@style/view_line"
-            android:background="@color/black" />
-        
+
+        <GridView
+            android:id="@+id/gridView1"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/gray_pro_bg_photo"
+            android:numColumns="3" >
+        </GridView>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                style="@style/pro_tv_style"
-                android:id="@+id/textView3"
-                android:text="土地容积率:  " />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/pro_marginall" >
 
             <EditText
-                android:inputType="number"
+                android:id="@+id/et_landname"
                 style="@style/pro_et_style"
-                android:text="0"
-                android:id="@+id/et_landvolume" >
-
+                android:hint="地块名称" >
             </EditText>
 
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_provinces"
+                style="@style/pro_tv_style"
+                android:drawableRight="@drawable/pro_jian_r"
+                android:text="所在区域/省市" />
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <EditText
+                android:id="@+id/et_address"
+                style="@style/pro_et_style"
+                android:hint="地块地址(限20个字)"
+                android:maxLength="20" >
+            </EditText>
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    style="@style/pro_tv_style"
+                    android:text="土地面积:  " />
+
+                <EditText
+                    android:id="@+id/et_landarea"
+                    style="@style/pro_et_style"
+                    android:inputType="number"
+                    android:text="0" >
+                </EditText>
+            </LinearLayout>
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    style="@style/pro_tv_style"
+                    android:text="土地容积率:  " />
+
+                <EditText
+                    android:id="@+id/et_landvolume"
+                    style="@style/pro_et_style"
+                    android:inputType="number"
+                    android:text="0" >
+                </EditText>
+            </LinearLayout>
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_landuse"
+                style="@style/pro_tv_style"
+                android:drawableRight="@drawable/pro_jian_r"
+                android:text="地块用途" />
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_auctionunit"
+                style="@style/pro_tv_style"
+                android:drawableRight="@drawable/pro_add_lv"
+                android:text="拍卖单位" />
         </LinearLayout>
-        
-        <View
-            android:layout_marginTop="@dimen/pro_margintopbom"
-            android:layout_marginBottom="@dimen/pro_margintopbom"
-            style="@style/view_line"
-            android:background="@color/black" />
-        
-        <TextView
-            style="@style/pro_tv_style"
-            android:id="@+id/tv_landuse"
-            android:drawableRight="@drawable/pro_jian_r"
-            android:text="地块用途" />
-        
-        <View
-            android:layout_marginTop="@dimen/pro_margintopbom"
-            android:layout_marginBottom="@dimen/pro_margintopbom"
-            style="@style/view_line"
-            android:background="@color/black" />
-        
-        <TextView
-            style="@style/pro_tv_style"
-            android:id="@+id/tv_auctionunit"
-            android:drawableRight="@drawable/pro_add_lv"
-            android:text="拍卖单位" />
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

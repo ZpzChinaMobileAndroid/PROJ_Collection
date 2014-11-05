@@ -1,4 +1,4 @@
-package com.zhongji.collection.project;
+package com.zhongji.collection.project.view;
 
 import android.content.Context;
 import android.view.View;
@@ -15,13 +15,13 @@ import com.zhongji.collection.android.phone.R;
 public class LandPlanView {
 	
 	public View view_landplan;
-	public EditText et_landname;
-	public TextView tv_provinces;
-	public EditText et_address;
-	public EditText et_landarea;
-	public EditText et_landvolume;
-	public TextView tv_landuse;
-	public TextView tv_auctionunit;
+	public EditText et_landname;	//地块名称
+	public TextView tv_provinces;	//所属省市
+	public EditText et_address;		//地块地址
+	public EditText et_landarea;	//土地面积
+	public EditText et_landvolume;	//土地容积率
+	public TextView tv_landuse;		//地块用途
+	public TextView tv_auctionunit;	//拍卖单位
 	
 
 	public LandPlanView(Context context) {

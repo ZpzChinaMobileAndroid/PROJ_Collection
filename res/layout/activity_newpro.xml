@@ -4,4 +4,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <RelativeLayout
+        android:id="@+id/layout_prostage"
+        android:onClick="onClick"
+        android:padding="@dimen/pro_marginall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/tv_stagename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="土地信息" />
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="阶段选择" />
+
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />	
 </LinearLayout>

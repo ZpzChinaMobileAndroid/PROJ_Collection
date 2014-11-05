@@ -1,74 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#ffffff" >
-    
-       <RelativeLayout 
-        
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="@dimen/pro_marginall" 
-        android:background="@color/gray_pro_bg_title"
-        >
-    
-  
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-        <TextView
-            style="@style/pro_tv_style"
-            android:textColor="@color/gray_pro_txt"
-            android:id="@+id/textView1"
-            android:drawableLeft="@drawable/pro_jian_w"
-            android:text="地勘阶段" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray_pro_bg_title"
+            android:padding="@dimen/pro_marginall" >
 
-        <TextView
-            android:id="@+id/textView2"
-            style="@style/pro_tv_style"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:drawableRight="@drawable/pro_jian_r"
-            android:text="出图阶段"
-            android:textColor="@color/gray_pro_txt" />
-    
-   </RelativeLayout> 
-    
-       <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/pro_marginall" >
+            <TextView
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/textView1"
+                style="@style/pro_tv_style"
+                android:drawableLeft="@drawable/pro_jian_l"
+                android:text="地勘阶段"
+                android:textColor="@color/gray_pro_txt" />
 
-        <TextView
-            style="@style/pro_tv_style"
-            android:id="@+id/tv_designcompany"
-            android:drawableRight="@drawable/pro_add_lv"
-            android:text="设计院" />
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/pro_tv_style"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:drawableRight="@drawable/pro_jian_r"
+                android:text="出图阶段"
+                android:textColor="@color/gray_pro_txt" />
+        </RelativeLayout>
 
-		  <View
-            android:layout_marginTop="@dimen/pro_margintopbom"
-            android:layout_marginBottom="@dimen/pro_margintopbom"
-            style="@style/view_line"
-            android:background="@color/black" />
-		  
-		  <TextView
-            style="@style/pro_tv_style"
-            android:id="@+id/tv_designphases"
-            android:drawableRight="@drawable/pro_jian_r"
-            android:text="主体设计阶段" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/pro_marginall" >
 
-		  <View
-            android:layout_marginTop="@dimen/pro_margintopbom"
-            android:layout_marginBottom="@dimen/pro_margintopbom"
-            style="@style/view_line"
-            android:background="@color/black" />
-		  
-		  
-		
+            <TextView
+                android:id="@+id/tv_designcompany"
+                style="@style/pro_tv_style"
+                android:drawableRight="@drawable/pro_add_lv"
+                android:text="设计院" />
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_designphases"
+                style="@style/pro_tv_style"
+                android:drawableRight="@drawable/pro_jian_r"
+                android:text="主体设计阶段" />
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+        </LinearLayout>
     </LinearLayout>
-    
-    
-    
 
-</LinearLayout>
+</ScrollView>

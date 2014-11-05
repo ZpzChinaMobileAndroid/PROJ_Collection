@@ -19,4 +19,6 @@
 	<color name="gray_pro_txt">#8c8c8c</color>
 	<color name="gray_pro_bg_photo">#dadada</color>
 	
+	<color name="gray_prostage_bg">#eaeaea</color>
+	<color name="gray_prostage_txt">#939393</color>
 </resources>

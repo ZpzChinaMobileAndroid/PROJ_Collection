@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray_pro_bg_title"
+            android:padding="@dimen/pro_marginall" >
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/pro_tv_style"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:drawableLeft="@drawable/pro_jian_l"
+                android:text="土地规划/拍卖"
+                android:textColor="@color/gray_pro_txt" />
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/pro_tv_style"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:drawableRight="@drawable/pro_jian_r"
+                android:text="地勘阶段"
+                android:textColor="@color/gray_pro_txt" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/pro_marginall" >
+
+            <EditText
+                android:id="@+id/et_proname"
+                style="@style/pro_et_style"
+                android:hint="项目名称" >
+            </EditText>
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_proaddress"
+                style="@style/pro_tv_style"
+                android:layout_width="match_parent"
+                android:drawableRight="@drawable/pro_map"
+                android:text="项目地址"
+                android:textColor="@color/gray_pro_txt" />
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <EditText
+                android:id="@+id/et_prodes"
+                style="@style/pro_et_style"
+                android:hint="项目描述" >
+            </EditText>
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_ownerunit"
+                style="@style/pro_tv_style"
+                android:drawableRight="@drawable/pro_add_lv"
+                android:text="业主单位" />
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_starttime"
+                style="@style/pro_tv_style"
+                android:text="预计开工时间"
+                android:textColor="@color/gray_pro_txt" />
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_endtime"
+                style="@style/pro_tv_style"
+                android:text="预计竣工时间"
+                android:textColor="@color/gray_pro_txt" />
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    style="@style/pro_tv_style"
+                    android:text="投资额:  "
+                    android:textColor="@color/gray_pro_txt" />
+
+                <EditText
+                    android:id="@+id/et_investmoney"
+                    style="@style/pro_et_style"
+                    android:inputType="number"
+                    android:text="0" >
+                </EditText>
+            </LinearLayout>
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    style="@style/pro_tv_style"
+                    android:text="建筑面积:  "
+                    android:textColor="@color/gray_pro_txt" />
+
+                <EditText
+                    android:id="@+id/et_buildarea"
+                    style="@style/pro_et_style"
+                    android:inputType="number"
+                    android:text="0" >
+                </EditText>
+            </LinearLayout>
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    style="@style/pro_tv_style"
+                    android:text="建筑层高:  "
+                    android:textColor="@color/gray_pro_txt" />
+
+                <EditText
+                    android:id="@+id/et_buildfloor"
+                    style="@style/pro_et_style"
+                    android:inputType="number"
+                    android:text="0" >
+                </EditText>
+            </LinearLayout>
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/tv_wzjoin"
+                    style="@style/pro_tv_style"
+                    android:drawableRight="@drawable/pro_jian_r"
+                    android:text="外资参与" />
+
+                <TextView
+                    android:id="@+id/tv_wzjoinshow"
+                    style="@style/pro_tv_style"
+                    android:layout_marginLeft="@dimen/pro_margindrapadding"
+                    android:text="参与"
+                    android:textColor="@color/gray_pro_txt" />
+            </LinearLayout>
+
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_ownertype"
+                style="@style/pro_tv_style"
+                android:drawableRight="@drawable/pro_jian_r"
+                android:text="业主类型" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

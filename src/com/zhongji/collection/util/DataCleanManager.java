@@ -20,7 +20,7 @@ public class DataCleanManager {
     public static void cleanDatabases(Context context) {
         deleteFilesByDirectory(new File("/data/data/"
                 + context.getPackageName() + "/databases"));
-    }
+    } 
 
     /**
      * * 清除本应用SharedPreference(/data/data/com.xxx.xxx/shared_prefs) * * @param

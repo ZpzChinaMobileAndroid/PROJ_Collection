@@ -1,4 +1,4 @@
-package com.zhongji.collection.project;
+package com.zhongji.collection.project.view;
 
 import com.zhongji.collection.android.phone.R;
 import com.zhongji.collection.android.phone.R.id;

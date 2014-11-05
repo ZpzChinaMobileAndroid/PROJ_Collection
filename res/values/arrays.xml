@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="prostage">
+        <item>土地信息阶段,土地规划/拍卖,项目立项</item>
+        <item>主体设计阶段,地勘阶段,设计阶段,出图阶段</item>
+        <item>主体施工阶段,地平,桩基基坑,主体施工,消防/景观绿化</item>
+        <item>装修阶段,装修阶段</item>
+    </string-array>
+
+</resources>

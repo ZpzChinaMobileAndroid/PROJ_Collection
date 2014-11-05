@@ -19,4 +19,6 @@
     <dimen name="pro_marginall">15dp</dimen>
     <dimen name="pro_margintopbom">15dp</dimen>
     <dimen name="pro_margindrapadding">10dp</dimen>
+    <dimen name="pro_margin_topbom">-5dp</dimen>
+    <dimen name="prostage_marginall">10dp</dimen>
 </resources>

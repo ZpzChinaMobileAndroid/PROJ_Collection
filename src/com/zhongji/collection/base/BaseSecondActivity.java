@@ -28,8 +28,8 @@ public abstract class BaseSecondActivity extends BaseActivity implements OnClick
 		base_layout_view.addView(child);
 		setContentView(view);
 		
-		//侧滑设置
-	    initMenu();
+//		//侧滑设置
+//	    initMenu();
 				
 		init();
 		
@@ -37,7 +37,7 @@ public abstract class BaseSecondActivity extends BaseActivity implements OnClick
 	
 	public void setLeftBtn() {
 		tv_left = (TextView) findViewById(R.id.tv_left);
-		tv_left.setBackgroundResource(R.drawable.home_menu);
+		tv_left.setBackgroundResource(R.drawable.pro_back);
 		tv_left.setOnClickListener(this);
 		tv_left.setText("");
 		tv_left.setVisibility(View.VISIBLE);
@@ -48,7 +48,7 @@ public abstract class BaseSecondActivity extends BaseActivity implements OnClick
 		tv_right.setOnClickListener(this);
 		tv_right.setText("");
 		tv_right.setVisibility(View.VISIBLE);
-		tv_right.setBackgroundResource(R.drawable.home_menu);
+		tv_right.setBackgroundResource(R.drawable.pro_gou);
 	}
 	
 	public void onClick(View v) {

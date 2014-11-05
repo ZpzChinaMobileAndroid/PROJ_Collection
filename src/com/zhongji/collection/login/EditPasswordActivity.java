@@ -1,11 +1,9 @@
 package com.zhongji.collection.login;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import net.tsz.afinal.annotation.view.ViewInject;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,8 +14,6 @@ import com.alibaba.fastjson.JSON;
 import com.zhongji.collection.android.phone.R;
 import com.zhongji.collection.base.BaseSecondActivity;
 import com.zhongji.collection.entity.BaseBean;
-import com.zhongji.collection.entity.User;
-import com.zhongji.collection.home.HomeActivity;
 import com.zhongji.collection.network.HttpAPI;
 import com.zhongji.collection.network.HttpRestClient;
 import com.zhongji.collection.network.ResponseUtils;
@@ -62,7 +58,6 @@ public class EditPasswordActivity extends BaseSecondActivity implements
 		if (v.getId() == R.id.bt_modificition) {
 			// 修改密码
 			// 判断输入的内容
-			User user = new User();
 			String oldpassword = et_oldpassword.getText().toString().trim();
 			String newpassword = et_newpassword.getText().toString().trim();
 			String newosecendpassword = et_newsencendpassword.getText()
