@@ -88,7 +88,7 @@
                     android:id="@+id/et_landarea"
                     style="@style/pro_et_style"
                     android:inputType="number"
-                    android:text="0" >
+                     android:hint="0" >
                 </EditText>
             </LinearLayout>
 
@@ -111,7 +111,7 @@
                     android:id="@+id/et_landvolume"
                     style="@style/pro_et_style"
                     android:inputType="number"
-                    android:text="0" >
+                     android:hint="0">
                 </EditText>
             </LinearLayout>
 

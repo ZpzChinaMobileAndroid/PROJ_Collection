@@ -128,7 +128,7 @@
                     android:id="@+id/et_investmoney"
                     style="@style/pro_et_style"
                     android:inputType="number"
-                    android:text="0" >
+                    android:hint="0" >
                 </EditText>
             </LinearLayout>
 
@@ -152,7 +152,7 @@
                     android:id="@+id/et_buildarea"
                     style="@style/pro_et_style"
                     android:inputType="number"
-                    android:text="0" >
+                     android:hint="0" >
                 </EditText>
             </LinearLayout>
 
@@ -176,7 +176,7 @@
                     android:id="@+id/et_buildfloor"
                     style="@style/pro_et_style"
                     android:inputType="number"
-                    android:text="0" >
+                     android:hint="0" >
                 </EditText>
             </LinearLayout>
 
@@ -200,7 +200,7 @@
                     android:id="@+id/tv_wzjoinshow"
                     style="@style/pro_tv_style"
                     android:layout_marginLeft="@dimen/pro_margindrapadding"
-                    android:text="参与"
+                    android:text=""
                     android:textColor="@color/gray_pro_txt" />
             </LinearLayout>
 

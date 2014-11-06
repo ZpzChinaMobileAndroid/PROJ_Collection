@@ -13,9 +13,9 @@
 	<color name="blue_btn">#fffff0</color>
 	<color name="blue_bg">#2a59a3</color>
 	<color name="blue_line">#678ac0</color>
+	<color name="blue_pro_txt">#2c75e4</color>
 	
 	<color name="gray_pro_bg_title">#f7f7f8</color>
-	<color name="blue_pro_txt">#2c75e4</color>
 	<color name="gray_pro_txt">#8c8c8c</color>
 	<color name="gray_pro_bg_photo">#dadada</color>
 	

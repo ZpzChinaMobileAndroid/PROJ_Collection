@@ -49,6 +49,7 @@ public class EditPasswordActivity extends BaseSecondActivity implements
 		// TODO Auto-generated method stub
 
 		setTitle("修改密码");
+		setLeftBtn();
 	}
 
 	@Override
