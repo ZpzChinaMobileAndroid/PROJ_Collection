@@ -2,10 +2,11 @@ package com.zhongji.collection.project.view;
 
 import com.zhongji.collection.android.phone.R;
 import com.zhongji.collection.android.phone.R.id;
+import com.zhongji.collection.seach.SeachAdvancedActivity;
 import com.zhongji.collection.util.DialogUtils;
-
-import android.R.raw;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -45,11 +46,22 @@ public class AfforestView implements OnClickListener{
 		// TODO 自动生成的方法存根
 		if(arg0.getId()==R.id.tv_afforestcontrol){
 		//消防	
-			DialogUtils.showChoiceDialog(context,R.array.firecontrol);
-			
+//			final String[] items = getResources().getStringArray(R.array.firecontrol);
+//			DialogUtils.showChoiceDialog(context,items,new AlertDialog.OnClickListener() {
+//
+//				@Override
+//				public void onClick(DialogInterface arg0, int arg1) {
+//					// TODO 自动生成的方法存根
+//
+//			//				tv_seach_projectcategory_show.setText(items[arg1]);
+//			//				arg0.dismiss();
+//				}
+//			});;
+		
+		
 		}else if(arg0.getId()==R.id.tv_afforestlandscape){
 		//景观绿化	
-			DialogUtils.showChoiceDialog(context,R.array.firecontrol);
+		//	DialogUtils.showChoiceDialog(context,R.array.firecontrol);
 			
   		   }
 	    }

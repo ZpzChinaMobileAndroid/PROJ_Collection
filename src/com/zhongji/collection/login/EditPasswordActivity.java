@@ -55,7 +55,7 @@ public class EditPasswordActivity extends BaseSecondActivity implements
 	@Override
 	public void onClick(View v) {
 		// TODO 自动生成的方法存根
-
+		super.onClick(v);
 		if (v.getId() == R.id.bt_modificition) {
 			// 修改密码
 			// 判断输入的内容

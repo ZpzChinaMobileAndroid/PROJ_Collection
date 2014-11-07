@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff" >
+    
+    
+        
+    <EditText 
+    android:id="@+id/et_seach_voice_show"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"       
+    android:hint="请说出要搜索的内容"
+    android:background="@null"
+    android:textColor="@color/black"
+    android:gravity="left"
+    android:textSize="@dimen/activity_16_size"
+    android:padding="@dimen/pro_marginall"
+      />
+
+       <ImageView
+           android:id="@+id/iv_seach_voice_start"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_alignParentBottom="true"
+           android:layout_alignParentLeft="true"
+           android:padding="@dimen/pro_marginall"
+           android:src="@drawable/seach_voice_start" />
+
+</RelativeLayout>

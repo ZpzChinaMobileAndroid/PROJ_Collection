@@ -48,15 +48,15 @@ public class FitmentView implements OnClickListener{
 		// TODO 自动生成的方法存根
 		if(arg0.getId()==R.id.tv_fitmemtweak){
 		//弱电安装	
-		DialogUtils.showChoiceDialog(context,R.array.firecontrol);	
+	//	DialogUtils.showChoiceDialog(context,R.array.firecontrol);	
 			
 		}else if(arg0.getId()==R.id.tv_fitmentcondition){
 		//装修情况	
-			DialogUtils.showChoiceDialog(context,R.array.fitmentcondition);	
+		//	DialogUtils.showChoiceDialog(context,R.array.fitmentcondition);	
 			
 		}else if(arg0.getId()==R.id.tv_fitmentstage){
 		//装修阶段	
-			DialogUtils.showChoiceDialog(context,R.array.firecontrol);	
+		//	DialogUtils.showChoiceDialog(context,R.array.firecontrol);	
 			
 		   }
 	    }

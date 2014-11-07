@@ -101,6 +101,31 @@
             android:name="com.zhongji.collection.project.ProjectDetialActivity"
             android:screenOrientation="portrait" >
         </activity>
+        
+        <!--语音搜索  -->
+         <activity 
+            android:name="com.zhongji.collection.seach.SeachVoiceActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+          
+        <!--地图搜索  -->
+         <activity 
+            android:name="com.zhongji.collection.seach.SeachMapActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+        <!--文字搜索  -->
+         <activity 
+            android:name="com.zhongji.collection.seach.SeachAdvancedActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+          <!--搜索结果  -->
+         <activity 
+            android:name="com.zhongji.collection.seach.SeachResultActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

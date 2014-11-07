@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -36,12 +37,16 @@ public class AllProActivity extends BaseSecondActivity{
 	@ViewInject(id=R.id.listView1)
 	private ListView listView;
 	private List<Project> lists;
+	@ViewInject(id=R.id.tv_title)
+	private TextView tv_title;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_allpro);
+		
+		tv_title.setOnClickListener(this);
 	}
 	
 	@Override
@@ -68,6 +73,17 @@ public class AllProActivity extends BaseSecondActivity{
 		
 		showProgressDialog();
 		getProject();
+	}
+	
+	@Override
+	public void onClick(View v) {
+		// TODO 自动生成的方法存根
+		super.onClick(v);
+		if(v.getId()==R.id.tv_title){
+		//搜索
+		Intent intent=new Intent(AllProActivity.this,SearchProActivity.class);
+		startActivity(intent);
+		}
 	}
 	
 	/**

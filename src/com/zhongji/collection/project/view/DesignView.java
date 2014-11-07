@@ -50,7 +50,7 @@ public class DesignView implements OnClickListener {
 			
 		}else if(arg0.getId()==R.id.tv_designphases){
 		//主体设计阶段	
-			DialogUtils.showChoiceDialog(context,R.array.Themaindesignphase);
+		//	DialogUtils.showChoiceDialog(context,R.array.Themaindesignphase);
 			
   		    }
 	     }

@@ -101,7 +101,7 @@ public class ProCreateView implements OnClickListener{
 		}else if(arg0.getId()==R.id.tv_wzjoin) {
 		//外资参与
 			
-		DialogUtils.showChoiceDialog(context, R.array.foreigninvestment);	
+		//DialogUtils.showChoiceDialog(context, R.array.foreigninvestment);	
 			
 		}else if(arg0.getId()==R.id.tv_ownertype) {
 		//业主类型
