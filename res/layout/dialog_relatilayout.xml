@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:padding="@dimen/pro_marginall" >
+
+    <ImageView
+        android:id="@+id/first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/dialog_contacts" />
+
+    <EditText
+        android:id="@+id/et_contacts_username"
+        android:layout_below="@+id/first"
+        style="@style/pro_et_style"
+        android:hint="请输入姓名" 
+        android:layout_marginTop="50dp"/>
+
+    <View
+        android:id="@+id/two"
+        android:layout_below="@+id/et_contacts_username"
+        style="@style/view_line"
+        android:layout_marginBottom="@dimen/pro_margintopbom"
+        android:layout_marginTop="@dimen/pro_margintopbom"
+        android:background="@color/black" />
+
+    <EditText
+        android:id="@+id/et_contacts_userpassword"
+        android:layout_below="@+id/two"
+        style="@style/pro_et_style"
+        android:hint="请输入联系方式" />
+
+    <View
+         android:id="@+id/three"
+        android:layout_below="@+id/et_contacts_userpassword"
+        style="@style/view_line"
+        android:layout_marginBottom="@dimen/pro_margintopbom"
+        android:layout_marginTop="@dimen/pro_margintopbom"
+        android:background="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_contacts_post"
+        android:layout_below="@+id/three"
+        style="@style/pro_tv_style"
+        android:drawableRight="@drawable/pro_jian_r"
+        android:text="岗位" />
+
+    <View
+        android:id="@+id/four"
+        android:layout_below="@+id/tv_contacts_post"
+        style="@style/view_line"
+        android:layout_marginBottom="@dimen/pro_margintopbom"
+        android:layout_marginTop="@dimen/pro_margintopbom"
+        android:background="@color/black" />
+
+    <EditText
+        android:id="@+id/et_contacts_companyname"
+        android:layout_below="@+id/four"
+        style="@style/pro_et_style"
+        android:hint="单位名称" />
+
+    <View
+         android:id="@+id/five"
+        android:layout_below="@+id/et_contacts_companyname"
+        style="@style/view_line"
+        android:layout_marginBottom="@dimen/pro_margintopbom"
+        android:layout_marginTop="@dimen/pro_margintopbom"
+        android:background="@color/black" />
+
+    <EditText
+        android:id="@+id/et_contacts_companyaddress"
+        android:layout_below="@+id/five"
+        style="@style/pro_et_style"
+        android:hint="单位地址" />
+
+    <View
+        android:id="@+id/six"
+        android:layout_below="@+id/et_contacts_companyaddress"
+        style="@style/view_line"
+        android:layout_marginBottom="@dimen/pro_margintopbom"
+        android:layout_marginTop="@dimen/pro_margintopbom"
+        android:background="@color/black" />
+
+    <Button
+        android:id="@+id/bt_contacts_save"
+        android:layout_below="@+id/six"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/dialog_save"
+        android:text="保\t存"
+        android:textColor="@color/white"
+        android:textSize="@dimen/activity_16_size" />
+
+</RelativeLayout>

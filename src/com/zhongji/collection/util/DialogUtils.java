@@ -61,19 +61,15 @@ public class DialogUtils {
 	// 联系人弹窗
 	public static void showContactsDialog(final Context context,final int arrayid) {
 		Activity act = (Activity) context;
-		View view = act.getLayoutInflater().inflate(R.layout.dialog_contacts,
-				null);
+		View view = act.getLayoutInflater().inflate(R.layout.dialog_relatilayout,null);
 		final AlertDialog builder = new AlertDialog.Builder(context).create();
 		builder.setView(view, 0, 0, 0, 0);
-		et_contacts_username = (EditText) view
-				.findViewById(id.et_contacts_username);// 添加姓名
-		et_contacts_userphone = (EditText) view
-				.findViewById(id.et_contacts_userpassword);// 添加电话
+		
+		et_contacts_username = (EditText) view.findViewById(id.et_contacts_username);// 添加姓名
+		et_contacts_userphone = (EditText) view.findViewById(id.et_contacts_userpassword);// 添加电话
 		tv_contacts_post = (TextView) view.findViewById(id.tv_contacts_post);// 岗位
-		et_contacts_companyname = (EditText) view
-				.findViewById(id.et_contacts_companyname);// 拍卖单位
-		et_contacts_companyaddress = (EditText) view
-				.findViewById(id.et_contacts_companyaddress);// 拍卖单位
+		et_contacts_companyname = (EditText) view.findViewById(id.et_contacts_companyname);// 拍卖单位
+		et_contacts_companyaddress = (EditText) view.findViewById(id.et_contacts_companyaddress);// 拍卖单位
 		bt_contacts_save = (Button) view.findViewById(id.bt_contacts_save);// 保存
 
 		// 岗位
@@ -92,20 +88,27 @@ public class DialogUtils {
 			@Override
 			public void onClick(View arg0) {
 				// TODO 自动生成的方法存根
-				// 添加电话
-				String two = et_contacts_userphone.getText().toString();
-				int three = et_contacts_userphone.getText().length();
+				
+				
+				String two = et_contacts_userphone.getText().toString().trim();
 				if (two.equals("")) {
 					Toast.makeText(context, "电话号码不能为空，请输入", Toast.LENGTH_SHORT)	.show();
 				}
-				// 添加姓名
-				String one = et_contacts_companyname.getText().toString();
+				
+				String one = et_contacts_companyname.getText().toString().trim(); 
 				int four = et_contacts_companyname.getText().length();
+				
 				if (one.equals("")) {
 					Toast.makeText(context, "姓名不能为空，请输入", Toast.LENGTH_SHORT).show();
-				} else if (four > 4) {
-					Toast.makeText(context, "姓名长度最长为4位，请重新输入",
-							Toast.LENGTH_SHORT).show();
+				} 
+				
+				if (four > 4) {
+					Toast.makeText(context, "姓名长度最长为4位，请重新输入",Toast.LENGTH_SHORT).show();
+				}
+				
+				//判断输入的值是否符合保存的要求
+				if(!two.equals("")&&!one.equals("")){
+					builder.dismiss();
 				}
 			}
 		});

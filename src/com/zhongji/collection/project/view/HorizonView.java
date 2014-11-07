@@ -46,7 +46,7 @@ public class HorizonView implements OnClickListener {
 	@Override
 	public void onClick(View arg0) {
 		// TODO 自动生成的方法存根
-		if(arg0.getId()==R.id. tv_horizoncompany){
+		if(arg0.getId()==R.id.tv_horizonStarttime){
 		//实际开工时间	
 			DataTimeAlertDialog dialog=new DataTimeAlertDialog(context);
 			dialog.setClickListener(new Click() {
@@ -61,7 +61,7 @@ public class HorizonView implements OnClickListener {
 				}
 			});
 			dialog.show();	
-		}else if(arg0.getId()==R.id. tv_horizonStarttime){
+		}else if(arg0.getId()==R.id.tv_horizoncompany){
 		//施工总承包	
 		DialogUtils.showContactsDialog(context,R.array.generalcontractor);	
 			

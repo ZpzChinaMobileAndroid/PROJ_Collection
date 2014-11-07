@@ -61,8 +61,7 @@ public class EditPasswordActivity extends BaseSecondActivity implements
 			// 判断输入的内容
 			String oldpassword = et_oldpassword.getText().toString().trim();
 			String newpassword = et_newpassword.getText().toString().trim();
-			String newosecendpassword = et_newsencendpassword.getText()
-					.toString().trim();
+			String newosecendpassword = et_newsencendpassword.getText().toString().trim();
 			if (oldpassword.equals("")) {
 				showShortToast("请输入原密码");
 				return;

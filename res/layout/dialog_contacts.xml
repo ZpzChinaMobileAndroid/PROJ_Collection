@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
      android:padding="@dimen/pro_marginall"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#ffffff" >
     
     <!-- 第一层 -->>
     <LinearLayout 
@@ -14,14 +15,14 @@
         android:orientation="vertical">
         
         <ImageView 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:src="@drawable/dialog_contacts"
             android:layout_marginTop="10dp"/>
     </LinearLayout>
     
     
-   <!-- 第二层 -->> 
+   <!-- 第二层 -->
     <LinearLayout 
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
@@ -47,7 +48,7 @@
       <EditText 
          style="@style/pro_et_style"
          android:id="@+id/et_contacts_userpassword"  
-         android:hint="请输入姓名"  
+         android:hint="请输入联系方式"  
            /> 
            
        <View
@@ -93,7 +94,7 @@
      
     </LinearLayout>  
     
-     <!-- 第一层 -->>
+     <!-- 第三层 -->>
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -112,9 +113,5 @@
             
             />
         
-        
     </LinearLayout>
-    
-    
-    
 </LinearLayout>

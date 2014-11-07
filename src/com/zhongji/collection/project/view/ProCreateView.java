@@ -1,5 +1,6 @@
 package com.zhongji.collection.project.view;
 
+import android.R.raw;
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -53,6 +54,7 @@ public class ProCreateView implements OnClickListener{
 		tv_endtime.setOnClickListener(this);
 		tv_wzjoin.setOnClickListener(this);
 		tv_ownertype.setOnClickListener(this);
+		tv_ownerunit.setOnClickListener(this);
 		
 	}
 	
@@ -106,6 +108,10 @@ public class ProCreateView implements OnClickListener{
 			
 		DialogUtils.showMultiChoiceDialog(context,R.array.typeofowner);	
 			
+		}else if(arg0.getId()==R.id.tv_ownerunit){
+		//业主单位	
+		DialogUtils.showContactsDialog(context, R.array.ownercompanypost);	
+		
 		}
 	}
 }
