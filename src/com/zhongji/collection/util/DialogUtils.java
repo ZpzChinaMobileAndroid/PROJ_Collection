@@ -89,14 +89,8 @@ public class DialogUtils {
 			public void onClick(View arg0) {
 				// TODO 自动生成的方法存根
 				
-				
-				String two = et_contacts_userphone.getText().toString().trim();
-				if (two.equals("")) {
-					Toast.makeText(context, "电话号码不能为空，请输入", Toast.LENGTH_SHORT)	.show();
-				}
-				
-				String one = et_contacts_companyname.getText().toString().trim(); 
-				int four = et_contacts_companyname.getText().length();
+				String one = et_contacts_username.getText().toString().trim(); 
+				int four = et_contacts_username.getText().length();
 				
 				if (one.equals("")) {
 					Toast.makeText(context, "姓名不能为空，请输入", Toast.LENGTH_SHORT).show();
@@ -106,8 +100,13 @@ public class DialogUtils {
 					Toast.makeText(context, "姓名长度最长为4位，请重新输入",Toast.LENGTH_SHORT).show();
 				}
 				
+				String two = et_contacts_userphone.getText().toString().trim();
+				if (two.equals("")) {
+					Toast.makeText(context, "电话号码不能为空，请输入", Toast.LENGTH_SHORT)	.show();
+				}
+				
 				//判断输入的值是否符合保存的要求
-				if(!two.equals("")&&!one.equals("")){
+				if(!one.equals("")&&!two.equals("")&&four<5){
 					builder.dismiss();
 				}
 			}
