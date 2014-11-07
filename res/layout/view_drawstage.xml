@@ -89,10 +89,11 @@
                     android:text="电梯" />
 
                 <CheckBox
+                    
                     android:id="@+id/cb_lift"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:button="@drawable/pro_checked"
+                    android:button="@drawable/checkbox_prostage_selector"
                     android:text="" />
             </LinearLayout>
 
@@ -118,7 +119,7 @@
                     android:id="@+id/cb_airconditioner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:button="@drawable/pro_checked"
+                    android:button="@drawable/checkbox_prostage_selector"
                     android:text="" />
             </LinearLayout>
 
@@ -144,7 +145,7 @@
                     android:id="@+id/cb_heatingway"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:button="@drawable/pro_checked"
+                    android:button="@drawable/checkbox_prostage_selector"
                     android:text="" />
             </LinearLayout>
 
@@ -170,7 +171,7 @@
                     android:id="@+id/cb_wallmaterial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:button="@drawable/pro_checked"
+                    android:button="@drawable/checkbox_prostage_selector"
                     android:text="" />
             </LinearLayout>
 
@@ -196,7 +197,7 @@
                     android:id="@+id/cb_steelstructure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:button="@drawable/pro_checked"
+                    android:button="@drawable/checkbox_prostage_selector"
                     android:text="" />
             </LinearLayout>
 

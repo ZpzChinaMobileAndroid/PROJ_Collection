@@ -29,7 +29,7 @@ public class LaunchActivity extends BaseActivity{
 			}
 		}, 1500);
 	}
-
+ 
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub

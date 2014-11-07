@@ -21,4 +21,7 @@
 	
 	<color name="gray_prostage_bg">#eaeaea</color>
 	<color name="gray_prostage_txt">#939393</color>
+	
+	<color name="red_pro_txt">#fc7812</color>
+	<color name="gray_proall_bg">#efeded</color>
 </resources>

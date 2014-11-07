@@ -28,7 +28,11 @@ public class DialogUtils {
 	public static TextView tv_contacts_post;
 
 	
-	// 多选择弹窗
+	/**
+	 * 多选择弹窗
+	 * @param context
+	 * @param arrayid
+	 */
 	public static void showMultiChoiceDialog(Context context, int arrayid) {
 
 		final boolean[] checkedItems = new boolean[] { false, false, false,false, false, false };
@@ -49,7 +53,11 @@ public class DialogUtils {
 
 	
 	
-	// 单选择弹窗
+	/**
+	 *  单选择弹窗
+	 * @param context
+	 * @param arrayid
+	 */
 	public static void showChoiceDialog(Context context, int arrayid) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setItems(arrayid, null);
@@ -58,13 +66,17 @@ public class DialogUtils {
 	
 	
 	
-	// 联系人弹窗
+	/**
+	 *  联系人弹窗
+	 * @param context
+	 * @param arrayid
+	 */  
 	public static void showContactsDialog(final Context context,final int arrayid) {
-		Activity act = (Activity) context;
+		Activity act = (Activity) context; 
 		View view = act.getLayoutInflater().inflate(R.layout.dialog_relatilayout,null);
 		final AlertDialog builder = new AlertDialog.Builder(context).create();
 		builder.setView(view, 0, 0, 0, 0);
-		
+		 
 		et_contacts_username = (EditText) view.findViewById(id.et_contacts_username);// 添加姓名
 		et_contacts_userphone = (EditText) view.findViewById(id.et_contacts_userpassword);// 添加电话
 		tv_contacts_post = (TextView) view.findViewById(id.tv_contacts_post);// 岗位
@@ -82,7 +94,10 @@ public class DialogUtils {
 				builder.show();
 			}
 		});
-		// 保存
+		
+		/**
+		 *  保存
+		 */
 		bt_contacts_save.setOnClickListener(new OnClickListener() {
 
 			@Override

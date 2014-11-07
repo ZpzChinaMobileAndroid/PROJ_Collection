@@ -95,6 +95,12 @@
             android:name="com.zhongji.collection.project.ProjectStageActivity"
             android:screenOrientation="portrait" >
         </activity>
+        
+        <!-- 项目详情 -->
+        <activity 
+            android:name="com.zhongji.collection.project.ProjectDetialActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
