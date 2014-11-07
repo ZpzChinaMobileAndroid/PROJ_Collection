@@ -48,6 +48,19 @@ public class HttpRestClient {
 		httpClient.get(getAbsoluteUrl(url), requestParams, responseUtils);
 	}
 
+	public static void get(Context context, String url, String token, RequestParams requestParams, ResponseUtils responseUtils) {
+
+		System.out.println("url:"+getAbsoluteUrl(url) + token);
+		System.out.println("requestParams:"+requestParams.toString());
+		httpClient.get(context, getAbsoluteUrl(url) + token, requestParams, responseUtils);
+	}
+	
+	public static void get(Context context, String url, ResponseUtils responseUtils) {
+
+		System.out.println("url:"+getAbsoluteUrl("") + url);
+		httpClient.get(context, getAbsoluteUrl("") + url, responseUtils);
+	}
+	
 	/**
 	 * post请求
 	 * 

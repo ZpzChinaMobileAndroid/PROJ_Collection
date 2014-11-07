@@ -7,6 +7,7 @@
     <dimen name="activity_title_size">20sp</dimen>
     <dimen name="activity_button_size">18sp</dimen>
     
+    <dimen name="activity_12_size">12sp</dimen>
     <dimen name="activity_14_size">14sp</dimen>
     <dimen name="activity_16_size">16sp</dimen>
     <dimen name="activity_18_size">18sp</dimen>
@@ -21,4 +22,8 @@
     <dimen name="pro_margindrapadding">10dp</dimen>
     <dimen name="pro_margin_topbom">-5dp</dimen>
     <dimen name="prostage_marginall">10dp</dimen>
+    
+    <dimen name="pro_item_paddingall">15dp</dimen>
+    <dimen name="pro_item_drawmargin">10dp</dimen>
+    <dimen name="pro_item_pall">20dp</dimen>
 </resources>

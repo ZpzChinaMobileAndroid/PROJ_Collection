@@ -25,4 +25,7 @@ public class HttpAPI {
 	
 	/**密码修改 */
 	public static final String USERS_MODIFICATION="Users/";
+	
+	/**获取全部项目 */
+	public static final String PROJECTS_ALL="Projects/";
 }
