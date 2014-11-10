@@ -1,6 +1,5 @@
 package com.zhongji.collection.project.view;
 
-import android.R.raw;
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,8 +8,8 @@ import android.widget.TextView;
 
 import com.zhongji.collection.android.phone.R;
 import com.zhongji.collection.util.DataTimeAlertDialog;
-import com.zhongji.collection.util.DialogUtils;
 import com.zhongji.collection.util.DataTimeAlertDialog.Click;
+import com.zhongji.collection.util.DialogUtils;
 
 /**
  * 土地信息－项目立项

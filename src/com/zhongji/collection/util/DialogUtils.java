@@ -5,9 +5,6 @@ package com.zhongji.collection.util;
  * 
  */
 
-import com.zhongji.collection.android.phone.R;
-import com.zhongji.collection.android.phone.R.id;
-import android.R.integer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -16,9 +13,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.zhongji.collection.android.phone.R;
+import com.zhongji.collection.android.phone.R.id;
 
 public class DialogUtils {
 

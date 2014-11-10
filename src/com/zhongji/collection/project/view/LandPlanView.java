@@ -1,7 +1,5 @@
 package com.zhongji.collection.project.view;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;

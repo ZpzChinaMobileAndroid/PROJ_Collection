@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_detial_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/pro_detial_pall" >
+
+        <ImageView
+            android:id="@+id/iv_detial_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_landinfo_small" />
+
+        <TextView
+            android:id="@+id/tv_detial_stagechildname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="@color/blue_pro_txt"
+            android:textSize="@dimen/activity_16_size" />
+
+        <View
+            style="@style/view_line"
+            android:layout_marginTop="@dimen/pro_detial_marg5" />
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/pro_detial_marg10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="预计施工时间"
+                    android:textSize="@dimen/activity_18_size" />
+
+                <TextView
+                    android:id="@+id/tv_exstarttime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="@color/gray_detial_txt" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="预计竣工时间"
+                    android:textSize="@dimen/activity_18_size" />
+
+                <TextView
+                    android:id="@+id/tv_exendtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="@color/gray_detial_txt" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</merge>

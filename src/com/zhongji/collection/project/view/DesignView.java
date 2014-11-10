@@ -1,13 +1,13 @@
 package com.zhongji.collection.project.view;
 
-import com.zhongji.collection.android.phone.R;
-import com.zhongji.collection.android.phone.R.id;
-import com.zhongji.collection.util.DialogUtils;
-
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+
+import com.zhongji.collection.android.phone.R;
+import com.zhongji.collection.android.phone.R.id;
+import com.zhongji.collection.util.DialogUtils;
 
 /**
  * 设计阶段

@@ -8,8 +8,8 @@ import android.widget.TextView;
 import com.zhongji.collection.android.phone.R;
 import com.zhongji.collection.android.phone.R.id;
 import com.zhongji.collection.util.DataTimeAlertDialog;
-import com.zhongji.collection.util.DialogUtils;
 import com.zhongji.collection.util.DataTimeAlertDialog.Click;
+import com.zhongji.collection.util.DialogUtils;
 
 /**
  * 地平

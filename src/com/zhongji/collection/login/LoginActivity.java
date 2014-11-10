@@ -7,6 +7,7 @@ import java.util.Map;
 import net.tsz.afinal.annotation.view.ViewInject;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -39,13 +40,17 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
+		DisplayMetrics dm = new DisplayMetrics();getWindowManager().getDefaultDisplay().getMetrics(dm);
+		int width = dm.widthPixels;//宽度
+		int h = dm.heightPixels;
+		System.out.println(width + " -- "+h);
 		init();//初始化(继承父类的时候)
 	}
 
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-		et_username.setText("13554672223");
+		et_username.setText("12345678907");//13554672223
 		et_password.setText("Abcd@12345");
 	}
 

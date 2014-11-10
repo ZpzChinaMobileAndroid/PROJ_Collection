@@ -174,33 +174,23 @@ public class Project implements Serializable{
 		this.owner = owner;
 	}
 	public String getExpectedStartTime() {
-		if(TextUtils.isEmpty(expectedStartTime)){
-			return "1970/01/01";
-		}
 		
-		String t = expectedStartTime.replace("/Date(", "").replace(")/", "");
-		if(t.contains("+")){
-			String[] ts = t.split("\\+");
-			return TimeUtils.longtostr(Long.parseLong(ts[0]));
-		}
+		return dateToTime(expectedStartTime);
+	}
+	public String getExpectedStartTime2() {
 		
-		return expectedStartTime;
+		return dateToTime2(expectedStartTime);
 	}
 	public void setExpectedStartTime(String expectedStartTime) {
 		this.expectedStartTime = expectedStartTime;
 	}
 	public String getExpectedFinishTime() {
-		if(TextUtils.isEmpty(expectedFinishTime)){
-			return "1970/01/01";
-		}
 		
-		String t = expectedFinishTime.replace("/Date(", "").replace(")/", "");
-		if(t.contains("+")){
-			String[] ts = t.split("\\+");
-			return TimeUtils.longtostr(Long.parseLong(ts[0]));
-		}
+		return dateToTime(expectedFinishTime);
+	}
+	public String getExpectedFinishTime2() {
 		
-		return expectedFinishTime;
+		return dateToTime2(expectedFinishTime);
 	}
 	public void setExpectedFinishTime(String expectedFinishTime) {
 		this.expectedFinishTime = expectedFinishTime;
@@ -230,7 +220,7 @@ public class Project implements Serializable{
 		this.storeyHeight = storeyHeight;
 	}
 	public String getForeignInvestment() {
-		return foreignInvestment;
+		return returnTFSmal(foreignInvestment);
 	}
 	public void setForeignInvestment(String foreignInvestment) {
 		this.foreignInvestment = foreignInvestment;
@@ -260,37 +250,37 @@ public class Project implements Serializable{
 		this.mainDesignStage = mainDesignStage;
 	}
 	public String getPropertyElevator() {
-		return propertyElevator;
+		return returnTFBig(propertyElevator);
 	}
 	public void setPropertyElevator(String propertyElevator) {
 		this.propertyElevator = propertyElevator;
 	}
 	public String getPropertyAirCondition() {
-		return propertyAirCondition;
+		return returnTFBig(propertyAirCondition);
 	}
 	public void setPropertyAirCondition(String propertyAirCondition) {
 		this.propertyAirCondition = propertyAirCondition;
 	}
 	public String getPropertyHeating() {
-		return propertyHeating;
+		return returnTFBig(propertyHeating);
 	}
 	public void setPropertyHeating(String propertyHeating) {
 		this.propertyHeating = propertyHeating;
 	}
 	public String getPropertyExternalWallMeterial() {
-		return propertyExternalWallMeterial;
+		return returnTFBig(propertyExternalWallMeterial);
 	}
 	public void setPropertyExternalWallMeterial(String propertyExternalWallMeterial) {
 		this.propertyExternalWallMeterial = propertyExternalWallMeterial;
 	}
 	public String getPropertyStealStructure() {
-		return propertyStealStructure;
+		return returnTFBig(propertyStealStructure);
 	}
 	public void setPropertyStealStructure(String propertyStealStructure) {
 		this.propertyStealStructure = propertyStealStructure;
 	}
 	public String getActualStartTime() {
-		return actualStartTime;
+		return dateToTime2(actualStartTime);
 	}
 	public void setActualStartTime(String actualStartTime) {
 		this.actualStartTime = actualStartTime;
@@ -331,6 +321,54 @@ public class Project implements Serializable{
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	
+	/**
+	 * 时间格式转换
+	 * @param time
+	 * @return
+	 */
+	private String dateToTime2(String time) {
+		if(TextUtils.isEmpty(time)){
+			return "1970-01-01";
+		}
+		
+		String t = time.replace("/Date(", "").replace(")/", "");
+		if(t.contains("+")){
+			String[] ts = t.split("\\+");
+			return TimeUtils.longtostr2(Long.parseLong(ts[0]));
+		}
+		return time;
+	}
+	
+	private String dateToTime(String time) {
+		if(TextUtils.isEmpty(time)){
+			return "1970/01/01";
+		}
+		
+		String t = time.replace("/Date(", "").replace(")/", "");
+		if(t.contains("+")){
+			String[] ts = t.split("\\+");
+			return TimeUtils.longtostr(Long.parseLong(ts[0]));
+		}
+		return time;
+	}
+	
+	public String returnTFBig(String text){
+		if("true".equals(text)){
+			return "YES";
+		}else{
+			return "NO";
+		}
+	}
+	
+	public String returnTFSmal(String text){
+		if("true".equals(text)){
+			return "Yes";
+		}else{
+			return "No";
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return "Project [actualStartTime=" + actualStartTime + ", area=" + area

@@ -24,4 +24,10 @@
 	
 	<color name="red_pro_txt">#fc7812</color>
 	<color name="gray_proall_bg">#efeded</color>
+	
+	<color name="gray_detial_bg">#e5e5e5</color>
+	<color name="gray_detial_txt">#7d7d7d</color>
+	<color name="gray_detial_txtbg">#99242424</color>
+	<color name="red_detial_txt">#ef7678</color>
+	
 </resources>

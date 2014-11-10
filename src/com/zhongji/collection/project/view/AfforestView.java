@@ -1,15 +1,12 @@
 package com.zhongji.collection.project.view;
 
-import com.zhongji.collection.android.phone.R;
-import com.zhongji.collection.android.phone.R.id;
-import com.zhongji.collection.seach.SeachAdvancedActivity;
-import com.zhongji.collection.util.DialogUtils;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+
+import com.zhongji.collection.android.phone.R;
+import com.zhongji.collection.android.phone.R.id;
 
 /**
  * 消防景观/绿化
@@ -20,6 +17,7 @@ import android.widget.TextView;
 
 public class AfforestView implements OnClickListener{
 
+	@SuppressWarnings("unused")
 	private Context context;
 	public View view_afforestView;
 	public TextView tv_afforestcontrol;//消防

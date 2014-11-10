@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gray_detial_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/pro_detial_pall" >
+
+    <ImageView
+        android:id="@+id/iv_detial_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_landinfo_small" />
+
+    <TextView
+        android:id="@+id/tv_detial_stagechildname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/blue_pro_txt"
+        android:textSize="@dimen/activity_16_size" />
+
+    <View
+        android:id="@+id/layout_line"
+        style="@style/view_line"
+        android:layout_marginTop="@dimen/pro_detial_marg5" />
+
+    <TextView
+        android:id="@+id/tv_detial_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/pro_detial_marg10"
+        android:text="TextView"
+        android:textSize="@dimen/activity_18_size" />
+
+    <TextView
+        android:id="@+id/tv_detial_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/pro_detial_marg10"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tv_detial_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/gray_detial_txt" />
+
+</LinearLayout>

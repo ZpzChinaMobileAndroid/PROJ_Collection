@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/view_detial_title" />
+	<include layout="@layout/view_detial_imgs"/>
+    <LinearLayout
+        android:id="@+id/layout_contacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/pro_detial_marg10"
+        android:orientation="vertical" >
+
+        <include layout="@layout/view_detial_contact" />
+
+        <include layout="@layout/view_detial_contact" />
+
+        <include layout="@layout/view_detial_contact" />
+    </LinearLayout>
+
+
+</LinearLayout>

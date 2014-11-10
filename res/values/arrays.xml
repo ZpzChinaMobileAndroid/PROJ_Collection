@@ -7,92 +7,78 @@
         <item>主体施工阶段,地平,桩基基坑,主体施工,消防/景观绿化</item>
         <item>装修阶段,装修阶段</item>
     </string-array>
-
-    <string-array  name="Landusage"  >
-         <item >工业</item>
-         <item >酒店及餐饮</item>
-         <item >商务办公</item>
-         <item >住宅/经济适用房 </item>
-         <item >公用事业设施 </item>
-         <item >其他 </item>
+    <string-array name="Landusage">
+        <item>工业</item>
+        <item>酒店及餐饮</item>
+        <item>商务办公</item>
+        <item>住宅/经济适用房 </item>
+        <item>公用事业设施 </item>
+        <item>其他 </item>
     </string-array>
-    
-    
-    <string-array   name="Auctionunitpost"   >
-        <item >项目负责人</item>
-    </string-array> 
-
-    
+    <string-array name="Auctionunitpost">
+        <item>项目负责人</item>
+    </string-array>
     <string-array name="ownercompanypost">
-         <item >项目经理</item>
-         <item >采购经理</item>
-          <item >设计经理</item>
-           <item >项目总负责</item>
-            <item >其他</item>
+        <item>项目经理</item>
+        <item>采购经理</item>
+        <item>设计经理</item>
+        <item>项目总负责</item>
+        <item>其他</item>
     </string-array>
-    
-    <string-array    name="foreigninvestment">
-        <item >参与 </item>
-        <item >不参与  </item>
+    <string-array name="foreigninvestment">
+        <item>参与 </item>
+        <item>不参与  </item>
     </string-array>
-    
-    <string-array   name=" typeofowner"  >
-         <item >外资独商</item>
-         <item >中外合资</item>
-          <item >私人企业</item>
-           <item >政府机关</item>
-            <item >国有企业</item>
-             <item >其他</item>
+    <string-array name=" typeofowner">
+        <item>外资独商</item>
+        <item>中外合资</item>
+        <item>私人企业</item>
+        <item>政府机关</item>
+        <item>国有企业</item>
+        <item>其他</item>
     </string-array>
-    
-    
-    <string-array    name="geologicalexplorationunitspost">
-          <item >项目负责人</item>
+    <string-array name="geologicalexplorationunitspost">
+        <item>项目负责人</item>
     </string-array>
-    
-    
-    <string-array   name=" DesignInstitutepost">
-          <item >建筑师</item>
-         <item >结构工程师</item>
-          <item >电气工程师</item>
-           <item >暖通工程师</item>
-            <item >给排水工程师</item>
-             <item >幕墙工程师</item>
+    <string-array name=" DesignInstitutepost">
+        <item>建筑师</item>
+        <item>结构工程师</item>
+        <item>电气工程师</item>
+        <item>暖通工程师</item>
+        <item>给排水工程师</item>
+        <item>幕墙工程师</item>
+    </string-array>
+    <string-array name="Themaindesignphase">
+        <item>结构</item>
+        <item>立面</item>
+        <item>幕墙</item>
+        <item>暖通</item>
+        <item>扩初</item>
+        <item>蓝图</item>
+        <item>送审</item>
+        <item>审结</item>
+    </string-array>
+    <string-array name="generalcontractor">
+        <item>项目负责人</item>
+        <item>现场经理</item>
+    </string-array>
+    <string-array name="firecontrol">
+        <item>招标</item>
+        <item>正在施工</item>
+        <item>施工完成</item>
+    </string-array>
+    <string-array name="fitmentcondition">
+        <item>无装修</item>
+        <item>简单全装修</item>
+        <item>部分装修</item>
+        <item>精装修</item>
+    </string-array>
+    <string-array name="tvs_drawstage">
+        <item>电梯</item>
+        <item>空调</item>
+        <item>供暖方式</item>
+        <item>外墙材料</item>
+        <item>钢结构</item>
     </string-array>
 
-    
-    <string-array   name="Themaindesignphase">
-         <item >结构</item>
-         <item >立面</item>
-          <item >幕墙</item>
-           <item >暖通</item>
-            <item >扩初</item>
-             <item >蓝图</item>
-               <item >送审</item>
-                <item >审结</item>
-    </string-array>
-
-    
-    <string-array    name="generalcontractor">
-        <item >项目负责人</item>
-        <item >现场经理</item>
-    </string-array>
-   
-    
-    <string-array   name="firecontrol">
-          <item >招标</item>
-            <item >正在施工</item>
-              <item >施工完成</item>
-    </string-array>
-      
-    
-       <string-array   name="fitmentcondition">
-          <item >无装修</item>
-            <item >简单全装修</item>
-              <item >部分装修</item>
-                 <item >精装修</item>
-    </string-array>
-      
-      
-       
 </resources>

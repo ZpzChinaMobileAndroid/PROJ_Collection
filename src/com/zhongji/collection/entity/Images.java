@@ -8,7 +8,7 @@ public class Images implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String category;				//plan
+	private String category;				//plan 土地规划
 	private String device;					//ios
 	private String imgCompressionContent;	//9j...
 	private String imgID;					//5dde6935-fd91-4afa-91e1-28f4eb4744e2

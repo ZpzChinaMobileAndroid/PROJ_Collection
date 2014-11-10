@@ -26,4 +26,10 @@
     <dimen name="pro_item_paddingall">15dp</dimen>
     <dimen name="pro_item_drawmargin">10dp</dimen>
     <dimen name="pro_item_pall">20dp</dimen>
+    
+     <dimen name="pro_detial_pall">10dp</dimen>
+     <dimen name="pro_detial_marg1">1dp</dimen>
+     <dimen name="pro_detial_marg5">5dp</dimen>
+     <dimen name="pro_detial_marg10">10dp</dimen>
+     <dimen name="pro_detial_marg20">20dp</dimen>
 </resources>

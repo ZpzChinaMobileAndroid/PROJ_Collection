@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/view_detial_title" />
+	<include layout="@layout/view_detial_imgs"/>
+
+	<LinearLayout
+        android:layout_marginTop="@dimen/pro_detial_marg10"
+        android:layout_marginLeft="@dimen/pro_detial_marg10"
+        android:layout_marginRight="@dimen/pro_detial_marg10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="消防"
+                android:textSize="@dimen/activity_16_size" />
+
+            <TextView
+                android:textColor="@color/gray_detial_txt"
+                android:id="@+id/tv_fireControl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="景观绿化"
+                android:textSize="@dimen/activity_16_size" />
+
+            <TextView
+                android:textColor="@color/gray_detial_txt"
+                android:id="@+id/tv_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
