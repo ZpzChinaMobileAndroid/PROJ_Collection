@@ -12,6 +12,7 @@ public class Contacts implements Serializable{
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	private String baseContactID;	//298fc487-f29d-4a3c-b6b8-e121f5032c6f
 	private String category;		//pileFoundationUnitContacts	桩基基坑
@@ -23,6 +24,33 @@ public class Contacts implements Serializable{
 	private String url;				//BaseContacts\/4aa933de-d1f0-4b85-a6be-b10959c6108f?baseContactId=298fc487-f29d-4a3c-b6b8-e121f5032c6f
 	private String workAddress;		//副i 单位地址
 	private String workAt;			//凤凰花 单位名称
+	
+	public Contacts() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Contacts(String category, String duties, String name,
+			String project, String telephone, String workAddress, String workAt) {
+		super();
+		this.category = category;
+		this.duties = duties;
+		this.name = name;
+		this.project = project;
+		this.telephone = telephone;
+		this.workAddress = workAddress;
+		this.workAt = workAt;
+	}		
+	public void contacts(String category, String duties, String name,
+			String project, String telephone, String workAddress, String workAt) {
+		this.category = category;
+		this.duties = duties;
+		this.name = name;
+		this.project = project;
+		this.telephone = telephone;
+		this.workAddress = workAddress;
+		this.workAt = workAt;
+	}	
+	
 	public String getBaseContactID() {
 		return baseContactID;
 	}

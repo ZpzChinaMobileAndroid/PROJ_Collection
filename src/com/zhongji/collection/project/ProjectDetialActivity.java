@@ -3,6 +3,7 @@ package com.zhongji.collection.project;
 import java.util.List;
 
 import net.tsz.afinal.annotation.view.ViewInject;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,6 +44,8 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 	@ViewInject(id=R.id.layout_content)
 	private LinearLayout layout_content;
 	
+	private int position = 0;
+	private String type = "show";
 	private LandPlanDetialView view_landplan;		//土地规划
 	private ProCreateDetialView view_procreate;		//项目立项
 	private ExplorationStageDetialView view_explorationStage;	//地勘阶段
@@ -69,6 +72,8 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 		setLeftBtn();
 		
 		String url = getIntent().getStringExtra("url");
+		Project project = (Project) getIntent().getSerializableExtra("project");
+		position = getIntent().getIntExtra("position", 0);
 		
 		view_landplan = new LandPlanDetialView(ProjectDetialActivity.this, layout_content);
 		view_procreate = new ProCreateDetialView(ProjectDetialActivity.this, layout_content);
@@ -92,8 +97,14 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 		layout_content.addView(view_afforest.getView());
 		layout_content.addView(view_fitment.getView());
 		
-		showProgressDialog();
-		getProject(url);
+		if(project!=null){
+			type = "edit";
+			updateUI(project);
+		}else{
+			type = "show";
+			showProgressDialog();
+			getProject(url);
+		}
 	}
 
 	@Override
@@ -102,7 +113,9 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 		super.onClick(v);
 		if(v.getId() == R.id.layout_prostage){
 			//阶段
-			
+			Intent intent = new Intent();
+			intent.setClass(ProjectDetialActivity.this, ProjectDetialStageActivity.class);
+			startActivity(intent);
 		}
 	}
 	
@@ -111,40 +124,61 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 	 * 获取项目详情
 	 */
 	private void getProject(String url) {
-		HttpRestClient.get(ProjectDetialActivity.this, url, new ResponseUtils(ProjectDetialActivity.this) {
- 
-					@Override
-					public void getResult(int httpCode, String result) {
-						// TODO Auto-generated method stub
-						dismissProgressDialog();
-						if (httpCode == HttpAPI.HTTP_SUCCESS_CODE) {
-							ProjectListBean bean = JSON.parseObject(JsonUtils.parseString(result),ProjectListBean.class);
-							if (getData(bean)) {
-								return; 
-							}
+		HttpRestClient.get(ProjectDetialActivity.this, url, new ResponseUtils(
+				ProjectDetialActivity.this) {
 
-							
-							List<Project> temp = bean.getData();
-							if(temp!=null && temp.size()>0){
-								Project project = temp.get(0);
-								
-								view_landplan.updateUI(project);
-								view_procreate.updateUI(project);
-								view_explorationStage.updateUI(project);
-								view_design.updateUI(project);
-								view_drawStage.updateUI(project);
-								view_horizon.updateUI(project);
-								view_foundation.updateUI(project);
-								view_constuct.updateUI(project);
-								view_afforest.updateUI(project);
-								view_fitment.updateUI(project);
-							}
-							
-
-						} else {
-							showNetShortToast(httpCode);
-						}
+			@Override
+			public void getResult(int httpCode, String result) {
+				// TODO Auto-generated method stub
+				dismissProgressDialog();
+				if (httpCode == HttpAPI.HTTP_SUCCESS_CODE) {
+					ProjectListBean bean = JSON.parseObject(
+							JsonUtils.parseString(result),
+							ProjectListBean.class);
+					if (getData(bean)) {
+						return;
 					}
-				});
+
+					List<Project> temp = bean.getData();
+					if (temp != null && temp.size() > 0) {
+						Project project = temp.get(0);
+
+						updateUI(project);
+					}
+
+				} else {
+					showNetShortToast(httpCode);
+				}
+			}
+
+		});
+	}
+	
+	private void updateUI(final Project project) {
+		if(type.equals("edit")){
+			setRightBtnEdit(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					Intent intent = new Intent();
+					intent.setClass(ProjectDetialActivity.this, NewProActivity.class);
+					intent.putExtra("position", position);
+					intent.putExtra("project", project);
+					startActivity(intent);
+				}
+			});
+		}
+		
+		view_landplan.updateUI(project);
+		view_procreate.updateUI(project);
+		view_explorationStage.updateUI(project);
+		view_design.updateUI(project);
+		view_drawStage.updateUI(project);
+		view_horizon.updateUI(project);
+		view_foundation.updateUI(project);
+		view_constuct.updateUI(project);
+		view_afforest.updateUI(project);
+		view_fitment.updateUI(project);
 	}
 }

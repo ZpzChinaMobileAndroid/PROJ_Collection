@@ -27,9 +27,11 @@
         <GridView
             android:id="@+id/gridView1"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:background="@color/gray_pro_bg_photo"
-            android:numColumns="3" >
+            android:horizontalSpacing="@dimen/pro_detial_marg10"
+            android:numColumns="3"
+            android:verticalSpacing="@dimen/pro_detial_marg10" >
         </GridView>
 
         <LinearLayout
@@ -50,11 +52,25 @@
                 android:layout_marginTop="@dimen/pro_margintopbom"
                 android:background="@color/black" />
 
-            <TextView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
                 android:id="@+id/tv_provinces"
                 style="@style/pro_tv_style"
                 android:drawableRight="@drawable/pro_jian_r"
                 android:text="所在区域/省市" />
+
+                <TextView
+                    android:id="@+id/tv_provinces_value"
+                    style="@style/pro_tv_style"
+                    android:layout_marginLeft="@dimen/pro_detial_marg10"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/gray_pro_txt" />
+            </LinearLayout>
 
             <View
                 style="@style/view_line"
@@ -87,8 +103,8 @@
                 <EditText
                     android:id="@+id/et_landarea"
                     style="@style/pro_et_style"
-                    android:inputType="number"
-                     android:hint="0" >
+                    android:hint="0"
+                    android:inputType="number" >
                 </EditText>
             </LinearLayout>
 
@@ -110,8 +126,8 @@
                 <EditText
                     android:id="@+id/et_landvolume"
                     style="@style/pro_et_style"
-                    android:inputType="number"
-                     android:hint="0">
+                    android:hint="0"
+                    android:inputType="number" >
                 </EditText>
             </LinearLayout>
 
@@ -121,11 +137,25 @@
                 android:layout_marginTop="@dimen/pro_margintopbom"
                 android:background="@color/black" />
 
-            <TextView
-                android:id="@+id/tv_landuse"
-                style="@style/pro_tv_style"
-                android:drawableRight="@drawable/pro_jian_r"
-                android:text="地块用途" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/tv_landuse"
+                    style="@style/pro_tv_style"
+                    android:drawableRight="@drawable/pro_jian_r"
+                    android:text="地块用途" />
+
+                <TextView
+                    android:id="@+id/tv_landuse_value"
+                    style="@style/pro_tv_style"
+                    android:layout_marginLeft="@dimen/pro_detial_marg10"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/gray_pro_txt" />
+            </LinearLayout>
 
             <View
                 style="@style/view_line"
@@ -133,11 +163,22 @@
                 android:layout_marginTop="@dimen/pro_margintopbom"
                 android:background="@color/black" />
 
-            <TextView
-                android:id="@+id/tv_auctionunit"
-                style="@style/pro_tv_style"
-                android:drawableRight="@drawable/pro_add_lv"
-                android:text="拍卖单位" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/tv_auctionunit"
+                    style="@style/pro_tv_style"
+                    android:drawableRight="@drawable/pro_add_lv"
+                    android:text="拍卖单位" />
+
+                <LinearLayout
+                    android:id="@+id/layout_contacts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

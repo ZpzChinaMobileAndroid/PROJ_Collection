@@ -1,16 +1,21 @@
 package com.zhongji.collection.seach;
 
+import java.util.List;
+
 import net.tsz.afinal.annotation.view.ViewInject;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.zhongji.collection.android.phone.R;
 import com.zhongji.collection.base.BaseSecondActivity;
+import com.zhongji.collection.entity.Project;
 import com.zhongji.collection.util.DialogUtils;
 
 /**
@@ -22,6 +27,12 @@ import com.zhongji.collection.util.DialogUtils;
 public class SeachAdvancedActivity extends BaseSecondActivity implements
 		OnClickListener {
 
+	private int page=0;
+	private int size=5;
+	private String keyword;
+	@ViewInject(id=R.id.lv_seach_result)
+	private ListView lv_seach_result;
+	private List<Project> lists;
 	@ViewInject(id = R.id.et_seach_advanced_keyword)
 	private EditText et_seach_advanced_keyword;
 	@ViewInject(id = R.id.et_seach_advanced_companyname)
@@ -42,6 +53,10 @@ public class SeachAdvancedActivity extends BaseSecondActivity implements
 	private TextView tv_seach_projectcategory;
 	@ViewInject(id = R.id.tv_seach_projectcategory_show)
 	private TextView tv_seach_projectcategory_show;
+	@ViewInject(id=R.id.tv_right)
+	private TextView tv_right;
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +68,7 @@ public class SeachAdvancedActivity extends BaseSecondActivity implements
 		tv_seach_city.setOnClickListener(this);
 		tv_seach_projectcategory.setOnClickListener(this);
 		tv_seach_projectstage.setOnClickListener(this);
+		tv_right.setOnClickListener(this);
 	}
 
 	@Override
@@ -108,31 +124,45 @@ public class SeachAdvancedActivity extends BaseSecondActivity implements
 		} else if (v.getId() == R.id.tv_seach_projectstage) {
 			// 项目阶段
 			final String[] items = getResources().getStringArray(R.array.Landusage);
-			DialogUtils.showChoiceDialog(SeachAdvancedActivity.this,items,new AlertDialog.OnClickListener() {
-
-				@Override
-				public void onClick(DialogInterface arg0, int arg1) {
-					// TODO 自动生成的方法存根
-					
-					tv_seach_projectstage_show.setText(items[arg1]);
-					arg0.dismiss();
-				}
-			});;
+//			DialogUtils.showChoiceDialog(SeachAdvancedActivity.this,items,new AlertDialog.OnClickListener() {
+//
+//				@Override
+//				public void onClick(DialogInterface arg0, int arg1) {
+//					// TODO 自动生成的方法存根
+//					
+//					tv_seach_projectstage_show.setText(items[arg1]);
+//					arg0.dismiss();
+//				}
+//			});;
 
 		} else if (v.getId() == R.id.tv_seach_projectcategory) {
 			// 项目类别
 			final String[] items = getResources().getStringArray(R.array.Landusage);
-			DialogUtils.showChoiceDialog(SeachAdvancedActivity.this,items,new AlertDialog.OnClickListener() {
+//			DialogUtils.showChoiceDialog(SeachAdvancedActivity.this,items,new AlertDialog.OnClickListener() {
+//
+//				@Override
+//				public void onClick(DialogInterface arg0, int arg1) {
+//					// TODO 自动生成的方法存根
+//
+//					tv_seach_projectcategory_show.setText(items[arg1]);
+//					arg0.dismiss();
+//				}
+//			});;
 
-				@Override
-				public void onClick(DialogInterface arg0, int arg1) {
-					// TODO 自动生成的方法存根
-
-							tv_seach_projectcategory_show.setText(items[arg1]);
-							arg0.dismiss();
-				}
-			});;
-
-		}
+		}else if(v.getId()==R.id.tv_right){
+		//搜索结果
+	    keyword=et_seach_advanced_keyword.getText().toString().trim();
+		if(keyword.equals("")){
+			showShortToast("请输入关键字");
+			return;
+		}else{
+			Intent intent=new Intent(SeachAdvancedActivity.this,SeachResultActivity.class);
+			intent.putExtra("keyword", keyword);
+			startActivity(intent);
+			overridePendingTransition(R.anim.in_from_left, R.anim.out_to_left);
+			
+		   }
+		 }
+	   }
 	}
-}
+	

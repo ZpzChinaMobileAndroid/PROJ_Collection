@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/prostage_marginall" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/pro_details_stage_message" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:gravity="center_vertical"
+                android:text="土地信息阶段"
+                android:textColor="@color/black"
+               />
+           
+            
+        </LinearLayout>
+      
+        <LinearLayout 
+            
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+          
+          
+           <View
+          android:layout_width="0dp"
+          android:layout_height="2dp"
+          android:layout_weight="1" />  
+         
+         <View
+		  android:layout_width="0dp"
+		  android:layout_height="1dp"
+          android:background="@color/black"
+          android:layout_weight="7" />
+            
+            
+        </LinearLayout>
+        
+        
+
+        <LinearLayout
+            android:onClick="onClick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/prostage_marginall"
+            android:tag="0" >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:text="土地规划/拍卖" />
+
+            <ImageView
+                android:id="@+id/iv_0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
+                android:visibility="gone" />
+            
+            <ImageView
+                android:id="@+id/iv_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_users"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:onClick="onClick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/prostage_marginall"
+            android:tag="1" >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:text="项目立项" />
+
+            <ImageView
+                android:id="@+id/iv_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
+                android:visibility="gone" />
+            
+            <ImageView
+                android:id="@+id/iv_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_users"
+                android:visibility="gone" />
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/prostage_marginall" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/pro_detalis_stage_design" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:gravity="center_vertical"
+                android:text="主体设计阶段"
+                />
+        </LinearLayout>
+
+       
+        <LinearLayout 
+            
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+          
+          
+           <View
+          android:layout_width="0dp"
+          android:layout_height="2dp"
+          android:layout_weight="1" />  
+         
+         <View
+		  android:layout_width="0dp"
+		  android:layout_height="1dp"
+          android:background="@color/black"
+          android:layout_weight="7" />
+            
+            
+        </LinearLayout>
+        
+        
+        <LinearLayout
+            android:onClick="onClick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/prostage_marginall"
+            android:tag="2" >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:text="地勘阶段" />
+
+            <ImageView
+                android:id="@+id/iv_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
+                android:visibility="gone" />
+            
+            <ImageView
+                android:id="@+id/iv_5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_users"
+                android:visibility="gone" />
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:onClick="onClick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/prostage_marginall"
+            android:tag="3" >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:text="设计阶段" />
+
+            <ImageView
+                android:id="@+id/iv_6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
+                android:visibility="gone" />
+            
+              <ImageView
+                android:id="@+id/iv_7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_users"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:onClick="onClick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/prostage_marginall"
+            android:tag="4" >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:text="出图阶段" />
+    
+            <ImageView
+                android:id="@+id/iv_8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
+                android:visibility="gone" />
+            
+              <ImageView
+                android:id="@+id/iv_9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_users"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/prostage_marginall" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/pro_deralis_stage_construction" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:gravity="center_vertical"
+                android:text="主体施工阶段"
+                />
+        </LinearLayout>
+        
+       
+        <LinearLayout 
+            
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+          
+          
+           <View
+          android:layout_width="0dp"
+          android:layout_height="2dp"
+          android:layout_weight="1" />  
+         
+         <View
+		  android:layout_width="0dp"
+		  android:layout_height="1dp"
+          android:background="@color/black"
+          android:layout_weight="7" />
+            
+            
+        </LinearLayout>
+        
+       
+        <LinearLayout
+            android:onClick="onClick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/prostage_marginall"
+            android:tag="5" >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:text="地平" />
+
+           <ImageView
+                android:id="@+id/iv_10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
+                android:visibility="gone" />
+           
+             <ImageView
+                android:id="@+id/iv_11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_users"
+                android:visibility="gone" />
+            
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:onClick="onClick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/prostage_marginall"
+            android:tag="6" >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:text="桩基基坑" />
+
+             <ImageView
+                android:id="@+id/iv_12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
+                android:visibility="gone" />
+             
+               <ImageView
+                android:id="@+id/iv_13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_users"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:onClick="onClick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/prostage_marginall"
+            android:tag="7" >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:text="主体施工" />
+
+            <ImageView
+                android:id="@+id/iv_14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
+                android:visibility="gone" />
+            
+              <ImageView
+                android:id="@+id/iv_15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_users"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:onClick="onClick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/prostage_marginall"
+            android:tag="8" >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:text="消防/景观绿化" />
+
+             <ImageView
+                android:id="@+id/iv_16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
+                android:visibility="gone" />
+             
+               <ImageView
+                android:id="@+id/iv_17"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_users"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/prostage_marginall" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/pro_details_stage_fiment" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:gravity="center_vertical"
+                android:text="装修阶段"
+                />
+        </LinearLayout>
+
+        
+        <LinearLayout 
+            
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+          
+          
+           <View
+          android:layout_width="0dp"
+          android:layout_height="2dp"
+          android:layout_weight="1" />  
+         
+         <View
+		  android:layout_width="0dp"
+		  android:layout_height="1dp"
+          android:background="@color/black"
+          android:layout_weight="7" />
+            
+            
+        </LinearLayout>
+        
+        
+        <LinearLayout
+            android:onClick="onClick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/prostage_marginall"
+            android:tag="9" >
+
+           <ImageView 
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/pro_detalis_stage_result"
+               android:src="@drawable/pro_detalis_stage_result"/>
+            
+            
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

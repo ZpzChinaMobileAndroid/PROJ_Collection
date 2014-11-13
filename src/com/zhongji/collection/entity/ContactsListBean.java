@@ -1,6 +1,7 @@
 package com.zhongji.collection.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsListBean extends BaseBean implements Serializable {
@@ -13,6 +14,9 @@ public class ContactsListBean extends BaseBean implements Serializable {
 
 
 	public List<Contacts> getData() {
+		if(data==null){
+			return new ArrayList<Contacts>();
+		}
 		return data;
 	}
 
@@ -20,7 +24,6 @@ public class ContactsListBean extends BaseBean implements Serializable {
 	public void setData(List<Contacts> data) {
 		this.data = data;
 	}
-
 
 	@Override
 	public String toString() {

@@ -18,7 +18,7 @@
         android:id="@+id/et_contacts_username"
         android:layout_below="@+id/first"
         style="@style/pro_et_style"
-        android:hint="请输入姓名" 
+        android:hint="添加姓名" 
         android:layout_marginTop="50dp"/>
 
     <View
@@ -26,14 +26,14 @@
         android:layout_below="@+id/et_contacts_username"
         style="@style/view_line"
         android:layout_marginBottom="@dimen/pro_margintopbom"
-        android:layout_marginTop="@dimen/pro_margintopbom"
-        android:background="@color/black" />
+        android:layout_marginTop="@dimen/pro_margintopbom" />
 
     <EditText
+        android:inputType="textPhonetic"
         android:id="@+id/et_contacts_userpassword"
         android:layout_below="@+id/two"
         style="@style/pro_et_style"
-        android:hint="请输入联系方式" />
+        android:hint="添加电话" />
 
     <View
          android:id="@+id/three"
@@ -41,14 +41,15 @@
         style="@style/view_line"
         android:layout_marginBottom="@dimen/pro_margintopbom"
         android:layout_marginTop="@dimen/pro_margintopbom"
-        android:background="@color/black" />
+         />
 
     <TextView
         android:id="@+id/tv_contacts_post"
-        android:layout_below="@+id/three"
         style="@style/pro_tv_style"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/three"
         android:drawableRight="@drawable/pro_jian_r"
-        android:text="岗位" />
+        android:text="岗位:" />
 
     <View
         android:id="@+id/four"
@@ -56,7 +57,7 @@
         style="@style/view_line"
         android:layout_marginBottom="@dimen/pro_margintopbom"
         android:layout_marginTop="@dimen/pro_margintopbom"
-        android:background="@color/black" />
+         />
 
     <EditText
         android:id="@+id/et_contacts_companyname"
@@ -70,7 +71,7 @@
         style="@style/view_line"
         android:layout_marginBottom="@dimen/pro_margintopbom"
         android:layout_marginTop="@dimen/pro_margintopbom"
-        android:background="@color/black" />
+         />
 
     <EditText
         android:id="@+id/et_contacts_companyaddress"
@@ -84,7 +85,7 @@
         style="@style/view_line"
         android:layout_marginBottom="@dimen/pro_margintopbom"
         android:layout_marginTop="@dimen/pro_margintopbom"
-        android:background="@color/black" />
+         />
 
     <Button
         android:id="@+id/bt_contacts_save"

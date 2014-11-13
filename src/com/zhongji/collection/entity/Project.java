@@ -1,10 +1,16 @@
 package com.zhongji.collection.entity;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import android.text.TextUtils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.zhongji.collection.util.TimeUtils;
 
 public class Project implements Serializable{
@@ -56,7 +62,72 @@ public class Project implements Serializable{
 	private String auctionUnit;//拍卖单位
 	private String owner;//业主单位
 	
+	public String projectToJsonString(){
+		String[] keys = {"foreignInvestment","propertyAirCondition","propertyElevator","propertyExternalWallMeterial","propertyHeating","propertyStealStructure"};
+		String[] timekeys = {"actualStartTime","expectedFinishTime","expectedStartTime"};
+		String s = JSON.toJSONString(this);
+		JSONObject jb = JSONObject.parseObject(s);
+		jb.remove("baseContacts");
+		jb.remove("projectImgs");
+		replayValue(jb,keys);
+		replayTimeValue(jb, timekeys);
+		System.out.println(jb.toJSONString());
+		
+		return jb.toJSONString();
+	}
+	
+	public String contactsToJsonString(Contacts cbean){
+		String s = JSON.toJSONString(cbean);
+		JSONObject jb = JSONObject.parseObject(s);
+		jb.put("projectID", projectID);
+		System.out.println(jb.toJSONString());
+		
+		return jb.toJSONString();
+	}
+	
+	public String projectImgsToJsonString(Images cbean){
+		String s = JSON.toJSONString(cbean);
+		JSONObject jb = JSONObject.parseObject(s);
+		jb.put("projectID", projectID);
+		jb.put("imgContent", jb.get("imgCompressionContent"));
+		jb.put("imgCompressionContent", "");
+		System.out.println(jb.toJSONString());
+		return jb.toJSONString();
+	}
+	
+	private void replayTimeValue(JSONObject jb, String[] keys) {
+		for(String key : keys){
+			String a = (String) jb.get(key);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			try {
+				Date date = format.parse(a);
+				jb.put(key, "/Date("+date.getTime()+"+0800)/");
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void replayValue(JSONObject jb, String[] keys) {
+		for(String key : keys){
+			String a = (String) jb.get(key);
+			if("Yes".equals(a) || "YES".equals(a)){
+				jb.put(key, "1");
+			}else{
+				jb.put(key, "0");
+			}
+		}
+		
+	}
+	
 	public List<ContactsListBean> getBaseContacts() {
+		if(baseContacts == null){
+			baseContacts = new ArrayList<ContactsListBean>();
+			ContactsListBean bean = new ContactsListBean();
+			baseContacts.add(bean);
+			return baseContacts;
+		}
 		return baseContacts;
 	}
 	public void setBaseContacts(List<ContactsListBean> baseContacts) {
@@ -75,6 +146,12 @@ public class Project implements Serializable{
 		this.ownerBy = ownerBy;
 	}
 	public List<ImagesListBean> getProjectImgs() {
+		if(projectImgs == null){
+			projectImgs = new ArrayList<ImagesListBean>();
+			ImagesListBean bean = new ImagesListBean();
+			projectImgs.add(bean);
+			return projectImgs;
+		}
 		return projectImgs;
 	}
 	public void setProjectImgs(List<ImagesListBean> projectImgs) {
@@ -105,8 +182,8 @@ public class Project implements Serializable{
 		this.landName = landName;
 	}
 	public String getDistrict() {
-		if(!TextUtils.isEmpty(district)){
-			return district +" - ";
+		if(TextUtils.isEmpty(district)){
+			return "";
 		}
 		return district;
 	}
@@ -114,12 +191,18 @@ public class Project implements Serializable{
 		this.district = district;
 	}
 	public String getProvince() {
+		if(TextUtils.isEmpty(province)){
+			return "";
+		}
 		return province;
 	}
 	public void setProvince(String province) {
 		this.province = province;
 	}
 	public String getCity() {
+		if(TextUtils.isEmpty(city)){
+			return "";
+		}
 		return city;
 	}
 	public void setCity(String city) {
@@ -132,12 +215,18 @@ public class Project implements Serializable{
 		this.landAddress = landAddress;
 	}
 	public String getArea() {
+		if(TextUtils.isEmpty(area)){
+			return "0";
+		}
 		return area;
 	}
 	public void setArea(String area) {
 		this.area = area;
 	}
 	public String getPlotRatio() {
+		if(TextUtils.isEmpty(plotRatio)){
+			return "0";
+		}
 		return plotRatio;
 	}
 	public void setPlotRatio(String plotRatio) {
@@ -177,20 +266,12 @@ public class Project implements Serializable{
 		
 		return dateToTime(expectedStartTime);
 	}
-	public String getExpectedStartTime2() {
-		
-		return dateToTime2(expectedStartTime);
-	}
 	public void setExpectedStartTime(String expectedStartTime) {
 		this.expectedStartTime = expectedStartTime;
 	}
 	public String getExpectedFinishTime() {
 		
 		return dateToTime(expectedFinishTime);
-	}
-	public String getExpectedFinishTime2() {
-		
-		return dateToTime2(expectedFinishTime);
 	}
 	public void setExpectedFinishTime(String expectedFinishTime) {
 		this.expectedFinishTime = expectedFinishTime;
@@ -214,6 +295,9 @@ public class Project implements Serializable{
 		this.areaOfStructure = areaOfStructure;
 	}
 	public String getStoreyHeight() {
+		if(TextUtils.isEmpty(storeyHeight)){
+			return "0";
+		}
 		return storeyHeight;
 	}
 	public void setStoreyHeight(String storeyHeight) {
@@ -226,6 +310,9 @@ public class Project implements Serializable{
 		this.foreignInvestment = foreignInvestment;
 	}
 	public String getOwnerType() {
+		if(TextUtils.isEmpty(ownerType)){
+			return "";
+		}
 		return ownerType;
 	}
 	public void setOwnerType(String ownerType) {
@@ -280,7 +367,7 @@ public class Project implements Serializable{
 		this.propertyStealStructure = propertyStealStructure;
 	}
 	public String getActualStartTime() {
-		return dateToTime2(actualStartTime);
+		return dateToTime(actualStartTime);
 	}
 	public void setActualStartTime(String actualStartTime) {
 		this.actualStartTime = actualStartTime;
@@ -327,7 +414,7 @@ public class Project implements Serializable{
 	 * @param time
 	 * @return
 	 */
-	private String dateToTime2(String time) {
+	private String dateToTime(String time) {
 		if(TextUtils.isEmpty(time)){
 			return "1970-01-01";
 		}
@@ -336,19 +423,6 @@ public class Project implements Serializable{
 		if(t.contains("+")){
 			String[] ts = t.split("\\+");
 			return TimeUtils.longtostr2(Long.parseLong(ts[0]));
-		}
-		return time;
-	}
-	
-	private String dateToTime(String time) {
-		if(TextUtils.isEmpty(time)){
-			return "1970/01/01";
-		}
-		
-		String t = time.replace("/Date(", "").replace(")/", "");
-		if(t.contains("+")){
-			String[] ts = t.split("\\+");
-			return TimeUtils.longtostr(Long.parseLong(ts[0]));
 		}
 		return time;
 	}

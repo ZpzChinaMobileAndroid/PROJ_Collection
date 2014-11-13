@@ -18,7 +18,7 @@ public class ConstuctDetialView {
 	private Context context;
 	private int resId = R.drawable.ic_mainconstruction_small;
 	private String stageName = "主体施工";
-	private String imgsType = "pileFoundation";
+	private String imgsType = "mainPart";
 	public View view_constuct_detial;
 	public DetialTitleView view_detial_title;
 	public DetialImgsView view_detial_imgs;

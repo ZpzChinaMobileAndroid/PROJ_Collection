@@ -1,6 +1,7 @@
 package com.zhongji.collection.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ImagesListBean extends BaseBean implements Serializable {
@@ -13,6 +14,9 @@ public class ImagesListBean extends BaseBean implements Serializable {
 
 
 	public List<Images> getData() {
+		if(data == null){
+			return new ArrayList<Images>();
+		}
 		return data;
 	}
 
@@ -26,5 +30,6 @@ public class ImagesListBean extends BaseBean implements Serializable {
 	public String toString() {
 		return "UserListBean [data=" + data + ", status=" + status + "]";
 	}
+
 
 }

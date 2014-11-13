@@ -5,14 +5,12 @@
     android:background="#ffffff"
     android:orientation="vertical" >
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
-        
-        
-    <LinearLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -40,114 +38,106 @@
                 android:layout_marginTop="@dimen/pro_margintopbom"
                 android:background="@color/black" />
 
-          <LinearLayout 
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
-            
-     
-            <TextView
-                android:id="@+id/tv_seach_district"
-                style="@style/pro_tv_style"
-                android:drawableRight="@drawable/pro_jian_r"
-                android:text="区域" />
-            
-             <TextView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/tv_seach_district"
+                    style="@style/pro_tv_style"
+                    android:drawableRight="@drawable/pro_jian_r"
+                    android:text="区域" />
+
+                <TextView
                     android:id="@+id/tv_seach_district_show"
                     style="@style/pro_tv_style"
                     android:layout_marginLeft="@dimen/pro_margindrapadding"
                     android:text=""
                     android:textColor="@color/gray_pro_txt" />
-            
-        </LinearLayout>
+            </LinearLayout>
 
-        <View
-            style="@style/view_line"
-            android:layout_marginBottom="@dimen/pro_margintopbom"
-            android:layout_marginTop="@dimen/pro_margintopbom"
-            android:background="@color/black" 
-            />
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-             >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left" >
 
-            <TextView
-                android:id="@+id/tv_seach_city"
-                style="@style/pro_tv_style"
-                android:drawableRight="@drawable/pro_jian_r"
-                android:text="城市" />
-            
-            
-             <TextView
+                <TextView
+                    android:id="@+id/tv_seach_city"
+                    style="@style/pro_tv_style"
+                    android:drawableRight="@drawable/pro_jian_r"
+                    android:text="城市" />
+
+                <TextView
                     android:id="@+id/tv_seach_city_show"
                     style="@style/pro_tv_style"
                     android:layout_marginLeft="@dimen/pro_margindrapadding"
                     android:text=""
                     android:textColor="@color/gray_pro_txt" />
-            
-        </LinearLayout>
+            </LinearLayout>
 
-        <View
-            style="@style/view_line"
-            android:layout_marginBottom="@dimen/pro_margintopbom"
-            android:layout_marginTop="@dimen/pro_margintopbom"
-            android:background="@color/black" />
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left" >
 
-            <TextView
-                android:id="@+id/tv_seach_projectstage"
-                style="@style/pro_tv_style"
-                android:drawableRight="@drawable/pro_jian_r"
-                android:text="项目阶段" />
-            
-             <TextView
+                <TextView
+                    android:id="@+id/tv_seach_projectstage"
+                    style="@style/pro_tv_style"
+                    android:drawableRight="@drawable/pro_jian_r"
+                    android:text="项目阶段" />
+
+                <TextView
                     android:id="@+id/tv_seach_projectstage_show"
                     style="@style/pro_tv_style"
                     android:layout_marginLeft="@dimen/pro_margindrapadding"
                     android:text=""
                     android:textColor="@color/gray_pro_txt" />
-            
-        </LinearLayout>
+            </LinearLayout>
 
-        <View
-            style="@style/view_line"
-            android:layout_marginBottom="@dimen/pro_margintopbom"
-            android:layout_marginTop="@dimen/pro_margintopbom"
-            android:background="@color/black" 
-            android:padding="10dp"/>
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black"
+                android:padding="10dp" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left" >
 
-            <TextView
-                android:id="@+id/tv_seach_projectcategory"
-                style="@style/pro_tv_style"
-                android:drawableRight="@drawable/pro_jian_r"
-                android:text="项目类别" />
-            
-              <TextView
+                <TextView
+                    android:id="@+id/tv_seach_projectcategory"
+                    style="@style/pro_tv_style"
+                    android:drawableRight="@drawable/pro_jian_r"
+                    android:text="项目类别" />
+
+                <TextView
                     android:id="@+id/tv_seach_projectcategory_show"
                     style="@style/pro_tv_style"
                     android:layout_marginLeft="@dimen/pro_margindrapadding"
                     android:text=""
                     android:textColor="@color/gray_pro_txt" />
-        </LinearLayout>
+            </LinearLayout>
 
-        <View
-            style="@style/view_line"
-            android:layout_marginBottom="@dimen/pro_margintopbom"
-            android:layout_marginTop="@dimen/pro_margintopbom"
-            android:background="@color/black" />
+            <View
+                style="@style/view_line"
+                android:layout_marginBottom="@dimen/pro_margintopbom"
+                android:layout_marginTop="@dimen/pro_margintopbom"
+                android:background="@color/black" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>  
-</LinearLayout>  
+
+</LinearLayout>

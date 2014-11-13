@@ -37,9 +37,11 @@
         <GridView
             android:id="@+id/gridView1"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:background="@color/gray_pro_bg_photo"
-            android:numColumns="3" >
+            android:horizontalSpacing="@dimen/pro_detial_marg10"
+            android:numColumns="3"
+            android:verticalSpacing="@dimen/pro_detial_marg10" >
         </GridView>
     </LinearLayout>
 

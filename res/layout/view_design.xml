@@ -16,10 +16,10 @@
             android:padding="@dimen/pro_marginall" >
 
             <TextView
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
                 android:id="@+id/textView1"
                 style="@style/pro_tv_style"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:drawableLeft="@drawable/pro_jian_l"
                 android:text="地勘阶段"
                 android:textColor="@color/gray_pro_txt" />
@@ -40,11 +40,22 @@
             android:orientation="vertical"
             android:padding="@dimen/pro_marginall" >
 
-            <TextView
-                android:id="@+id/tv_designcompany"
-                style="@style/pro_tv_style"
-                android:drawableRight="@drawable/pro_add_lv"
-                android:text="设计院" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/tv_designcompany"
+                    style="@style/pro_tv_style"
+                    android:drawableRight="@drawable/pro_add_lv"
+                    android:text="设计院" />
+
+                <LinearLayout
+                    android:id="@+id/layout_contacts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                </LinearLayout>
+            </LinearLayout>
 
             <View
                 style="@style/view_line"
@@ -52,11 +63,25 @@
                 android:layout_marginTop="@dimen/pro_margintopbom"
                 android:background="@color/black" />
 
-            <TextView
-                android:id="@+id/tv_designphases"
-                style="@style/pro_tv_style"
-                android:drawableRight="@drawable/pro_jian_r"
-                android:text="主体设计阶段" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/tv_designphases"
+                    style="@style/pro_tv_style"
+                    android:drawableRight="@drawable/pro_jian_r"
+                    android:text="主体设计阶段" />
+
+                <TextView
+                    android:id="@+id/tv_designphases_value"
+                    style="@style/pro_tv_style"
+                    android:layout_marginLeft="@dimen/pro_detial_marg10"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/gray_pro_txt" />
+            </LinearLayout>
 
             <View
                 style="@style/view_line"

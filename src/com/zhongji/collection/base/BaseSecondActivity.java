@@ -51,6 +51,62 @@ public abstract class BaseSecondActivity extends BaseActivity implements OnClick
 		tv_right.setBackgroundResource(R.drawable.pro_gou);
 	}
 	
+	public void setRightBtn(OnClickListener listener) {
+		tv_right = (TextView) findViewById(R.id.tv_right);
+		tv_right.setOnClickListener(listener);
+		tv_right.setText("");
+		tv_right.setVisibility(View.VISIBLE);
+		tv_right.setBackgroundResource(R.drawable.pro_gou);
+	}
+	
+	public void setRightBtnUpload(OnClickListener listener) {
+		tv_right = (TextView) findViewById(R.id.tv_right);
+		tv_right.setOnClickListener(listener);
+		tv_right.setText("");
+		tv_right.setVisibility(View.VISIBLE);
+		tv_right.setBackgroundResource(R.drawable.ic_upload);
+	}
+	
+	public void setRightBtnGone() {
+		tv_right = (TextView) findViewById(R.id.tv_right);
+		tv_right.setVisibility(View.GONE);
+	}
+	
+	public void setRightBtnEdit(OnClickListener listener) {
+		tv_right = (TextView) findViewById(R.id.tv_right);
+		tv_right.setOnClickListener(listener);
+		tv_right.setText("");
+		tv_right.setVisibility(View.VISIBLE);
+		tv_right.setBackgroundResource(R.drawable.ic_edit);
+	}
+	
+	/**
+	 * 设置搜索背景
+	 * 
+	 * @param title
+	 */
+	public void setTitlebackgroud(String title) {
+		TextView tv_title = (TextView) findViewById(R.id.tv_title);
+		tv_title.setBackgroundResource(R.drawable.seach_basemap);
+		tv_title.setText(title);
+	}
+	
+	/**
+	 * 设置搜索条
+	 * 
+	 * @param title
+	 */
+	public void setTitleSeach(OnClickListener listener) {
+		TextView tv_title = (TextView) findViewById(R.id.tv_title);
+		TextView et_seach_result_start = (TextView) findViewById(R.id.et_seach_result_start);
+		tv_right = (TextView) findViewById(R.id.tv_right);
+		tv_right.setOnClickListener(listener);
+		tv_right.setText("取消");
+		tv_title.setVisibility(View.GONE);
+		et_seach_result_start.setVisibility(View.VISIBLE);
+		
+	}
+	
 	public void onClick(View v) {
 		if (v.getId() == R.id.tv_left) {
 			// 左

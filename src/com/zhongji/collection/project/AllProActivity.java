@@ -53,7 +53,9 @@ public class AllProActivity extends BaseSecondActivity{
 	protected void init() {
 		// TODO Auto-generated method stub
 		
-		setTitle("全部项目");
+		setTitlebackgroud("输入搜索内容");
+		setLeftBtn();
+		
 		lists = new ArrayList<Project>();
 		adapter = new ProjectAdapter(AllProActivity.this);
 		listView.setAdapter(adapter);

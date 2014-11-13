@@ -11,24 +11,34 @@
         android:src="@drawable/seach_resultfind"
         android:id="@+id/iv_seach_find"
         android:layout_gravity="left"
-        android:layout_weight="1"/>
+        android:layout_weight="2"/>
     
     <TextView 
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/tv_seach_content"
         android:textColor="@color/black"
-        android:text="textview"
+        android:text="广粤路"
         android:textSize="@dimen/activity_14_size"
-        android:layout_weight="3"
+        android:layout_weight="8"
         />
 
      <TextView 
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_seach_content"
+        android:id="@+id/tv_seach_number"
         android:textColor="@color/black"
-        android:text="textview"
+        android:text="10"
+        android:textSize="@dimen/activity_14_size"
+        android:layout_weight="1"
+        />
+     
+     <TextView 
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_seach_number_quantity"
+        android:textColor="@color/black"
+        android:text="条"
         android:textSize="@dimen/activity_14_size"
         android:layout_weight="1"
         />

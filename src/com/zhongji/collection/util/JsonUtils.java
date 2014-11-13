@@ -1,6 +1,7 @@
 package com.zhongji.collection.util;
 
 import java.io.UnsupportedEncodingException;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.http.entity.StringEntity;
@@ -37,5 +38,49 @@ public class JsonUtils {
 	 */
 	public static String parseString(String json){
 		return JSONObject.parseObject(json).getString("d");
+	}
+	
+	/**
+	 * 上传项目
+	 * @param requestParams
+	 * @param bool
+	 * @return
+	 */
+	public static StringEntity uploadproject(Map<String, String> requestParams){
+		Map<String, String> maps = new LinkedHashMap<String, String>();
+		maps.put("data", "value");
+		maps.put("token", HttpRestClient.TOKEN);
+		String jsonstr = JSON.toJSONString(maps).replace("\"value\"", JSON.toJSONString(requestParams));
+		System.out.println(jsonstr);
+		StringEntity res = null;
+		try {
+			res = new StringEntity(jsonstr, "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	/**
+	 * 上传项目
+	 * @param requestParams
+	 * @param bool
+	 * @return
+	 */
+	public static StringEntity uploadproject(String requestParams){
+		Map<String, String> maps = new LinkedHashMap<String, String>();
+		maps.put("data", "value");
+		maps.put("token", HttpRestClient.TOKEN);
+		String jsonstr = JSON.toJSONString(maps).replace("\"value\"", requestParams);
+		System.out.println(jsonstr);
+		StringEntity res = null;
+		try {
+			res = new StringEntity(jsonstr, "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
 	}
 }

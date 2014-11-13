@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.tsz.afinal.annotation.view.ViewInject;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -19,17 +20,23 @@ import android.widget.TextView;
 import com.zhongji.collection.adapter.ProViewPager;
 import com.zhongji.collection.android.phone.R;
 import com.zhongji.collection.base.BaseSecondActivity;
+import com.zhongji.collection.entity.Project;
 import com.zhongji.collection.project.view.AfforestView;
+import com.zhongji.collection.project.view.BaseView;
 import com.zhongji.collection.project.view.ConstuctView;
 import com.zhongji.collection.project.view.DesignView;
 import com.zhongji.collection.project.view.DrawStageView;
 import com.zhongji.collection.project.view.ExplorationStageView;
 import com.zhongji.collection.project.view.FitmentView;
 import com.zhongji.collection.project.view.FoundationView;
+import com.zhongji.collection.project.view.GridPhotoView;
 import com.zhongji.collection.project.view.HorizonView;
 import com.zhongji.collection.project.view.LandPlanView;
 import com.zhongji.collection.project.view.ProCreateView;
+import com.zhongji.collection.util.BitmapUtil;
+import com.zhongji.collection.util.PreferencesUtils;
 import com.zhongji.collection.widget.FixedScroller;
+import com.zhongji.collection.widget.MyViewPager;
 
 /**
  * 新建项目
@@ -41,7 +48,7 @@ public class NewProActivity extends BaseSecondActivity implements
 		OnClickListener {
 
 	@ViewInject(id = R.id.viewpager)
-	private ViewPager viewPager;
+	private MyViewPager viewPager;
 	private ProViewPager adapter;
 	private List<View> viewList;
 	private List<String> prostageList = new ArrayList<String>();
@@ -60,6 +67,9 @@ public class NewProActivity extends BaseSecondActivity implements
 	private ConstuctView view_constuct; // 主体施工
 	private AfforestView view_afforesview; // 消防/景观绿化
 	private FitmentView view_fitment; // 装修阶段
+	private Project project;
+	private int position=0;
+	private String type = "edit";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,23 +81,36 @@ public class NewProActivity extends BaseSecondActivity implements
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-
+		
+		project = (Project) getIntent().getSerializableExtra("project");
+		position = getIntent().getIntExtra("position", 0);
+		if(project==null){
+			type = "add";
+			String province = getIntent().getStringExtra("province");
+			String city =  getIntent().getStringExtra("city");
+			String district = getIntent().getStringExtra("district");
+			project = new Project();
+			project.setProvince(province);
+			project.setCity(city);
+			project.setDistrict(district);
+		}
+		
 		setTitle("新建项目");
 		setLeftBtn();
-		setRightBtn();
+		setRightBtn(this);
 
 		getProStageList();
 		viewList = new ArrayList<View>();
-		view_planview = new LandPlanView(NewProActivity.this);
-		view_procreate = new ProCreateView(NewProActivity.this);
-		view_explorationstage = new ExplorationStageView(NewProActivity.this);
-		view_design = new DesignView(NewProActivity.this);
-		view_drawstage = new DrawStageView(NewProActivity.this);
-		view_horizon = new HorizonView(NewProActivity.this);
-		view_foundation = new FoundationView(NewProActivity.this);
-		view_constuct = new ConstuctView(NewProActivity.this);
-		view_afforesview = new AfforestView(NewProActivity.this);
-		view_fitment = new FitmentView(NewProActivity.this);
+		view_planview = new LandPlanView(NewProActivity.this, project);
+		view_procreate = new ProCreateView(NewProActivity.this, project);
+		view_explorationstage = new ExplorationStageView(NewProActivity.this,project);
+		view_design = new DesignView(NewProActivity.this,project);
+		view_drawstage = new DrawStageView(NewProActivity.this,project);
+		view_horizon = new HorizonView(NewProActivity.this,project);
+		view_foundation = new FoundationView(NewProActivity.this,project);
+		view_constuct = new ConstuctView(NewProActivity.this,project);
+		view_afforesview = new AfforestView(NewProActivity.this,project);
+		view_fitment = new FitmentView(NewProActivity.this,project);
 
 		viewList.add(view_planview.getView());
 		viewList.add(view_procreate.getView());
@@ -110,6 +133,7 @@ public class NewProActivity extends BaseSecondActivity implements
 		updateTitle(0);
 	}
 
+	@SuppressWarnings({ "unchecked" })
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -120,6 +144,25 @@ public class NewProActivity extends BaseSecondActivity implements
 			intent.setClass(NewProActivity.this, ProjectStageActivity.class);
 			intent.putExtra("currentItem", currentItem);
 			startActivityForResult(intent, 10);
+		}else if (v.getId() == R.id.tv_right) {
+			// 右
+			System.out.println(project.toString());
+			List<Project> plists = (List<Project>) PreferencesUtils.getObject(NewProActivity.this, PreferencesUtils.PREFERENCE_KEY);
+			if(plists==null){
+				plists = new ArrayList<Project>();
+			}
+			if(type.equals("add")){
+				plists.add(0, project);
+			}else {
+				plists.set(position, project);
+			}
+			
+			
+			PreferencesUtils.saveObject(NewProActivity.this, PreferencesUtils.PREFERENCE_KEY, plists);
+			finish();
+//			FinalDb db = FinalDb.create(this);
+//			db.save(project);
+			
 		}
 	}
 
@@ -181,6 +224,38 @@ public class NewProActivity extends BaseSecondActivity implements
 		public void onPageSelected(int position) {
 			currentItem = position;
 			updateTitle(position);
+			switch(position){
+			case 0:
+				view_planview.update();
+				break;
+			case 1:
+				view_procreate.update();
+				break;
+			case 2:
+				view_explorationstage.update();
+				break;
+			case 3:
+				view_design.update();
+				break;
+			case 4:
+				view_drawstage.update();
+				break;
+			case 5:
+				view_horizon.update();
+				break;
+			case 6:
+				view_foundation.update();
+				break;
+			case 7:
+				view_constuct.update();
+				break;
+			case 8:
+				view_afforesview.update();
+				break;
+			case 9:
+				view_fitment.update();
+				break;
+			}
 		}
 
 		public void onPageScrollStateChanged(int arg0) {
@@ -223,7 +298,50 @@ public class NewProActivity extends BaseSecondActivity implements
 		if (requestCode == 10 && resultCode == 10) {
 			int pos = data.getIntExtra("tag", 0);
 			viewPager.setCurrentItem(pos);
+		} else if (requestCode == 10 && resultCode == 20) {
+			String address = data.getStringExtra("address");
+			double lat = data.getDoubleExtra("lat", 0);
+			double lng = data.getDoubleExtra("lng", 0);
+			project.setLandAddress(address);
+			project.setLatitude(lat+"");
+			project.setLongitude(lng+"");
+			view_procreate.updateAddress();
 		}
+		
+		if(currentItem == 0){
+			//土地规划
+			showBitmap(view_planview, view_planview.mGridView, requestCode, resultCode, data);
+		}else if(currentItem == 2){
+			//地勘阶段
+			showBitmap(view_explorationstage,view_explorationstage.mGridView, requestCode, resultCode, data);
+		}else if(currentItem == 5){
+			//地平
+			showBitmap(view_horizon, view_horizon.mGridView, requestCode, resultCode, data);
+		}else if(currentItem == 6){
+			//桩基基坑
+			showBitmap(view_foundation, view_foundation.mGridView, requestCode, resultCode, data);
+		}else if(currentItem == 7){
+			//主体施工
+			showBitmap(view_constuct, view_constuct.mGridView, requestCode, resultCode, data);
+		}else if(currentItem == 8){
+			//景观绿化
+			showBitmap(view_afforesview, view_afforesview.mGridView, requestCode, resultCode, data);
+		}else if(currentItem == 9){
+			//装修阶段
+			showBitmap(view_fitment, view_fitment.mGridView, requestCode, resultCode, data);
+		}
+		
 
 	}
+
+	private void showBitmap(BaseView baseview, GridPhotoView view, int requestCode, int resultCode, Intent data) {
+		Bitmap bitmap = view.mPhotoUtils.onActivityResult(requestCode, resultCode, data);
+		if(bitmap!=null){
+			String imgstr = BitmapUtil.bitmapToBase64(bitmap);
+			view.addString(imgstr);
+			view.notifyDataSetChanged();
+			baseview.setImages(baseview.imgsType, imgstr);
+		}
+	}
+
 }

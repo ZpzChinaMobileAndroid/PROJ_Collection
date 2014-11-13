@@ -42,7 +42,7 @@ public class DataTimeAlertDialog{
 		timepicker = new TimePicker(context);
 		view.addView(datepicker);
 		view.addView(timepicker);
-		
+		setTimeUnable();
 //		String str = datepicker.getYear()+"年"+(datepicker.getMonth()+1)+"月"+datepicker.getDayOfMonth()+"日";
 		 
 		//隐藏日历模式

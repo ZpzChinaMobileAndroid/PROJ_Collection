@@ -11,8 +11,8 @@
         <item>工业</item>
         <item>酒店及餐饮</item>
         <item>商务办公</item>
-        <item>住宅/经济适用房 </item>
-        <item>公用事业设施 </item>
+        <item>住宅/经济适用房</item>
+        <item>公用事业设施(教育、医疗、科研、基础建设等)</item>
         <item>其他 </item>
     </string-array>
     <string-array name="Auctionunitpost">
@@ -27,7 +27,7 @@
     </string-array>
     <string-array name="foreigninvestment">
         <item>参与 </item>
-        <item>不参与  </item>
+        <item>不参与</item>
     </string-array>
     <string-array name=" typeofowner">
         <item>外资独商</item>
@@ -59,8 +59,8 @@
         <item>审结</item>
     </string-array>
     <string-array name="generalcontractor">
-        <item>项目负责人</item>
         <item>现场经理</item>
+        <item>采购负责人</item>
     </string-array>
     <string-array name="firecontrol">
         <item>招标</item>

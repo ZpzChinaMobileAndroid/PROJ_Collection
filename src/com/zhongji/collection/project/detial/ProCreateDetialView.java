@@ -68,10 +68,10 @@ public class ProCreateDetialView {
 	public void updateUI(Project project) {
 		// TODO Auto-generated method stub
 		view_detial_title.updateUI_ProCreate(project);
-		tv_expectedStartTime.setText(project.getExpectedStartTime2());
+		tv_expectedStartTime.setText(project.getExpectedStartTime());
 		tv_storeyHeight.setText(project.getStoreyHeight()+"M");
 		tv_foreignInvestment.setText(project.getForeignInvestment());
-		tv_expectedFinishTime.setText(project.getExpectedFinishTime2());
+		tv_expectedFinishTime.setText(project.getExpectedFinishTime());
 		tv_investment.setText(project.getInvestment());
 		tv_areaOfStructure.setText(project.getAreaOfStructure()+"㎡");
 		int count = layout_contacts.getChildCount();

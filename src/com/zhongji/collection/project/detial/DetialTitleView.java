@@ -95,7 +95,7 @@ public class DetialTitleView{
 	public void updateUI(Project project) {
 		// TODO Auto-generated method stub
 		tv_detial_title.setText(project.getLandName());
-		tv_detial_area.setText(project.getProvince()+" "+project.getDistrict()+" "+project.getCity());
+		tv_detial_area.setText(project.getProvince()+" "+project.getCity()+" "+project.getDistrict());
 		tv_detial_address.setText(project.getLandAddress());
 	}
 	
@@ -128,8 +128,8 @@ public class DetialTitleView{
 	 */
 	public void updateUI_DrawStage(Project project) {
 		// TODO Auto-generated method stub
-		tv_exstarttime.setText(project.getExpectedStartTime2());
-		tv_exendtime.setText(project.getExpectedFinishTime2());
+		tv_exstarttime.setText(project.getExpectedStartTime());
+		tv_exendtime.setText(project.getExpectedFinishTime());
 	}
 	
 	/**

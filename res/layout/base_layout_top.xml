@@ -33,5 +33,17 @@
         android:layout_centerVertical="true"
         android:text=""
         android:textColor="@color/white" />
+    
+    <EditText 
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:background="@drawable/seach_basemap"
+        android:id="@+id/et_seach_result_start"
+        android:drawableLeft="@drawable/seach_find_seach"
+        android:hint="请输入搜索信息"
+        android:paddingLeft="15dp"
+        android:textColor="@color/black"
+        android:visibility="gone"
+        />
 
 </RelativeLayout>

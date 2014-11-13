@@ -70,6 +70,11 @@ public class HomeActivity extends BaseIndexActivity implements OnClickListener {
 		if(v.getId()==R.id.btn_newpro){
 			//新建项目
 			Intent intent = new Intent(HomeActivity.this, NewProActivity.class);
+			if(user!=null){
+				intent.putExtra("province", user.getProvince());
+				intent.putExtra("city", user.getCity());
+				intent.putExtra("district", user.getDistrict());
+			}
 			startActivity(intent);
 			overridePendingTransition(R.anim.in_from_left, R.anim.out_to_left);
 		}else if(v.getId()==R.id.btn_allpro){

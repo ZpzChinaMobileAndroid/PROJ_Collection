@@ -28,4 +28,10 @@ public class HttpAPI {
 	
 	/**获取全部项目 */
 	public static final String PROJECTS_ALL="Projects/";
+	
+	/**联系人 */
+	public static final String CONTACTS ="BaseContacts/";
+	
+	/**图片 */
+	public static final String PROJECTIMGS ="ProjectImgs/";
 }

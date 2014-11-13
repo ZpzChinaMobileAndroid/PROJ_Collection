@@ -1,64 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:orientation="vertical" >
 
     <ListView
-        android:id="@+id/lv_searchmenu"
-        android:layout_width="wrap_content"
-        android:layout_height="244dp"
-        android:background="@color/white"
+        android:paddingBottom="@dimen/pro_item_pall"
+        android:divider="@color/gray_proall_bg"
         android:dividerHeight="10dp"
         android:listSelector="@android:color/transparent"
-        android:paddingBottom="@dimen/pro_item_pall" >
-</ListView>
-     
-    <RelativeLayout 
+        android:background="@color/gray_proall_bg"
+        android:id="@+id/lv_seachpro_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+    
+    
+    
+    <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
-        
-        <ImageView 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/seach_menu_basemap"
-            />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/seach_menu_basemap" />
 
-        <Button
-            android:id="@+id/bt_seach_advanced"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:onClick="onClick"
-            android:background="@drawable/seach_advanced_button" />
+    <Button
+        android:id="@+id/bt_seach_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/bt_seach_advanced"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="23dp"
+        android:background="@drawable/seach_map_button"
+        android:onClick="onClick" />
 
-          <Button
-              android:id="@+id/bt_seach_voice"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_alignParentLeft="true"
-              android:layout_centerVertical="true"
-              android:layout_marginLeft="44dp"
-              android:onClick="onClick"
-              android:background="@drawable/seach_voice_button"
-               />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/bt_seach_voice"
+        android:layout_marginLeft="44dp"
+        android:layout_toRightOf="@+id/bt_seach_voice"
+        android:src="@drawable/seach_menu_basemap_line" />
 
-          <Button
-              android:id="@+id/bt_seach_map"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_alignBottom="@+id/bt_seach_advanced"
-              android:layout_alignParentRight="true"
-              android:layout_marginRight="22dp"
-              android:layout_marginTop="10dp"
-              android:onClick="onClick"
-              android:background="@drawable/seach_map_button" />
-          
-    </RelativeLayout>
-   
-   
-    
-</LinearLayout>
+    <Button
+        android:id="@+id/bt_seach_advanced"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/seach_advanced_button"
+        android:layout_marginTop="5dp"
+        android:onClick="onClick" />
+
+    <Button
+        android:id="@+id/bt_seach_voice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bt_seach_map"
+        android:layout_alignBottom="@+id/bt_seach_map"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="43dp"
+        android:background="@drawable/seach_voice_button"
+        android:onClick="onClick" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_marginLeft="41dp"
+        android:layout_toRightOf="@+id/bt_seach_advanced"
+        android:src="@drawable/seach_menu_basemap_line" />
+
+</RelativeLayout>

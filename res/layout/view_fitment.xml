@@ -28,9 +28,11 @@
         <GridView
             android:id="@+id/gridView1"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:background="@color/gray_pro_bg_photo"
-            android:numColumns="3" >
+            android:horizontalSpacing="@dimen/pro_detial_marg10"
+            android:numColumns="3"
+            android:verticalSpacing="@dimen/pro_detial_marg10" >
         </GridView>
 
         <LinearLayout
@@ -39,35 +41,74 @@
             android:orientation="vertical"
             android:padding="@dimen/pro_marginall" >
 
-            <TextView
+             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
                 android:id="@+id/tv_fitmemtweak"
                 style="@style/pro_tv_style"
                 android:drawableRight="@drawable/pro_jian_r"
                 android:text="弱电安装" />
 
+                <TextView
+                    android:id="@+id/tv_fitmemtweak_value"
+                    style="@style/pro_tv_style"
+                    android:layout_marginLeft="@dimen/pro_margindrapadding"
+                    android:text=""
+                    android:textColor="@color/gray_pro_txt" />
+            </LinearLayout>
+            
             <View
                 style="@style/view_line"
                 android:layout_marginBottom="@dimen/pro_margintopbom"
                 android:layout_marginTop="@dimen/pro_margintopbom"
                 android:background="@color/black" />
 
-            <TextView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+               <TextView
                 android:id="@+id/tv_fitmentcondition"
                 style="@style/pro_tv_style"
                 android:drawableRight="@drawable/pro_jian_r"
                 android:text="装修情况" />
 
+                <TextView
+                    android:id="@+id/tv_fitmentcondition_value"
+                    style="@style/pro_tv_style"
+                    android:layout_marginLeft="@dimen/pro_margindrapadding"
+                    android:text=""
+                    android:textColor="@color/gray_pro_txt" />
+            </LinearLayout>
+            
+
             <View
                 style="@style/view_line"
                 android:layout_marginBottom="@dimen/pro_margintopbom"
                 android:layout_marginTop="@dimen/pro_margintopbom"
                 android:background="@color/black" />
 
-            <TextView
+             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+               <TextView
                 android:id="@+id/tv_fitmentstage"
                 style="@style/pro_tv_style"
                 android:drawableRight="@drawable/pro_jian_r"
                 android:text="装修阶段" />
+
+                <TextView
+                    android:id="@+id/tv_fitmentstage_value"
+                    style="@style/pro_tv_style"
+                    android:layout_marginLeft="@dimen/pro_margindrapadding"
+                    android:text=""
+                    android:textColor="@color/gray_pro_txt" />
+            </LinearLayout>
+            
+            
 
             <View
                 style="@style/view_line"

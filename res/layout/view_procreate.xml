@@ -78,11 +78,22 @@
                 android:layout_marginTop="@dimen/pro_margintopbom"
                 android:background="@color/black" />
 
-            <TextView
-                android:id="@+id/tv_ownerunit"
-                style="@style/pro_tv_style"
-                android:drawableRight="@drawable/pro_add_lv"
-                android:text="业主单位" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/tv_ownerunit"
+                    style="@style/pro_tv_style"
+                    android:drawableRight="@drawable/pro_add_lv"
+                    android:text="业主单位" />
+
+                <LinearLayout
+                    android:id="@+id/layout_contacts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                </LinearLayout>
+            </LinearLayout>
 
             <View
                 style="@style/view_line"
@@ -127,8 +138,8 @@
                 <EditText
                     android:id="@+id/et_investmoney"
                     style="@style/pro_et_style"
-                    android:inputType="number"
-                    android:hint="0" >
+                    android:hint="0"
+                    android:inputType="number" >
                 </EditText>
             </LinearLayout>
 
@@ -151,8 +162,8 @@
                 <EditText
                     android:id="@+id/et_buildarea"
                     style="@style/pro_et_style"
-                    android:inputType="number"
-                     android:hint="0" >
+                    android:hint="0"
+                    android:inputType="number" >
                 </EditText>
             </LinearLayout>
 
@@ -175,8 +186,8 @@
                 <EditText
                     android:id="@+id/et_buildfloor"
                     style="@style/pro_et_style"
-                    android:inputType="number"
-                     android:hint="0" >
+                    android:hint="0"
+                    android:inputType="number" >
                 </EditText>
             </LinearLayout>
 
@@ -210,11 +221,25 @@
                 android:layout_marginTop="@dimen/pro_margintopbom"
                 android:background="@color/black" />
 
-            <TextView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+               <TextView
                 android:id="@+id/tv_ownertype"
                 style="@style/pro_tv_style"
                 android:drawableRight="@drawable/pro_jian_r"
                 android:text="业主类型" />
+
+                <TextView
+                    android:id="@+id/tv_ownertype_value"
+                    style="@style/pro_tv_style"
+                    android:layout_marginLeft="@dimen/pro_margindrapadding"
+                    android:text=""
+                    android:textColor="@color/gray_pro_txt" />
+            </LinearLayout>
+            
+            
         </LinearLayout>
     </LinearLayout>
 

@@ -1,8 +1,19 @@
 package com.zhongji.collection.util;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.StreamCorruptedException;
+import java.lang.reflect.Field;
+
+import org.apache.commons.codec.binary.Base64;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.util.Log;
 
 /**
  * @package com.ananda.tailing.bike.util
@@ -14,7 +25,148 @@ import android.content.SharedPreferences.Editor;
  */
 public class PreferencesUtils {
 	
-	public static final String PREFERENCE_NAME = "microsearch";
+	public static final String PREFERENCE_NAME = "collection";
+	public static final String PREFERENCE_KEY = "projectlists";
+	
+	public static void saveObject(Context context, String key, Object object) {  
+	    SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME,  Context.MODE_PRIVATE);  
+	    // 创建字节输出流  
+	    ByteArrayOutputStream baos = new ByteArrayOutputStream();  
+	    try {  
+	        // 创建对象输出流，并封装字节流  
+	        ObjectOutputStream oos = new ObjectOutputStream(baos);  
+	        // 将对象写入字节流  
+	        oos.writeObject(object);  
+	        // 将字节流编码成base64的字符窜   
+	        String oAuth_Base64 = new String(Base64.encodeBase64(baos.toByteArray()));  
+	        Editor editor = preferences.edit();  
+	        editor.putString(key, oAuth_Base64);  
+	  
+	        editor.commit();  
+	        oos.close();
+	        baos.close();
+	    } catch (IOException e) {  
+	        // TODO Auto-generated  
+	    }  
+	    Log.i("ok", "存储成功");  
+	}   
+	
+	public static Object getObject(Context context, String key) {  
+		Object object = null;  
+		SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME,  Context.MODE_PRIVATE);   
+	    String productBase64 = preferences.getString(key, "");  
+	              
+	    //读取字节  
+	    byte[] base64 = Base64.decodeBase64(productBase64.getBytes());  
+	      
+	    //封装到字节流  
+	    ByteArrayInputStream bais = new ByteArrayInputStream(base64);  
+	    try {  
+	        //再次封装  
+	        ObjectInputStream bis = new ObjectInputStream(bais);  
+	        try {  
+	            //读取对象  
+	        	object = (Object) bis.readObject();  
+	        } catch (ClassNotFoundException e) {  
+	            // TODO Auto-generated catch block  
+	            e.printStackTrace();  
+	        }  
+	        bis.close();
+	        bais.close();
+	    } catch (StreamCorruptedException e) {  
+	        // TODO Auto-generated catch block  
+	        e.printStackTrace();  
+	    } catch (IOException e) {  
+	        // TODO Auto-generated catch block  
+	        e.printStackTrace();  
+	    }  
+	    return object;  
+	} 
+	
+	/**
+     * 数据存储
+     * @param sp
+     * @param classzz
+     * @throws IllegalArgumentException
+     * @throws IllegalAccessException
+     */
+    public static void save(Context mContext, Object object) throws IllegalArgumentException, IllegalAccessException{
+            SharedPreferences sp = mContext.getSharedPreferences(object.getClass().getSimpleName().toLowerCase(), 2);//1:read 2:write
+            Field[] fields = object.getClass().getDeclaredFields();
+            for(Field field : fields){
+                    saveField(field, sp, object);
+            }
+    }
+    
+    /**
+     * 获得存储对象
+     * @param classzz
+     * @return
+     * @throws IllegalAccessException 
+     * @throws InstantiationException 
+     */
+    public static Object getObjectFromSp(Context mContext, Class<?> classzz) throws InstantiationException, IllegalAccessException{
+            Object object = classzz.newInstance();
+            SharedPreferences sp = mContext.getSharedPreferences(classzz.getSimpleName(), 1);//1:read 2:write
+            Field[] fields = object.getClass().getDeclaredFields();
+            for(Field field : fields){
+                    try {
+                            FieldUtils.setValueToFiled(field, object, getFieldFromSp(field, sp));
+                    } catch (IllegalArgumentException e) {
+                            e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                    }
+            }
+            return object;
+    }
+    /**
+     * 存储单个属性
+     * @param field
+     * @param sp
+     * @throws IllegalAccessException 
+     * @throws IllegalArgumentException 
+     */
+    private static  void saveField(Field field ,SharedPreferences sp,Object object) throws IllegalArgumentException, IllegalAccessException{
+            field.setAccessible(true);
+            Class<?> fildType = field.getType();
+            if(String.class == fildType || Character.class == fildType){
+                    sp.edit().putString(field.getName(), String.valueOf(field.get(object))).commit();
+            }else if(Integer.TYPE == fildType || Integer.class == fildType){
+                    sp.edit().putInt(field.getName(), field.getInt(object)).commit();
+            }else if(boolean.class == fildType){
+                    sp.edit().putBoolean(field.getName(), field.getBoolean(object)).commit();
+            }else if(Long.class == fildType){
+                    sp.edit().putLong(field.getName(), field.getLong(object)).commit();
+            }else if(Float.class == fildType){
+                    sp.edit().putFloat(field.getName(), field.getFloat(object)).commit();
+            }
+            
+            sp.edit().putString(field.getName(), String.valueOf(field.get(object))).commit();
+    }
+    /**
+     * 拿到单个属性
+     * @param field
+     * @param sp
+     * @return
+     */
+    private static String getFieldFromSp(Field field ,SharedPreferences sp){
+            field.setAccessible(true);
+            Class<?> fildType = field.getType();
+            if(String.class == fildType || Character.class == fildType){
+                    return sp.getString(field.getName(), "");
+            }else if(Integer.TYPE == fildType || Integer.class == fildType){
+                    return String.valueOf(sp.getInt(field.getName(), 0));
+            }else if(Boolean.class == fildType){
+                    return String.valueOf(sp.getBoolean(field.getName(), false));
+            }else if(Long.class == fildType){
+                    return String.valueOf(sp.getLong(field.getName(), 0L));
+            }else if(Float.class == fildType){
+                    return String.valueOf(sp.getFloat(field.getName(), 0F));
+            }
+            return "";
+            
+    }
 	
     /**
      * put string preferences
