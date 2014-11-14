@@ -29,6 +29,7 @@ import com.zhongji.collection.project.detial.HorizonDetialView;
 import com.zhongji.collection.project.detial.LandPlanDetialView;
 import com.zhongji.collection.project.detial.ProCreateDetialView;
 import com.zhongji.collection.util.JsonUtils;
+import com.zhongji.collection.util.PreferencesUtils;
 
 /**
  * 项目详情
@@ -45,7 +46,7 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 	private LinearLayout layout_content;
 	
 	private int position = 0;
-	private String type = "show";
+	private String type = "show";			//show,edit,publish
 	private LandPlanDetialView view_landplan;		//土地规划
 	private ProCreateDetialView view_procreate;		//项目立项
 	private ExplorationStageDetialView view_explorationStage;	//地勘阶段
@@ -56,6 +57,7 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 	private ConstuctDetialView view_constuct;		//主体施工
 	private AfforestDetialView view_afforest;		//消防/景观绿化
 	private FitmentDetialView view_fitment;			//装修阶段
+	private Project project;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,36 +76,52 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 		String url = getIntent().getStringExtra("url");
 		Project project = (Project) getIntent().getSerializableExtra("project");
 		position = getIntent().getIntExtra("position", 0);
+		type = getIntent().getStringExtra("type");
 		
 		view_landplan = new LandPlanDetialView(ProjectDetialActivity.this, layout_content);
-		view_procreate = new ProCreateDetialView(ProjectDetialActivity.this, layout_content);
-		view_explorationStage = new ExplorationStageDetialView(ProjectDetialActivity.this, layout_content);
-		view_design = new DesignDetialView(ProjectDetialActivity.this, layout_content);
-		view_drawStage = new DrawStageDetialView(ProjectDetialActivity.this, layout_content);
-		view_horizon = new HorizonDetialView(ProjectDetialActivity.this, layout_content);
-		view_foundation = new FoundationDetialView(ProjectDetialActivity.this, layout_content);
-		view_constuct = new ConstuctDetialView(ProjectDetialActivity.this, layout_content);
-		view_afforest = new AfforestDetialView(ProjectDetialActivity.this, layout_content);
-		view_fitment = new FitmentDetialView(ProjectDetialActivity.this, layout_content);
+//		view_procreate = new ProCreateDetialView(ProjectDetialActivity.this, layout_content);
+//		view_explorationStage = new ExplorationStageDetialView(ProjectDetialActivity.this, layout_content);
+//		view_design = new DesignDetialView(ProjectDetialActivity.this, layout_content);
+//		view_drawStage = new DrawStageDetialView(ProjectDetialActivity.this, layout_content);
+//		view_horizon = new HorizonDetialView(ProjectDetialActivity.this, layout_content);
+//		view_foundation = new FoundationDetialView(ProjectDetialActivity.this, layout_content);
+//		view_constuct = new ConstuctDetialView(ProjectDetialActivity.this, layout_content);
+//		view_afforest = new AfforestDetialView(ProjectDetialActivity.this, layout_content);
+//		view_fitment = new FitmentDetialView(ProjectDetialActivity.this, layout_content);
 		
 		layout_content.addView(view_landplan.getView());
-		layout_content.addView(view_procreate.getView());
-		layout_content.addView(view_explorationStage.getView());
-		layout_content.addView(view_design.getView());
-		layout_content.addView(view_drawStage.getView());
-		layout_content.addView(view_horizon.getView());
-		layout_content.addView(view_foundation.getView());
-		layout_content.addView(view_constuct.getView());
-		layout_content.addView(view_afforest.getView());
-		layout_content.addView(view_fitment.getView());
+//		layout_content.addView(view_procreate.getView());
+//		layout_content.addView(view_explorationStage.getView());
+//		layout_content.addView(view_design.getView());
+//		layout_content.addView(view_drawStage.getView());
+//		layout_content.addView(view_horizon.getView());
+//		layout_content.addView(view_foundation.getView());
+//		layout_content.addView(view_constuct.getView());
+//		layout_content.addView(view_afforest.getView());
+//		layout_content.addView(view_fitment.getView()); 
 		
-		if(project!=null){
-			type = "edit";
+		if("edit".equals(type)){
+			//编辑
 			updateUI(project);
 		}else{
-			type = "show";
+			//显示、发布
 			showProgressDialog();
 			getProject(url);
+		}
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == 0) {
+			return;
+		}
+
+		if (requestCode == 10 && resultCode == 30) {
+			setResult(40);
+			project = (Project) data.getSerializableExtra("project");
+			updateUI(project);
 		}
 	}
 
@@ -141,7 +159,7 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 
 					List<Project> temp = bean.getData();
 					if (temp != null && temp.size() > 0) {
-						Project project = temp.get(0);
+						project = temp.get(0);
 
 						updateUI(project);
 					}
@@ -155,30 +173,51 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 	}
 	
 	private void updateUI(final Project project) {
-		if(type.equals("edit")){
+		if("edit".equals(type) || "publish".equals(type)){
 			setRightBtnEdit(new OnClickListener() {
 				
 				@Override
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
-					Intent intent = new Intent();
-					intent.setClass(ProjectDetialActivity.this, NewProActivity.class);
-					intent.putExtra("position", position);
-					intent.putExtra("project", project);
-					startActivity(intent);
+					if("edit".equals(type) || checkProjectID()){
+						Intent intent = new Intent();
+						intent.setClass(ProjectDetialActivity.this, NewProActivity.class);
+						intent.putExtra("position", position);
+						intent.putExtra("project", project);
+						intent.putExtra("type", type);
+						startActivityForResult(intent, 10);
+					}else{
+						showShortToast("此项目已在本地保存项目中");
+					}
+					
 				}
 			});
 		}
 		
 		view_landplan.updateUI(project);
-		view_procreate.updateUI(project);
-		view_explorationStage.updateUI(project);
-		view_design.updateUI(project);
-		view_drawStage.updateUI(project);
-		view_horizon.updateUI(project);
-		view_foundation.updateUI(project);
-		view_constuct.updateUI(project);
-		view_afforest.updateUI(project);
-		view_fitment.updateUI(project);
+//		view_procreate.updateUI(project);
+//		view_explorationStage.updateUI(project);
+//		view_design.updateUI(project);
+//		view_drawStage.updateUI(project);
+//		view_horizon.updateUI(project);
+//		view_foundation.updateUI(project);
+//		view_constuct.updateUI(project);
+//		view_afforest.updateUI(project);
+//		view_fitment.updateUI(project);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public boolean checkProjectID(){
+		List<Project> plists = (List<Project>) PreferencesUtils.getObject(ProjectDetialActivity.this, PreferencesUtils.PREFERENCE_KEY);
+		if(plists!=null && plists.size()>0){
+			for(Project pro : plists){
+				String projectid = pro.getProjectID();
+				if(projectid!=null && projectid.equals(project.getProjectID())){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
 }

@@ -47,6 +47,7 @@ public class MyProActivity extends BaseSecondActivity{
 	private ProjectAdapter adapter;
 	@ViewInject(id=R.id.listView1)
 	private ListView listView1;
+	private String type = "local";
 	private List<Project> lists;
 	private List<Project> plists;	//本地
 	private int uploadIndex=0;
@@ -71,14 +72,9 @@ public class MyProActivity extends BaseSecondActivity{
 			plists = new ArrayList<Project>();
 		}
 		
-//		FinalDb db = FinalDb.create(MyProActivity.this);
-//		plists = changelists(db.findAll(Project.class));
-//		System.out.println("pl--"+plists.toString());
-		
 		setTitle("我的任务");
 		setLeftBtn();
 		initMenu();
-//		setRightBtn();
 		
 		lists = new ArrayList<Project>();
 		adapter = new ProjectAdapter(MyProActivity.this);
@@ -89,13 +85,26 @@ public class MyProActivity extends BaseSecondActivity{
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				Project pro = adapter.getItem(arg2);
-				Intent intent = new Intent();
-				intent.setClass(MyProActivity.this, ProjectDetialActivity.class);
-				intent.putExtra("url", pro.getUrl());
-				intent.putExtra("postion", arg2);
-				intent.putExtra("project", pro);
-				startActivity(intent);
+				if("publish".equals(type)){
+					//发布
+					Project pro = adapter.getItem(arg2);
+					Intent intent = new Intent();
+					intent.setClass(MyProActivity.this, ProjectDetialActivity.class);
+					intent.putExtra("url", pro.getUrl());
+					intent.putExtra("type", type);
+					startActivity(intent);
+				}else{
+					//本地
+					Project pro = adapter.getItem(arg2);
+					Intent intent = new Intent();
+					intent.setClass(MyProActivity.this, ProjectDetialActivity.class);
+					intent.putExtra("url", pro.getUrl());
+					intent.putExtra("position", arg2);
+					intent.putExtra("project", pro);
+					intent.putExtra("type", type);
+					startActivityForResult(intent, 10);
+				}
+				
 			}
 		});
 		radioGroup1.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -105,6 +114,7 @@ public class MyProActivity extends BaseSecondActivity{
 				// TODO Auto-generated method stub
 				if(arg1 == R.id.radio0){
 					//发布的项目
+					type = "publish";
 					setRightBtnGone();
 					page = 0;
 					lists.clear();
@@ -114,6 +124,7 @@ public class MyProActivity extends BaseSecondActivity{
 					getProject();
 				}else if(arg1 == R.id.radio1){
 					//本地项目
+					type = "edit";
 					setRightBtnUpload(new View.OnClickListener() {
 						
 						@Override
@@ -124,6 +135,10 @@ public class MyProActivity extends BaseSecondActivity{
 						}
 
 					});
+					plists = (List<Project>) PreferencesUtils.getObject(MyProActivity.this, PreferencesUtils.PREFERENCE_KEY);
+					if(plists==null){
+						plists = new ArrayList<Project>();
+					}
 					uploadIndex = 0;
 					page = 0;
 					adapter.setLists(plists);
@@ -137,6 +152,24 @@ public class MyProActivity extends BaseSecondActivity{
 	}
 
 	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == 0) {
+			return;
+		}
+
+		if (requestCode == 10 && resultCode == 40) {
+			plists = (List<Project>) PreferencesUtils.getObject(MyProActivity.this, PreferencesUtils.PREFERENCE_KEY);
+			adapter.setLists(plists);
+			adapter.notifyDataSetChanged();
+		}
+	}
+	
+	
 	/**
 	 * 上传项目
 	 */
@@ -147,7 +180,7 @@ public class MyProActivity extends BaseSecondActivity{
 		if(uploadIndex<plists.size()){
 			final Project pro = plists.get(uploadIndex);
 			String params = pro.projectToJsonString();
-			HttpRestClient.post(MyProActivity.this, HttpAPI.PROJECTS_ALL, JsonUtils.uploadproject(params), new ResponseUtils(MyProActivity.this) {
+			HttpRestClient.upload(pro.getProjectID(), MyProActivity.this, HttpAPI.PROJECTS_ALL, JsonUtils.uploadproject(params), new ResponseUtils(MyProActivity.this) {
 				
 				@Override
 				public void getResult(int httpCode, String result) {
@@ -204,7 +237,7 @@ public class MyProActivity extends BaseSecondActivity{
 		if(cl!=null && contactsIndex<cl.size()){
 			Contacts cbean = cl.get(contactsIndex);
 			String params = pro.contactsToJsonString(cbean);
-			HttpRestClient.post(MyProActivity.this, HttpAPI.CONTACTS, JsonUtils.uploadproject(params), new ResponseUtils(MyProActivity.this) {
+			HttpRestClient.upload(cbean.getBaseContactID(), MyProActivity.this, HttpAPI.CONTACTS, JsonUtils.uploadproject(params), new ResponseUtils(MyProActivity.this) {
 				
 				@Override
 				public void getResult(int httpCode, String result) {
@@ -243,7 +276,7 @@ public class MyProActivity extends BaseSecondActivity{
 		if(imgl!=null && imagesIndex<imgl.size()){
 			Images cbean = imgl.get(imagesIndex);
 			String params = pro.projectImgsToJsonString(cbean);
-			HttpRestClient.post(MyProActivity.this, HttpAPI.PROJECTIMGS, JsonUtils.uploadproject(params), new ResponseUtils(MyProActivity.this) {
+			HttpRestClient.upload(cbean.getImgID(), MyProActivity.this, HttpAPI.PROJECTIMGS, JsonUtils.uploadproject(params), new ResponseUtils(MyProActivity.this) {
 				
 				@Override
 				public void getResult(int httpCode, String result) {

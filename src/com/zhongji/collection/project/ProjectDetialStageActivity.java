@@ -1,7 +1,6 @@
 package com.zhongji.collection.project;
 
 import net.tsz.afinal.annotation.view.ViewInject;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,7 +24,6 @@ public class ProjectDetialStageActivity extends BaseSecondActivity implements On
 	private ImageView pro_detalis_stage_result;
 	private int photoitem = 0;
 	private int  usersitem= 0;
-	private Intent intent;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +38,7 @@ public class ProjectDetialStageActivity extends BaseSecondActivity implements On
 		
 		setTitle("项目详情");
 		setLeftBtn();
+		
 		ImageView iv_usersView=(ImageView) findViewById(iv_photo_id[photoitem]);
 		iv_usersView.setVisibility(View.VISIBLE);
 		ImageView iv_photoView=(ImageView) findViewById(iv_users_id[usersitem]);
@@ -51,14 +50,14 @@ public class ProjectDetialStageActivity extends BaseSecondActivity implements On
 	public void onClick(View v) {
 		// TODO 自动生成的方法存根
 		super.onClick(v);
-		String ob = v.getTag().toString();
-		if(ob!=null){
-			int tag = Integer.parseInt(ob);
-			System.out.println(tag+" --?");
-			intent.putExtra("tag", tag);
-			setResult(10, intent);
-			finish();
+//		String ob = v.getTag().toString();
+//		if(ob!=null){
+//			int tag = Integer.parseInt(ob);
+//			System.out.println(tag+" --?");
+//			intent.putExtra("tag", tag);
+//			setResult(10, intent);
+//			finish();
 		
-		}
+//		}
 	}
 }

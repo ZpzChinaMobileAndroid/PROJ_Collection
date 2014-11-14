@@ -8,9 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.loopj.android.http.RequestParams;
@@ -23,6 +22,8 @@ import com.zhongji.collection.network.HttpAPI;
 import com.zhongji.collection.network.HttpRestClient;
 import com.zhongji.collection.network.ResponseUtils;
 import com.zhongji.collection.util.JsonUtils;
+import com.zhongji.collection.widget.RTPullListView;
+import com.zhongji.collection.widget.RTPullListView.OnRefreshListener;
 
 /**
  * 全部项目
@@ -35,7 +36,7 @@ public class AllProActivity extends BaseSecondActivity{
 	private int size=10;
 	private ProjectAdapter adapter;
 	@ViewInject(id=R.id.listView1)
-	private ListView listView;
+	private RTPullListView listView;
 	private List<Project> lists;
 	@ViewInject(id=R.id.tv_title)
 	private TextView tv_title;
@@ -56,6 +57,10 @@ public class AllProActivity extends BaseSecondActivity{
 		setTitlebackgroud("输入搜索内容");
 		setLeftBtn();
 		
+		TextView tv = new TextView(AllProActivity.this);
+		tv.setText("asd");
+		listView.addHeaderView(tv);
+		
 		lists = new ArrayList<Project>();
 		adapter = new ProjectAdapter(AllProActivity.this);
 		listView.setAdapter(adapter);
@@ -69,7 +74,23 @@ public class AllProActivity extends BaseSecondActivity{
 				Intent intent = new Intent();
 				intent.setClass(AllProActivity.this, ProjectDetialActivity.class);
 				intent.putExtra("url", pro.getUrl());
+				intent.putExtra("type", "show");
 				startActivity(intent);
+			}
+		});
+		
+		listView.setonRefreshListener(new OnRefreshListener() {
+			
+			@Override
+			public void onRefresh() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onLoadMore() {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 		

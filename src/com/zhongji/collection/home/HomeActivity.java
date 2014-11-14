@@ -74,6 +74,7 @@ public class HomeActivity extends BaseIndexActivity implements OnClickListener {
 				intent.putExtra("province", user.getProvince());
 				intent.putExtra("city", user.getCity());
 				intent.putExtra("district", user.getDistrict());
+				intent.putExtra("type", "add");
 			}
 			startActivity(intent);
 			overridePendingTransition(R.anim.in_from_left, R.anim.out_to_left);

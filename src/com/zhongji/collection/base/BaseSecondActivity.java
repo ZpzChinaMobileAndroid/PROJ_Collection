@@ -87,6 +87,7 @@ public abstract class BaseSecondActivity extends BaseActivity implements OnClick
 	 */
 	public void setTitlebackgroud(String title) {
 		TextView tv_title = (TextView) findViewById(R.id.tv_title);
+		tv_title.setPadding(0, 0, 0, 0);
 		tv_title.setBackgroundResource(R.drawable.seach_basemap);
 		tv_title.setText(title);
 	}

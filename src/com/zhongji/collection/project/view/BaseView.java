@@ -169,20 +169,23 @@ public class BaseView {
 	 */
 	protected void updateImg(GridPhotoView mGridView) {
 		// TODO Auto-generated method stub
-		
+		System.out.println(imagesLists.toString());
 		if(imagesLists!=null && imagesLists.size()>0){
-			if(mGridView.clear()){
-				ImagesListBean imgbean = imagesLists.get(0);
-				final List<Images> imglists = imgbean.getData();
-				for(int i=0;i<imglists.size();i++){
-					Images img = imglists.get(i);
-					if(imgsType.equals(img.getCategory())){
-						mGridView.addString(img.getImgCompressionContent());
+			ImagesListBean bean = imagesLists.get(0);
+			if(bean!=null && bean.getData().size()>0){
+//				if(mGridView.clear()){
+					mGridView.clear();
+					ImagesListBean imgbean = imagesLists.get(0);
+					final List<Images> imglists = imgbean.getData();
+					for (int i = 0; i < imglists.size(); i++) {
+						Images img = imglists.get(i);
+						if (imgsType.equals(img.getCategory())) {
+							mGridView.addString(img.getImgCompressionContent());
+						}
 					}
-				}
-				mGridView.notifyDataSetChanged();
+					mGridView.notifyDataSetChanged();
+//				}
 			}
-			
 		}else{
 			imagesLists = new ArrayList<ImagesListBean>();
 			mGridView.notifyDataSetChanged();

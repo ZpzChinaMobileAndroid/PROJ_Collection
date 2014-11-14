@@ -84,8 +84,9 @@ public class NewProActivity extends BaseSecondActivity implements
 		
 		project = (Project) getIntent().getSerializableExtra("project");
 		position = getIntent().getIntExtra("position", 0);
-		if(project==null){
-			type = "add";
+		type = getIntent().getStringExtra("type");
+		if("add".equals(type)){
+			//添加
 			String province = getIntent().getStringExtra("province");
 			String city =  getIntent().getStringExtra("city");
 			String district = getIntent().getStringExtra("district");
@@ -131,6 +132,7 @@ public class NewProActivity extends BaseSecondActivity implements
 		setSpeed();
 
 		updateTitle(0);
+		
 	}
 
 	@SuppressWarnings({ "unchecked" })
@@ -151,17 +153,29 @@ public class NewProActivity extends BaseSecondActivity implements
 			if(plists==null){
 				plists = new ArrayList<Project>();
 			}
-			if(type.equals("add")){
+			if("add".equals(type)){
+				//添加
+				showShortToast("保存完毕,请到本地保存项目查看！");
 				plists.add(0, project);
-			}else {
+				PreferencesUtils.saveObject(NewProActivity.this, PreferencesUtils.PREFERENCE_KEY, plists);
+				finish();
+			}else if("edit".equals(type)){
+				//本地修改
+				showShortToast("保存完毕,请到本地保存项目查看！");
 				plists.set(position, project);
+				PreferencesUtils.saveObject(NewProActivity.this, PreferencesUtils.PREFERENCE_KEY, plists);
+				Intent intent = new Intent();
+				intent.putExtra("project", project);
+				setResult(30,intent);
+				finish();
+			}else if("publish".equals(type)){
+				//发布修改
+				showShortToast("保存完毕,请到本地保存项目查看！");
+				plists.add(0, project);
+				PreferencesUtils.saveObject(NewProActivity.this, PreferencesUtils.PREFERENCE_KEY, plists);
+				finish();
 			}
 			
-			
-			PreferencesUtils.saveObject(NewProActivity.this, PreferencesUtils.PREFERENCE_KEY, plists);
-			finish();
-//			FinalDb db = FinalDb.create(this);
-//			db.save(project);
 			
 		}
 	}

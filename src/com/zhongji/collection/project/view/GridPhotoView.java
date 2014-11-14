@@ -84,10 +84,11 @@ public class GridPhotoView {
 		View listItem = listAdapter.getView(i, null, gridview);  
 		listItem.measure(0, 0); //计算子项View 的宽高  
 		totalHeight += listItem.getMeasuredHeight(); //统计所有子项的总高度  
+		
 		}  
 		  
-		  
 		ViewGroup.LayoutParams params = gridview.getLayoutParams();  
+		gridview.measure(0, 0);
 		params.height = totalHeight + linecount * gridview.getHorizontalSpacing();  //+ ((listAdapter.getCount() - 1))
 		//listView.getDividerHeight()获取子项间分隔符占用的高度  
 		//params.height最后得到整个ListView完整显示需要的高度  

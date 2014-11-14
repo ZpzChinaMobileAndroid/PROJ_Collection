@@ -12,4 +12,11 @@
     <string name="index_ask_str">提问</string>
     <string name="index_message_str">信息</string>
     <string name="index_center_str">个人</string>
+    
+    <!-- 下拉刷新 -->
+    <string name="get_more">正在帮您加载数据...</string>
+    <string name="release_to_refresh">松开立即刷新</string>
+    <string name="pull_to_refresh">下拉可以刷新</string>
+    <string name="refreshing">正在帮您刷新...</string>
+    <string name="updating">最近更新: 今天 </string>
 </resources>

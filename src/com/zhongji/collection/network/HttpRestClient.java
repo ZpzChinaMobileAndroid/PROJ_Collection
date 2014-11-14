@@ -3,6 +3,7 @@ package com.zhongji.collection.network;
 import org.apache.http.entity.StringEntity;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
@@ -91,6 +92,17 @@ public class HttpRestClient {
 	public static void put(Context context, String url, StringEntity requestParams, ResponseUtils responseUtils) {
 
 		httpClient.put(context, getAbsoluteUrl(url), requestParams, "application/json; charset=UTF-8", responseUtils);
+	}
+	
+	public static void upload(String keyword, Context context, String url, StringEntity requestParams, ResponseUtils responseUtils) {
+		if(TextUtils.isEmpty(keyword)){
+			//新增
+			httpClient.post(context, getAbsoluteUrl(url), requestParams, "application/json; charset=UTF-8", responseUtils);
+		}else{
+			//修改
+			httpClient.put(context, getAbsoluteUrl(url), requestParams, "application/json; charset=UTF-8", responseUtils);
+		}
+		
 	}
 	
 	@SuppressWarnings("unused")
