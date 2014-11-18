@@ -8,9 +8,7 @@
 	<include layout="@layout/view_detial_imgs"/>
 
 	<LinearLayout
-        android:layout_marginTop="@dimen/pro_detial_marg10"
-        android:layout_marginLeft="@dimen/pro_detial_marg10"
-        android:layout_marginRight="@dimen/pro_detial_marg10"
+        android:layout_margin="@dimen/pro_detial_marg10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
@@ -33,7 +31,7 @@
                 android:id="@+id/tv_electroweakInstallation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
@@ -55,7 +53,7 @@
                 android:id="@+id/tv_decorationSituation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="" />
         </LinearLayout>
         
         <LinearLayout
@@ -77,7 +75,7 @@
                 android:id="@+id/tv_decorationProgress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

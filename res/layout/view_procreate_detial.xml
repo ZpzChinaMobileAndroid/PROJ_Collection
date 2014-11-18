@@ -14,10 +14,10 @@
         android:layout_marginTop="@dimen/pro_detial_marg10" >
 
         <LinearLayout
-            android:gravity="center_horizontal"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:orientation="vertical" >
 
             <TextView
@@ -32,7 +32,7 @@
                 android:id="@+id/tv_expectedStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text=""
                 android:textColor="@color/gray_detial_txt" />
         </LinearLayout>
 
@@ -55,7 +55,7 @@
                 android:id="@+id/tv_storeyHeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text=""
                 android:textColor="@color/gray_detial_txt" />
         </LinearLayout>
 
@@ -78,7 +78,7 @@
                 android:id="@+id/tv_foreignInvestment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text=""
                 android:textColor="@color/gray_detial_txt" />
         </LinearLayout>
     </LinearLayout>
@@ -92,10 +92,10 @@
         android:orientation="horizontal" >
 
         <LinearLayout
-            android:gravity="center_horizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:orientation="vertical" >
 
             <TextView
@@ -110,7 +110,7 @@
                 android:id="@+id/tv_expectedFinishTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text=""
                 android:textColor="@color/gray_detial_txt" />
         </LinearLayout>
 
@@ -133,7 +133,7 @@
                 android:id="@+id/tv_investment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text=""
                 android:textColor="@color/gray_detial_txt" />
         </LinearLayout>
 
@@ -156,7 +156,7 @@
                 android:id="@+id/tv_areaOfStructure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text=""
                 android:textColor="@color/gray_detial_txt" />
         </LinearLayout>
     </LinearLayout>
@@ -176,15 +176,17 @@
     </LinearLayout>
 
     <TextView
-        android:textSize="@dimen/activity_18_size"
         android:id="@+id/tv_ownerType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/pro_detial_marg10"
         android:layout_marginLeft="@dimen/pro_detial_marg10"
         android:drawableLeft="@drawable/ic_earth"
         android:drawablePadding="@dimen/pro_detial_marg10"
         android:gravity="center_vertical"
-        android:layout_marginBottom="@dimen/pro_detial_marg10"
-        android:text="TextView" />
+        android:text=""
+        android:textSize="@dimen/activity_18_size" />
+
+    <include layout="@layout/view_footer_detial" />
 
 </LinearLayout>

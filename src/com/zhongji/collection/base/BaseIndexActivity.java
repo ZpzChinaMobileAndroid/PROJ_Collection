@@ -1,8 +1,5 @@
 package com.zhongji.collection.base;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,16 +9,9 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
 import com.zhongji.collection.android.phone.R;
-import com.zhongji.collection.entity.UserListBean;
 import com.zhongji.collection.login.EditPasswordActivity;
-import com.zhongji.collection.login.LoginActivity;
-import com.zhongji.collection.network.HttpAPI;
-import com.zhongji.collection.network.HttpRestClient;
-import com.zhongji.collection.network.ResponseUtils;
 import com.zhongji.collection.util.DataCleanManager;
-import com.zhongji.collection.util.JsonUtils;
 
 public abstract class BaseIndexActivity extends BaseActivity implements OnClickListener{
 
@@ -153,36 +143,4 @@ public abstract class BaseIndexActivity extends BaseActivity implements OnClickL
 		tv_title.setText(title);
 	}
 	
-	/**
-	 * 登出
-	 */
-	private void logout() {
-		Map<String, String> params = new LinkedHashMap<String, String>();
-		params.put("deviceType"," null");
-		HttpRestClient.post(BaseIndexActivity.this, HttpAPI.USERS_LOGOUT,
-				JsonUtils.change(params,true),
-				new ResponseUtils(BaseIndexActivity.this) {
-
-					@Override
-					public void getResult(int httpCode, String result) {
-						// TODO Auto-generated method stub
-						dismissProgressDialog();
-						if (httpCode == HttpAPI.HTTP_SUCCESS_CODE) {
-							UserListBean bean = JSON.parseObject(
-									JsonUtils.parseString(result),
-									UserListBean.class);
-							if (getData(bean)) {
-								return;
-							}
-							showShortToast("退出登录");
-
-							Intent intent = new Intent(BaseIndexActivity.this, LoginActivity.class);
-							startActivity(intent);
-							finish();
-						} else {
-							showNetShortToast(httpCode);
-						}
-					}
-				});
-	}
 }

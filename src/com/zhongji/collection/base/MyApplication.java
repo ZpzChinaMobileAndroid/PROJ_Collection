@@ -11,6 +11,7 @@ public class MyApplication extends Application {
 		super.onCreate();
 		// 在使用 SDK 各组间之前初始化 context 信息，传入 ApplicationContext
 		SDKInitializer.initialize(this);
+	
 	}
 
 }

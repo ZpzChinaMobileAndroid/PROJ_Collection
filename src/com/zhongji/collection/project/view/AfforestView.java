@@ -44,13 +44,15 @@ public class AfforestView extends BaseView implements OnClickListener{
 		tv_afforestcontrol.setOnClickListener(this);
 		tv_afforestlandscape.setOnClickListener(this);
 		
-		update();
+		update(true);
 	
 	 }
 
-	public void update() {
+	public void update(boolean bool) {
 		this.imgsType="fireControl";
-		updateImg(mGridView);
+		if(bool){
+			updateImg(mGridView);
+		}
 		updateText();
 	}
 	

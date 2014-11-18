@@ -5,6 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="please_wait_str">请稍后...</string>
+    <string name="xunfei_speech_app_id">54632333</string>
 
     <!-- 模块首页文章 -->
     <string name="index_qa_str">问答</string>

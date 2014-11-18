@@ -27,6 +27,8 @@ public class PreferencesUtils {
 	
 	public static final String PREFERENCE_NAME = "collection";
 	public static final String PREFERENCE_KEY = "projectlists";
+	public static final String PREFERENCE_KEY_SEARCH = "searchlists";
+	public static final String PREFERENCE_KEY_USERS = "users";
 	
 	public static void saveObject(Context context, String key, Object object) {  
 	    SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME,  Context.MODE_PRIVATE);  

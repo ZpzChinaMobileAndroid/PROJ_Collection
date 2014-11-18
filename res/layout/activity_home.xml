@@ -65,32 +65,50 @@
         android:layout_height="wrap_content" >
 
         <Button
+            android:textSize="@dimen/activity_16_size"
+            android:drawablePadding="@dimen/pro_detial_marg10"
+            android:padding="@dimen/pro_detial_marg20"
+            android:drawableTop="@drawable/ic_newpro"
+            android:textColor="@color/white"
+            android:text="新建项目"
             android:onClick="onClick"
             android:id="@+id/btn_newpro"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/home_newpro" />
+            android:background="#4867ae" />
 
         <View style="@style/view_line2" />
 
         <Button
+            android:textSize="@dimen/activity_16_size"
+            android:drawablePadding="@dimen/pro_detial_marg10"
+            android:textColor="@color/white"
+            android:text="全部项目"
+            android:padding="@dimen/pro_detial_marg20"
+            android:drawableTop="@drawable/ic_allpro"
             android:onClick="onClick"
             android:id="@+id/btn_allpro"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/home_allpro" />
+            android:background="#4867ae" />
 
         <View style="@style/view_line2" />
 
         <Button
+            android:textSize="@dimen/activity_16_size"
+            android:drawablePadding="@dimen/pro_detial_marg10"
+            android:textColor="@color/white"
+            android:text="我的任务"
+            android:padding="@dimen/pro_detial_marg20"
+            android:drawableTop="@drawable/ic_mypro"
             android:onClick="onClick"
             android:id="@+id/btn_mypro"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/home_mypro" />
+            android:background="#4867ae" />
     </LinearLayout>
 
     <View

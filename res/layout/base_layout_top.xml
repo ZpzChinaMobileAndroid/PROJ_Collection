@@ -7,15 +7,27 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp" >
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:id="@+id/tv_title"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:text="标题"
-        android:textColor="@color/white"
-        android:textSize="@dimen/activity_title_size" />
+        android:layout_marginLeft="@dimen/pro_detial_marg20"
+        android:layout_marginRight="@dimen/pro_detial_marg20"
+        android:layout_toLeftOf="@+id/tv_right"
+        android:layout_toRightOf="@+id/tv_left"
+        android:gravity="center" >
+
+        <TextView
+            android:drawablePadding="@dimen/pro_detial_marg5"
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="标题"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_title_size" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_left"
@@ -34,17 +46,26 @@
         android:layout_centerVertical="true"
         android:text=""
         android:textColor="@color/white" />
-    
-    <EditText 
-        android:layout_width="240dp"
-        android:layout_height="40dp"
-        android:background="@drawable/seach_basemap"
+
+    <EditText
+        android:imeOptions="actionSearch"
+        android:singleLine="true"
+        android:textSize="@dimen/activity_14_size"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/tv_right"
+        android:layout_centerVertical="true"
         android:id="@+id/et_seach_result_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/seach_basemap"
         android:drawableLeft="@drawable/seach_find_seach"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:drawablePadding="5dp"
         android:hint="请输入搜索信息"
-        android:paddingLeft="15dp"
-        android:textColor="@color/black"
-        android:visibility="gone"
-        />
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:visibility="gone" />
 
 </RelativeLayout>

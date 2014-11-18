@@ -83,6 +83,8 @@ public class ProCreateView extends BaseView implements OnClickListener {
 		setOnTextChange(et_buildarea);
 		setOnTextChange(et_buildfloor);
 		
+		setSoftInput(context, view_procreate);
+		
 		update();
 
 	}

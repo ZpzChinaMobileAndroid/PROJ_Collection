@@ -13,7 +13,7 @@
         <item>商务办公</item>
         <item>住宅/经济适用房</item>
         <item>公用事业设施(教育、医疗、科研、基础建设等)</item>
-        <item>其他 </item>
+        <item>其他</item>
     </string-array>
     <string-array name="Auctionunitpost">
         <item>项目负责人</item>

@@ -45,12 +45,14 @@ public class HorizonView extends BaseView implements OnClickListener {
 		tv_horizoncompany.setOnClickListener(this);
 		tv_horizonStarttime.setOnClickListener(this);
 	
-		update();
+		update(true);
 	 }
 
-	public void update() {
+	public void update(boolean bool) {
 		this.imgsType = "horizon";
-		updateImg(mGridView);
+		if(bool){
+			updateImg(mGridView);
+		}
 		updateTime();
 		updateContacts(type);
 	}

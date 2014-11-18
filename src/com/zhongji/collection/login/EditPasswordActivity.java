@@ -18,6 +18,7 @@ import com.zhongji.collection.network.HttpAPI;
 import com.zhongji.collection.network.HttpRestClient;
 import com.zhongji.collection.network.ResponseUtils;
 import com.zhongji.collection.util.JsonUtils;
+import com.zhongji.collection.util.MD5;
 
 /**
  * 修改密码
@@ -50,6 +51,7 @@ public class EditPasswordActivity extends BaseSecondActivity implements
 
 		setTitle("修改密码");
 		setLeftBtn();
+		initMenu();
 	}
 
 	@Override
@@ -95,8 +97,8 @@ public class EditPasswordActivity extends BaseSecondActivity implements
 			String newosecendpassword) {
 		// TODO 自动生成的方法存根
 		Map<String, String> parmas = new LinkedHashMap<String, String>();
-		parmas.put("oldPassword", oldpassword);
-		parmas.put("newPassword", newpassword);
+		parmas.put("oldPassword",  MD5.MD5(oldpassword).substring(8, 24));
+		parmas.put("newPassword",  MD5.MD5(newpassword).substring(8, 24));
 		HttpRestClient.put(EditPasswordActivity.this,
 				HttpAPI.USERS_MODIFICATION, JsonUtils.change(parmas, true),
 				new ResponseUtils(EditPasswordActivity.this) {

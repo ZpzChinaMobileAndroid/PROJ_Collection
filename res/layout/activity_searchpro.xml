@@ -1,78 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhongji.collection.widget.KeyboardLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/keyboardLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/white"
     android:orientation="vertical" >
 
-    <ListView
-        android:paddingBottom="@dimen/pro_item_pall"
+    <com.zhongji.collection.widget.RTPullListView
         android:divider="@color/gray_proall_bg"
-        android:dividerHeight="10dp"
+        android:dividerHeight="1dp"
         android:listSelector="@android:color/transparent"
-        android:background="@color/gray_proall_bg"
         android:id="@+id/lv_seachpro_message"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
-    
-    
-    
-    <ImageView
-        android:id="@+id/imageView1"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/pro_item_pall" >
+        
+    </com.zhongji.collection.widget.RTPullListView>
+
+    <LinearLayout
+        android:id="@+id/layout_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:src="@drawable/seach_menu_basemap" />
+        android:background="#a5a5a5" >
 
-    <Button
-        android:id="@+id/bt_seach_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/bt_seach_advanced"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="23dp"
-        android:background="@drawable/seach_map_button"
-        android:onClick="onClick" />
+        <ImageButton
+            android:id="@+id/bt_seach_voice"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:onClick="onClick"
+            android:padding="5dp"
+            android:src="@drawable/seach_voice_button" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/bt_seach_voice"
-        android:layout_marginLeft="44dp"
-        android:layout_toRightOf="@+id/bt_seach_voice"
-        android:src="@drawable/seach_menu_basemap_line" />
+        <View
+            style="@style/view_line2"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white" />
 
-    <Button
-        android:id="@+id/bt_seach_advanced"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView1"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/seach_advanced_button"
-        android:layout_marginTop="5dp"
-        android:onClick="onClick" />
+        <ImageButton
+            android:id="@+id/bt_seach_advanced"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:onClick="onClick"
+            android:padding="5dp"
+            android:src="@drawable/seach_advanced_button" />
 
-    <Button
-        android:id="@+id/bt_seach_voice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/bt_seach_map"
-        android:layout_alignBottom="@+id/bt_seach_map"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="43dp"
-        android:background="@drawable/seach_voice_button"
-        android:onClick="onClick" />
+        <View
+            style="@style/view_line2"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView2"
-        android:layout_marginLeft="41dp"
-        android:layout_toRightOf="@+id/bt_seach_advanced"
-        android:src="@drawable/seach_menu_basemap_line" />
+        <ImageButton
+            android:id="@+id/bt_seach_map"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:onClick="onClick"
+            android:padding="5dp"
+            android:src="@drawable/seach_map_button" />
+    </LinearLayout>
 
-</RelativeLayout>
+</com.zhongji.collection.widget.KeyboardLayout>

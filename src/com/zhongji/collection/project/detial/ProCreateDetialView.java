@@ -1,6 +1,7 @@
 package com.zhongji.collection.project.detial;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class ProCreateDetialView {
 	public TextView tv_areaOfStructure;
 	public LinearLayout layout_contacts;
 	public TextView tv_ownerType;
+	public LinearLayout layout_footer;
 	
 
 	public ProCreateDetialView(Context context, LinearLayout parent) {
@@ -51,6 +53,13 @@ public class ProCreateDetialView {
 		}
 		tv_ownerType = (TextView) view.findViewById(R.id.tv_ownerType);
 		
+		layout_footer = (LinearLayout) view.findViewById(R.id.layout_footer);
+		TextView tv_protext = (TextView) view.findViewById(R.id.tv_protext);
+		tv_protext.setText(Html.fromHtml("正在加载 "+"<font color=\"#"+ context.getString(R.color.blue_pro_txt).substring(3, 9) + "\">"+"主体设计"+"</font>"+" 阶段"));
+	}
+	
+	public void removeFooter(){
+		layout_footer.setVisibility(View.GONE);
 	}
 	
 	/**

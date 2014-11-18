@@ -166,12 +166,13 @@ public class MapActivity extends BaseSecondActivity implements OnGetGeoCoderResu
 		mBaiduMap.addOverlay(mo);
 		mBaiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(result
 				.getLocation()));
-//		String strInfo = String.format("纬度：%f 经度：%f",
-//				result.getLocation().latitude, result.getLocation().longitude);
+		String strInfo = String.format("纬度：%f 经度：%f",
+				result.getLocation().latitude, result.getLocation().longitude);
 		address = result.getAddress();
 		lat = result.getLocation().latitude;
 		lng = result.getLocation().longitude;
 //		showShortToast(strInfo);
+		System.out.println(strInfo);
 	}
 
 	@Override

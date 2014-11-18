@@ -147,5 +147,7 @@
                 android:textColor="@color/gray_detial_txt" />
         </LinearLayout>
     </LinearLayout>
+    
+    <include layout="@layout/view_footer_detial"/>
 
 </LinearLayout>

@@ -5,9 +5,12 @@ package com.zhongji.collection.util;
  * */
 
 import java.io.File;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.os.Environment;
+
+import com.zhongji.collection.entity.Project;
 
 /** * 本应用数据清除管理器 */
 public class DataCleanManager {
@@ -29,6 +32,9 @@ public class DataCleanManager {
     public static void cleanSharedPreference(Context context) {
         deleteFilesByDirectory(new File("/data/data/"
                 + context.getPackageName() + "/shared_prefs"));
+        PreferencesUtils.saveObject(context, PreferencesUtils.PREFERENCE_KEY_SEARCH, new ArrayList<String>());
+        PreferencesUtils.saveObject(context, PreferencesUtils.PREFERENCE_KEY, new ArrayList<Project>());
+		
     }
 
     /** * 按名字清除本应用数据库 * * @param context * @param dbName */

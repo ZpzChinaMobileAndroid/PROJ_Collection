@@ -50,13 +50,15 @@ public class FitmentView extends BaseView implements OnClickListener{
 		tv_fitmentcondition.setOnClickListener(this);
 		tv_fitmentstage.setOnClickListener(this);
 		
-		update();
+		update(true);
 		
 	 }
 
-	public void update() {
+	public void update(boolean bool) {
 		this.imgsType="electroweak";
-		updateImg(mGridView);
+		if(bool){
+			updateImg(mGridView);
+		}
 		updateText();
 	}
 

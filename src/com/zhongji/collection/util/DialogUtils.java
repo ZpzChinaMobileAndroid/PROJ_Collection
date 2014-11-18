@@ -9,10 +9,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zhongji.collection.android.phone.R;
@@ -130,7 +134,6 @@ public class DialogUtils {
 				R.layout.dialog_relatilayout, null);
 		final AlertDialog builder = new AlertDialog.Builder(context).create();
 		builder.setView(view, 0, 0, 0, 0);
-
 		et_contacts_username = (EditText) view
 				.findViewById(id.et_contacts_username);// 添加姓名
 		et_contacts_userphone = (EditText) view
@@ -149,7 +152,18 @@ public class DialogUtils {
 			et_contacts_companyname.setText(contacts.getWorkAt());
 			et_contacts_companyaddress.setText(contacts.getWorkAddress());
 		}
-
+		final InputMethodManager manager = (InputMethodManager) builder.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+		RelativeLayout layout_all = (RelativeLayout) view.findViewById(R.id.layout_all);
+		layout_all.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View arg0, MotionEvent arg1) {
+				// TODO Auto-generated method stub
+				
+				manager.hideSoftInputFromWindow(builder.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+				return false;
+			}
+		});
 		// 岗位
 		tv_contacts_post.setOnClickListener(new OnClickListener() {
 			@Override
@@ -225,4 +239,5 @@ public class DialogUtils {
 		builder.show();
 
 	}
+	
 }

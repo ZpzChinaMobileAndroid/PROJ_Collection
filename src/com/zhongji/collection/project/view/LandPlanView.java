@@ -61,13 +61,40 @@ public class LandPlanView extends BaseView implements OnClickListener {
 		setOnTextChange(et_address);
 		setOnTextChange(et_landarea);
 		setOnTextChange(et_landvolume);
-
-		update();
+		setSoftInput(context, view_landplan);
+		
+//		view_landplan.setOnTouchListener(new OnTouchListener() {
+//			private float startX=0;
+//			@Override
+//			public boolean onTouch(View arg0, MotionEvent arg1) {
+//				// TODO Auto-generated method stub
+//				float x = arg1.getX();
+//				float y = arg1.getY();
+//				if (arg1.getAction() == MotionEvent.ACTION_DOWN) {
+//					startX = x;
+//				} else if (arg1.getAction() == MotionEvent.ACTION_UP) {
+//					float res = x - startX;
+//					if(res>0){
+//						//左划
+//						System.out.println("111");
+//					}else if(res<0){
+//						//右划
+//						System.out.println("222");
+//					}
+//				} else if (arg1.getAction() == MotionEvent.ACTION_MOVE) {
+//
+//				}
+//				return false;
+//			}
+//		});
+		update(true);
 	}
 
-	public void update() {
+	public void update(boolean bool) {
 		this.imgsType = "plan";
-		updateImg(mGridView);
+		if(bool){
+			updateImg(mGridView);
+		}
 		updateEditText();
 		updateUsage();
 		updateContacts(type);

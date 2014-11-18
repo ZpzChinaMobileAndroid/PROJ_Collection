@@ -1,6 +1,7 @@
 package com.zhongji.collection.project.detial;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,7 +26,7 @@ public class AfforestDetialView {
 	public DetialImgsView view_detial_imgs;
 	public TextView tv_fireControl;
 	public TextView tv_green;
-	
+	public LinearLayout layout_footer;
 
 	public AfforestDetialView(Context context, LinearLayout parent) {
 		this.context = context;
@@ -34,6 +35,14 @@ public class AfforestDetialView {
 		view_detial_imgs = new DetialImgsView(context, view_afforest_detial);
 		tv_fireControl = (TextView) view_afforest_detial.findViewById(R.id.tv_fireControl);
 		tv_green = (TextView) view_afforest_detial.findViewById(R.id.tv_green);
+		
+		layout_footer = (LinearLayout) view_afforest_detial.findViewById(R.id.layout_footer);
+		TextView tv_protext = (TextView) view_afforest_detial.findViewById(R.id.tv_protext);
+		tv_protext.setText(Html.fromHtml("正在加载 "+"<font color=\"#"+ context.getString(R.color.blue_pro_txt).substring(3, 9) + "\">"+"装修"+"</font>"+" 阶段"));
+	}
+	
+	public void removeFooter(){
+		layout_footer.setVisibility(View.GONE);
 	}
 	
 	/**

@@ -45,6 +45,7 @@ public class LandPlanDetialView {
 			DetialContactView view_contact = new DetialContactView(context, layout_contacts);
 			layout_contacts.addView(view_contact.getView());
 		}
+		
 	}
 	
 	/**

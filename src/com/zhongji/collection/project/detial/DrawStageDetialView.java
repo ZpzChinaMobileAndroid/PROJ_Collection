@@ -1,6 +1,7 @@
 package com.zhongji.collection.project.detial;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,7 +29,7 @@ public class DrawStageDetialView {
 	public TextView tv_propertyHeating;
 	public TextView tv_propertyExternalWallMeterial;
 	public TextView tv_propertyStealStructure;
-	
+	public LinearLayout layout_footer;
 
 	public DrawStageDetialView(Context context, LinearLayout parent) {
 		this.context = context;
@@ -45,6 +46,14 @@ public class DrawStageDetialView {
 		tv_propertyHeating = (TextView) view_drawstage_detial.findViewById(R.id.tv_propertyHeating);
 		tv_propertyExternalWallMeterial = (TextView) view_drawstage_detial.findViewById(R.id.tv_propertyExternalWallMeterial);
 		tv_propertyStealStructure = (TextView) view_drawstage_detial.findViewById(R.id.tv_propertyStealStructure);
+		
+		layout_footer = (LinearLayout) view_drawstage_detial.findViewById(R.id.layout_footer);
+		TextView tv_protext = (TextView) view_drawstage_detial.findViewById(R.id.tv_protext);
+		tv_protext.setText(Html.fromHtml("正在加载 "+"<font color=\"#"+ context.getString(R.color.blue_pro_txt).substring(3, 9) + "\">"+"主体施工"+"</font>"+" 阶段"));
+	}
+	
+	public void removeFooter(){
+		layout_footer.setVisibility(View.GONE);
 	}
 	
 	/**

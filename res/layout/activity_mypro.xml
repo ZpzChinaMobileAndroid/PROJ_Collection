@@ -33,7 +33,7 @@
     </RadioGroup>
 
     
-    <ListView
+    <com.zhongji.collection.widget.RTPullListView
         android:paddingBottom="@dimen/pro_item_pall"
         android:divider="@color/gray_proall_bg"
         android:dividerHeight="10dp"
@@ -42,6 +42,6 @@
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-    </ListView>
+    </com.zhongji.collection.widget.RTPullListView>
 
 </LinearLayout>

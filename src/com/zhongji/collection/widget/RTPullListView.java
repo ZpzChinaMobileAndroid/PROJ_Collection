@@ -361,6 +361,10 @@ public class RTPullListView extends ListView implements OnScrollListener {
 		this.refreshListener = refreshListener;
 		isRefreshable = true;
 	}
+	
+	public void setRefreshable(boolean bool){
+		isRefreshable = bool;
+	}
 
 	public interface OnRefreshListener {
 		public void onRefresh();
@@ -441,7 +445,7 @@ public class RTPullListView extends ListView implements OnScrollListener {
 	}
 	
 	public void addHeadView(){
-		if(this.getFooterViewsCount() == 0){
+		if(this.getHeaderViewsCount() == 0){
 			this.addHeaderView(headView);
 		}
 	}

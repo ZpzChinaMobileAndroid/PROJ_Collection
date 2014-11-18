@@ -38,12 +38,14 @@ public class FoundationView extends BaseView implements OnClickListener {
 	
 		tv_foundationcompany.setOnClickListener(this);
 		
-		update();
+		update(true);
 	 }
 
-	public void update() {
+	public void update(boolean bool) {
 		this.imgsType = "pileFoundation";
-		updateImg(mGridView);
+		if(bool){
+			updateImg(mGridView);
+		}
 		updateContacts(type);
 	}
 	

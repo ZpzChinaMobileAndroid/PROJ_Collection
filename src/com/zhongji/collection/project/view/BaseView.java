@@ -3,11 +3,15 @@ package com.zhongji.collection.project.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,6 +34,7 @@ public class BaseView {
 	protected Project project;
 	protected List<ContactsListBean> contactsLists;
 	protected List<ImagesListBean> imagesLists;
+	protected InputMethodManager manager; // 隐藏软键盘
 	
 	protected void setOnTextChange(final EditText et){
 		et.addTextChangedListener(new TextWatcher() {
@@ -211,6 +216,24 @@ public class BaseView {
 			}
 		}
 		return i;
+	}
+	
+	protected void setSoftInput(Context context,View view) {
+		final Activity act = (Activity) context;
+		
+		manager = (InputMethodManager) act.getSystemService(Context.INPUT_METHOD_SERVICE);
+		view.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View arg0, MotionEvent arg1) {
+				// TODO Auto-generated method stub
+				
+				manager.hideSoftInputFromWindow(act.getCurrentFocus()
+						 .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+				return false;
+			}
+		});
+		
 	}
 }
 

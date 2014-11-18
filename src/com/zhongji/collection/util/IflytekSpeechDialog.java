@@ -1,24 +1,17 @@
 package com.zhongji.collection.util;
 
 
-import org.json.JSONArray;
-import net.tsz.afinal.annotation.view.ViewInject;
 import android.content.Context;
-import android.util.Log;
-import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.TextView;
-import com.alibaba.fastjson.JSONObject;
+
 import com.iflytek.cloud.ErrorCode;
 import com.iflytek.cloud.InitListener;
 import com.iflytek.cloud.RecognizerResult;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SpeechRecognizer;
-import com.iflytek.cloud.SpeechUtility;
 import com.iflytek.cloud.ui.RecognizerDialog;
 import com.iflytek.cloud.ui.RecognizerDialogListener;
-import com.zhongji.collection.android.phone.R;
 import com.zhongji.collection.android.phone.R.id;
 import com.zhongji.collection.base.BaseSecondActivity;
 

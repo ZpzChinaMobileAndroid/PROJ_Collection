@@ -21,7 +21,7 @@ public class HttpRestClient {
 	private static final String BASE_URL = "http://EIPQAS.zhongjichina.com/";
 	private static final String PRO_URL = "ZPZChina.svc/";
 	private static final int TIME_OUT = 10 * 1000;// 10s 超时
-	public static String TOKEN = "59876e00444c455b8c6e0c7ea5a9ee85";
+	public static String TOKEN = "";
 	private static AsyncHttpClient httpClient = new AsyncHttpClient();
 
 	static {

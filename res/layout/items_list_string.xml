@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/pro_detial_marg10"
+        android:layout_marginLeft="@dimen/pro_detial_marg20"
+        android:layout_marginRight="@dimen/pro_detial_marg20"
+        android:layout_marginTop="@dimen/pro_detial_marg10"
+        android:textSize="@dimen/activity_16_size"
+        android:text="TextView" />
+
+</LinearLayout>

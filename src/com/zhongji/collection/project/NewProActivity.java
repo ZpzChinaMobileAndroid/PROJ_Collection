@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zhongji.collection.adapter.ProViewPager;
@@ -46,7 +47,8 @@ import com.zhongji.collection.widget.MyViewPager;
  */
 public class NewProActivity extends BaseSecondActivity implements
 		OnClickListener {
-
+	@ViewInject(id = R.id.layout_all)
+	private LinearLayout layout_all;
 	@ViewInject(id = R.id.viewpager)
 	private MyViewPager viewPager;
 	private ProViewPager adapter;
@@ -70,6 +72,7 @@ public class NewProActivity extends BaseSecondActivity implements
 	private Project project;
 	private int position=0;
 	private String type = "edit";
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +131,7 @@ public class NewProActivity extends BaseSecondActivity implements
 		viewPager.setAdapter(adapter);
 		viewPager.setCurrentItem(0);
 		viewPager.setOnPageChangeListener(new MyPageChangeListener());
-
+		
 		setSpeed();
 
 		updateTitle(0);
@@ -240,13 +243,13 @@ public class NewProActivity extends BaseSecondActivity implements
 			updateTitle(position);
 			switch(position){
 			case 0:
-				view_planview.update();
+				view_planview.update(false);
 				break;
 			case 1:
 				view_procreate.update();
 				break;
 			case 2:
-				view_explorationstage.update();
+				view_explorationstage.update(false);
 				break;
 			case 3:
 				view_design.update();
@@ -255,19 +258,19 @@ public class NewProActivity extends BaseSecondActivity implements
 				view_drawstage.update();
 				break;
 			case 5:
-				view_horizon.update();
+				view_horizon.update(false);
 				break;
 			case 6:
-				view_foundation.update();
+				view_foundation.update(false);
 				break;
 			case 7:
-				view_constuct.update();
+				view_constuct.update(false);
 				break;
 			case 8:
-				view_afforesview.update();
+				view_afforesview.update(false);
 				break;
 			case 9:
-				view_fitment.update();
+				view_fitment.update(false);
 				break;
 			}
 		}

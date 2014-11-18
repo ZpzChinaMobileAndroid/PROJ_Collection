@@ -46,14 +46,17 @@ public class ProjectStageActivity extends BaseSecondActivity implements OnClickL
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		super.onClick(v);
-		String ob = v.getTag().toString();
-		if(ob!=null){
-			int tag = Integer.parseInt(ob);
-			System.out.println(tag+" --?");
-			intent.putExtra("tag", tag);
-			setResult(10, intent);
-			finish();
+		if(v.getId() != R.id.tv_left){
+			String ob = v.getTag().toString();
+			if(ob!=null){
+				int tag = Integer.parseInt(ob);
+				System.out.println(tag+" --?");
+				intent.putExtra("tag", tag);
+				setResult(10, intent);
+				finish();
+			}
 		}
+		
 	}
 
 }

@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.tsz.afinal.annotation.view.ViewInject;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -32,21 +32,23 @@ import com.zhongji.collection.network.HttpRestClient;
 import com.zhongji.collection.network.ResponseUtils;
 import com.zhongji.collection.util.JsonUtils;
 import com.zhongji.collection.util.PreferencesUtils;
+import com.zhongji.collection.widget.RTPullListView;
+import com.zhongji.collection.widget.RTPullListView.OnRefreshListener;
 
 /**
  * 我的项目
  * @author admin
  *
  */
-public class MyProActivity extends BaseSecondActivity{
+public class MyProActivity extends BaseSecondActivity implements OnRefreshListener{
 	
 	private int page=0;
-	private int size=10;
+	private int size=5;
 	@ViewInject(id=R.id.radioGroup1)
 	private RadioGroup radioGroup1;
 	private ProjectAdapter adapter;
 	@ViewInject(id=R.id.listView1)
-	private ListView listView1;
+	private RTPullListView listView;
 	private String type = "local";
 	private List<Project> lists;
 	private List<Project> plists;	//本地
@@ -78,8 +80,8 @@ public class MyProActivity extends BaseSecondActivity{
 		
 		lists = new ArrayList<Project>();
 		adapter = new ProjectAdapter(MyProActivity.this);
-		listView1.setAdapter(adapter);
-		listView1.setOnItemClickListener(new OnItemClickListener() {
+		listView.setAdapter(adapter);
+		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -87,7 +89,7 @@ public class MyProActivity extends BaseSecondActivity{
 				// TODO Auto-generated method stub
 				if("publish".equals(type)){
 					//发布
-					Project pro = adapter.getItem(arg2);
+					Project pro = adapter.getItem(arg2-1);
 					Intent intent = new Intent();
 					intent.setClass(MyProActivity.this, ProjectDetialActivity.class);
 					intent.putExtra("url", pro.getUrl());
@@ -95,11 +97,11 @@ public class MyProActivity extends BaseSecondActivity{
 					startActivity(intent);
 				}else{
 					//本地
-					Project pro = adapter.getItem(arg2);
+					Project pro = adapter.getItem(arg2-1);
 					Intent intent = new Intent();
 					intent.setClass(MyProActivity.this, ProjectDetialActivity.class);
 					intent.putExtra("url", pro.getUrl());
-					intent.putExtra("position", arg2);
+					intent.putExtra("position", arg2-1);
 					intent.putExtra("project", pro);
 					intent.putExtra("type", type);
 					startActivityForResult(intent, 10);
@@ -107,6 +109,9 @@ public class MyProActivity extends BaseSecondActivity{
 				
 			}
 		});
+		
+		listView.setonRefreshListener(MyProActivity.this);
+		
 		radioGroup1.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -114,24 +119,40 @@ public class MyProActivity extends BaseSecondActivity{
 				// TODO Auto-generated method stub
 				if(arg1 == R.id.radio0){
 					//发布的项目
+					listView.setRefreshable(true);
+					listView.removeFootView();
 					type = "publish";
 					setRightBtnGone();
 					page = 0;
 					lists.clear();
 					adapter.setLists(lists);
 					adapter.notifyDataSetChanged();
+					listView.setSelection(0);
 					showProgressDialog();
 					getProject();
 				}else if(arg1 == R.id.radio1){
 					//本地项目
+					listView.setRefreshable(false);
+					listView.removeFootView();
 					type = "edit";
 					setRightBtnUpload(new View.OnClickListener() {
 						
 						@Override
 						public void onClick(View arg0) {
 							// TODO Auto-generated method stub
-							showProgressDialog();
-							uploadProject();
+							if(plists!=null && plists.size()>0){
+								showAkertDialog("是否需要同步数据！", new DialogInterface.OnClickListener() {
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+										// TODO Auto-generated method stub
+										showProgressDialog();
+										uploadProject();
+									}
+								});
+							}else{
+								showShortToast("没有项目上传");
+							}
 						}
 
 					});
@@ -143,6 +164,7 @@ public class MyProActivity extends BaseSecondActivity{
 					page = 0;
 					adapter.setLists(plists);
 					adapter.notifyDataSetChanged();
+					listView.setSelection(0);
 				}
 			}
 
@@ -322,6 +344,8 @@ public class MyProActivity extends BaseSecondActivity{
 					public void getResult(int httpCode, String result) {
 						// TODO Auto-generated method stub
 						dismissProgressDialog();
+						listView.onRefreshComplete();
+						listView.onLoadMoreComplete();
 						if (httpCode == HttpAPI.HTTP_SUCCESS_CODE) {
 							
 							if(page == 0){
@@ -343,6 +367,12 @@ public class MyProActivity extends BaseSecondActivity{
 							
 							adapter.setLists(lists);
 							adapter.notifyDataSetChanged();
+							
+							if(lists.size()<Integer.parseInt(bean.getStatus().getTotalCount())){
+								listView.addFootView();
+							}else{
+								listView.removeFootView();
+							}
 
 						} else {
 							showNetShortToast(httpCode);
@@ -364,4 +394,19 @@ public class MyProActivity extends BaseSecondActivity{
 		}
 		return l;
 	}
+
+	@Override
+	public void onRefresh() {
+		// TODO Auto-generated method stub
+		page = 0;
+		getProject();
+	}
+
+	@Override
+	public void onLoadMore() {
+		// TODO Auto-generated method stub
+		page = page + 1;
+		getProject();
+	}
+	
 }

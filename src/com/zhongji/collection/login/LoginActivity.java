@@ -23,6 +23,7 @@ import com.zhongji.collection.network.HttpRestClient;
 import com.zhongji.collection.network.ResponseUtils;
 import com.zhongji.collection.util.JsonUtils;
 import com.zhongji.collection.util.MD5;
+import com.zhongji.collection.util.PreferencesUtils;
 
 /**
  * 登录页
@@ -40,7 +41,16 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-
+		
+		if(!"".equals(HttpRestClient.TOKEN)){
+			User user = (User) PreferencesUtils.getObject(LoginActivity.this, PreferencesUtils.PREFERENCE_KEY_USERS);
+			Intent intent = new Intent(LoginActivity.this,  HomeActivity.class);
+			intent.putExtra("user", user);
+			startActivity(intent);
+			finish();
+			return;
+		}
+		
 		DisplayMetrics dm = new DisplayMetrics();getWindowManager().getDefaultDisplay().getMetrics(dm);
 		int width = dm.widthPixels;//宽度
 		int h = dm.heightPixels;
@@ -52,8 +62,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	protected void init() {
 		// TODO Auto-generated method stub
 		
-		et_username.setText("1234567894");//13554672223
-		et_password.setText("123456");
+//		et_username.setText("1234567894");//13554672223
+//		et_password.setText("123456");
 	}
 
 	@Override
@@ -106,6 +116,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 							if(lists!=null && lists.size()>0){
 								User user = lists.get(0);
 								HttpRestClient.TOKEN = user.getUserToken();
+								PreferencesUtils.saveObject(LoginActivity.this, PreferencesUtils.PREFERENCE_KEY_USERS, user);
 
 								Intent intent = new Intent(LoginActivity.this,  HomeActivity.class);
 								intent.putExtra("user", user);

@@ -1,14 +1,26 @@
 package com.zhongji.collection.base;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import net.tsz.afinal.FinalActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.slidingmenu.lib.SlidingMenu;
 import com.zhongji.collection.android.phone.R;
+import com.zhongji.collection.entity.UserListBean;
+import com.zhongji.collection.login.LoginActivity;
+import com.zhongji.collection.network.HttpAPI;
+import com.zhongji.collection.network.HttpRestClient;
+import com.zhongji.collection.network.ResponseUtils;
+import com.zhongji.collection.util.DataCleanManager;
+import com.zhongji.collection.util.JsonUtils;
 import com.zhongji.collection.util.ProgressDialogUtils;
 import com.zhongji.collection.util.ToastUtils;
 
@@ -68,5 +80,39 @@ public abstract class BaseActivity extends FinalActivity{
 	    menu.setMenu(R.layout.activity_retreat);//设置menu的布局文件
 		tv_name = (TextView) menu.findViewById(R.id.tv_name);// 用户名显示
 	
+	}
+	
+	/**
+	 * 登出
+	 */
+	protected void logout() {
+		Map<String, String> params = new LinkedHashMap<String, String>();
+		params.put("deviceType"," null");
+		HttpRestClient.post(BaseActivity.this, HttpAPI.USERS_LOGOUT,
+				JsonUtils.change(params,true),
+				new ResponseUtils(BaseActivity.this) {
+
+					@Override
+					public void getResult(int httpCode, String result) {
+						// TODO Auto-generated method stub
+						dismissProgressDialog();
+						if (httpCode == HttpAPI.HTTP_SUCCESS_CODE) {
+							UserListBean bean = JSON.parseObject(
+									JsonUtils.parseString(result),
+									UserListBean.class);
+							if (getData(bean)) {
+								return;
+							}
+							showShortToast("退出登录");
+							HttpRestClient.TOKEN = "";
+							DataCleanManager.cleanApplicationData(BaseActivity.this);
+							Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
+							startActivity(intent);
+							finish();
+						} else {
+							showNetShortToast(httpCode);
+						}
+					}
+				});
 	}
 }

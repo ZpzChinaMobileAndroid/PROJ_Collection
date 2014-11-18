@@ -28,12 +28,15 @@ public class ConstuctView extends BaseView{
 		view_constuct = View.inflate(context, R.layout.view_constuct, null);
 		mGridView = new GridPhotoView(context, view_constuct);
 		
-		update();
+		update(true);
 	}
 
-	public void update() {
+	public void update(boolean bool) {
 		this.imgsType = "mainPart";
-		updateImg(mGridView);
+		if(bool){
+			updateImg(mGridView);
+		}
+		
 	}
 	
 	public View getView(){

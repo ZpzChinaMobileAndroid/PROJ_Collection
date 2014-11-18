@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
+    android:id="@+id/layout_all"
     android:padding="@dimen/pro_marginall" >
 
     <ImageView
@@ -29,7 +30,7 @@
         android:layout_marginTop="@dimen/pro_margintopbom" />
 
     <EditText
-        android:inputType="textPhonetic"
+        android:inputType="number"
         android:id="@+id/et_contacts_userpassword"
         android:layout_below="@+id/two"
         style="@style/pro_et_style"

@@ -6,7 +6,9 @@ import java.util.List;
 import net.tsz.afinal.annotation.view.ViewInject;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
@@ -33,13 +35,14 @@ import com.zhongji.collection.widget.RTPullListView.OnRefreshListener;
 public class AllProActivity extends BaseSecondActivity{
 	
 	private int page=0;
-	private int size=10;
+	private int size=5;
 	private ProjectAdapter adapter;
 	@ViewInject(id=R.id.listView1)
 	private RTPullListView listView;
 	private List<Project> lists;
 	@ViewInject(id=R.id.tv_title)
 	private TextView tv_title;
+	private TextView tv_count = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +57,9 @@ public class AllProActivity extends BaseSecondActivity{
 	protected void init() {
 		// TODO Auto-generated method stub
 		
-		setTitlebackgroud("输入搜索内容");
+		setTitlebackgroud("请输入搜索内容",this);
 		setLeftBtn();
-		
-		TextView tv = new TextView(AllProActivity.this);
-		tv.setText("asd");
-		listView.addHeaderView(tv);
+		initMenu();
 		
 		lists = new ArrayList<Project>();
 		adapter = new ProjectAdapter(AllProActivity.this);
@@ -70,7 +70,10 @@ public class AllProActivity extends BaseSecondActivity{
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				Project pro = adapter.getItem(arg2);
+				if(arg2-2<0){
+					return;
+				}
+				Project pro = adapter.getItem(arg2-2);
 				Intent intent = new Intent();
 				intent.setClass(AllProActivity.this, ProjectDetialActivity.class);
 				intent.putExtra("url", pro.getUrl());
@@ -84,13 +87,15 @@ public class AllProActivity extends BaseSecondActivity{
 			@Override
 			public void onRefresh() {
 				// TODO Auto-generated method stub
-				
+				page=0;
+				getProject();
 			}
 			
 			@Override
 			public void onLoadMore() {
 				// TODO Auto-generated method stub
-				
+				page=page+1;
+				getProject();
 			}
 		});
 		
@@ -102,10 +107,10 @@ public class AllProActivity extends BaseSecondActivity{
 	public void onClick(View v) {
 		// TODO 自动生成的方法存根
 		super.onClick(v);
-		if(v.getId()==R.id.tv_title){
-		//搜索
-		Intent intent=new Intent(AllProActivity.this,SearchProActivity.class);
-		startActivity(intent);
+		if(v.getId()==R.id.layout_title || v.getId() == R.id.tv_title){
+			//搜索
+			Intent intent=new Intent(AllProActivity.this,SearchProActivity.class);
+			startActivity(intent);
 		}
 	}
 	
@@ -125,11 +130,20 @@ public class AllProActivity extends BaseSecondActivity{
 					public void getResult(int httpCode, String result) {
 						// TODO Auto-generated method stub
 						dismissProgressDialog();
+						listView.onRefreshComplete();
+						listView.onLoadMoreComplete();
 						if (httpCode == HttpAPI.HTTP_SUCCESS_CODE) {
 							ProjectListBean bean = JSON.parseObject(JsonUtils.parseString(result),ProjectListBean.class);
 							if (getData(bean)) {
 								return; 
 							}
+							
+							if(page == 0){
+								lists.clear();
+								adapter.setLists(lists);
+								adapter.notifyDataSetChanged();
+							}
+							
 							List<Project> temp = bean.getData();
 							if(temp!=null && temp.size()>0){
 								for(Project pro : temp){
@@ -137,9 +151,25 @@ public class AllProActivity extends BaseSecondActivity{
 								}
 							}
 							
+							if(tv_count==null){
+								tv_count = new TextView(AllProActivity.this);
+								tv_count.setGravity(Gravity.CENTER);
+								tv_count.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, AbsListView.LayoutParams.WRAP_CONTENT));
+								tv_count.setTextColor(getResources().getColor(R.color.gray_pro_txt));
+								listView.addHeaderView(tv_count);
+							}
+							
+							tv_count.setText("共计"+lists.size()+"条");
+							
 							adapter.setLists(lists);
 							adapter.notifyDataSetChanged();
 
+							if(lists.size()<Integer.parseInt(bean.getStatus().getTotalCount())){
+								listView.addFootView();
+							}else{
+								listView.removeFootView();
+							}
+							
 						} else {
 							showNetShortToast(httpCode);
 						}
