@@ -111,16 +111,19 @@ public class SearchProActivity extends BaseSecondActivity implements
 					long arg3) {
 				// TODO Auto-generated method stub
 				if("str".equals(type)){
+					//文本信息
+					page = 0;
 					isRes = true;
-					String str = adapterSearch.getItem(arg2-1);
+					content = adapterSearch.getItem(arg2-1);
 					lists.clear();
 					adapter.setLists(lists);
 					lv_seachpro_message.setAdapter(adapter);
 					manager.hideSoftInputFromWindow(getCurrentFocus()
 							 .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 					showProgressDialog();
-					getSeachProject(str);
+					getSeachProject(content);
 				}else if("res".equals(type)){
+					//搜索结果
 					Project pro = adapter.getItem(arg2-1);
 					Intent intent = new Intent();
 					intent.setClass(SearchProActivity.this, ProjectDetialActivity.class);
@@ -201,7 +204,7 @@ public class SearchProActivity extends BaseSecondActivity implements
 				lv_seachpro_message.setRefreshable(true);
 				lv_seachpro_message.removeFootView();
 				type = "res";
-				lists.clear();
+//				lists.clear();
 				adapter.setLists(lists);
 				lv_seachpro_message.setAdapter(adapter);
 				layout_view.setVisibility(View.GONE);
@@ -226,14 +229,14 @@ public class SearchProActivity extends BaseSecondActivity implements
 				case KeyboardLayout.KEYBOARD_STATE_HIDE:
 					keystate = KeyboardLayout.KEYBOARD_STATE_HIDE;
 					layoutchange(false);
-					// Toast.makeText(getApplicationContext(), "软键盘隐藏",
-					// Toast.LENGTH_SHORT).show();
+//					 Toast.makeText(getApplicationContext(), "软键盘隐藏",
+//					 Toast.LENGTH_SHORT).show();
 					break;
 				case KeyboardLayout.KEYBOARD_STATE_SHOW:
 					keystate = KeyboardLayout.KEYBOARD_STATE_SHOW;
 					layoutchange(true);
-					// Toast.makeText(getApplicationContext(), "软键盘弹起",
-					// Toast.LENGTH_SHORT).show();
+//					 Toast.makeText(getApplicationContext(), "软键盘弹起",
+//					 Toast.LENGTH_SHORT).show();
 					break;
 				}
 			}
@@ -309,8 +312,10 @@ public class SearchProActivity extends BaseSecondActivity implements
 						
 						if(isSave){
 							isSave = false;
-							strlists.add(0, content);
-							PreferencesUtils.saveObject(SearchProActivity.this, PreferencesUtils.PREFERENCE_KEY_SEARCH, strlists);
+							if(!"".equals(content)){
+								strlists.add(0, content);
+								PreferencesUtils.saveObject(SearchProActivity.this, PreferencesUtils.PREFERENCE_KEY_SEARCH, strlists);
+							}
 						}
 						dismissProgressDialog();
 						et_seach_result_start.setText("");

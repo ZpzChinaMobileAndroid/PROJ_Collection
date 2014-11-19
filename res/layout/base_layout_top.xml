@@ -8,14 +8,10 @@
     android:paddingRight="10dp" >
 
     <LinearLayout
+        android:layout_centerInParent="true"
         android:id="@+id/layout_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="@dimen/pro_detial_marg20"
-        android:layout_marginRight="@dimen/pro_detial_marg20"
-        android:layout_toLeftOf="@+id/tv_right"
-        android:layout_toRightOf="@+id/tv_left"
         android:gravity="center" >
 
         <TextView

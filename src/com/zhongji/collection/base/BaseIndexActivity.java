@@ -2,6 +2,8 @@ package com.zhongji.collection.base;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -83,19 +85,35 @@ public abstract class BaseIndexActivity extends BaseActivity implements OnClickL
 	
 	public void setLeftBtn() {
 		tv_left = (TextView) findViewById(R.id.tv_left);
-		tv_left.setBackgroundResource(R.drawable.home_menu);
+		setDistanceLeft(tv_left, R.drawable.home_menu);
 		tv_left.setOnClickListener(this);
-		tv_left.setText("");
 		tv_left.setVisibility(View.VISIBLE);
+		tv_left.setTextColor(Color.TRANSPARENT);
 //		tv_left.setBackgroundResource(R.drawable.btn_search);
 	}
 
 	public void setRightBtn() {
 		tv_right = (TextView) findViewById(R.id.tv_right);
 		tv_right.setOnClickListener(this);
+		setDistanceRight(tv_right, 0);
 		tv_right.setText("");
 		tv_right.setVisibility(View.VISIBLE);
 //		tv_right.setBackgroundResource(R.drawable.btn_sort);
+	}
+	
+	private void setDistanceLeft(TextView tv, int resId) {
+		Drawable drawable = getResources().getDrawable(resId);
+		drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+		tv.setCompoundDrawables(drawable, null, null, null);
+		tv.setText("间距");
+	}
+	
+	private void setDistanceRight(TextView tv, int resId) {
+		Drawable drawable = getResources().getDrawable(resId);
+		drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+		tv.setCompoundDrawables(null, null, drawable, null);
+		tv.setText("间距");
+		tv.setTextColor(Color.TRANSPARENT);
 	}
 
 	public void onClick(View v) {

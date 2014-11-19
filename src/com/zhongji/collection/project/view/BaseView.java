@@ -227,9 +227,11 @@ public class BaseView {
 			@Override
 			public boolean onTouch(View arg0, MotionEvent arg1) {
 				// TODO Auto-generated method stub
+				if(act.getCurrentFocus()!=null){
+					manager.hideSoftInputFromWindow(act.getCurrentFocus()
+							 .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+				}
 				
-				manager.hideSoftInputFromWindow(act.getCurrentFocus()
-						 .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 				return false;
 			}
 		});

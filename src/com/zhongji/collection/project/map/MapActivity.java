@@ -11,12 +11,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BaiduMap.OnMapClickListener;
 import com.baidu.mapapi.map.BaiduMap.OnMarkerClickListener;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.InfoWindow;
 import com.baidu.mapapi.map.MapPoi;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Marker;
@@ -44,7 +50,9 @@ public class MapActivity extends BaseSecondActivity implements OnGetGeoCoderResu
 	private GeoCoder mSearch = null; // 搜索模块，也可去掉地图模块独立使用
 	private BaiduMap mBaiduMap = null;
 	private MapView mMapView = null;
+	private LocationClient mLocClient = null;
 	private MarkerOptions mo = new MarkerOptions();
+	public MyLocationListenner myListener = new MyLocationListenner();
 	private String city = "";
 	private String address = "上海市虹口区广粤路437号";
 	private double lat=0;
@@ -127,12 +135,72 @@ public class MapActivity extends BaseSecondActivity implements OnGetGeoCoderResu
 		// 初始化搜索模块，注册事件监听
 		mSearch = GeoCoder.newInstance();
 		mSearch.setOnGetGeoCodeResultListener(this);
+//		mSearch.geocode(new GeoCodeOption().city(city).address(address));//437号//439弄18-58号
 		
-		mSearch.geocode(new GeoCodeOption().city(city).address(address));//437号//439弄18-58号
 //		mSearch.reverseGeoCode(new ReverseGeoCodeOption().location(ptCenter));
+		
+		// 开启定位图层
+		mBaiduMap.setMyLocationEnabled(true);
+		// 定位初始化
+		mLocClient = new LocationClient(this);
+		mLocClient.registerLocationListener(myListener);
+		LocationClientOption option = new LocationClientOption();
+		option.setOpenGps(true);// 打开gps
+		option.setCoorType("bd09ll"); // 设置坐标类型
+		option.setScanSpan(1000);
+		option.setAddrType("all");
+		mLocClient.setLocOption(option);
+		mLocClient.start();
 	}
 
-	
+	/**
+	 * 定位SDK监听函数
+	 */
+	public class MyLocationListenner implements BDLocationListener {
+
+		@Override
+		public void onReceiveLocation(BDLocation location) {
+			// map view 销毁后不在处理新接收的位置
+			if (location == null || mMapView == null){
+				showShortToast("抱歉，定位失败");
+				return;
+			}
+			//定位icon
+//			MyLocationData locData = new MyLocationData.Builder()
+//					.accuracy(location.getRadius())
+//					// 此处设置开发者获取到的方向信息，顺时针0-360
+//					.direction(100).latitude(location.getLatitude())
+//					.longitude(location.getLongitude()).build();
+//			
+//			mBaiduMap.setMyLocationData(locData);
+//			if (isFirstLoc) {
+//				isFirstLoc = false;
+//				LatLng ll = new LatLng(location.getLatitude(),
+//						location.getLongitude());
+//				MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
+//				mBaiduMap.animateMapStatus(u);
+//			}
+			
+			//默认中心位置
+			LatLng ll = new LatLng(location.getLatitude(), location.getLongitude());
+			MapStatus mMapStatus = new MapStatus.Builder()
+	        .target(ll)
+	        .zoom(16)
+	        .build();
+			MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
+			mBaiduMap.setMapStatus(mMapStatusUpdate);
+			
+			
+			mLocClient.stop();
+			mLocClient.unRegisterLocationListener(myListener);
+			mBaiduMap.setMyLocationEnabled(false);
+			
+			mSearch.geocode(new GeoCodeOption().city(city).address(location.getAddrStr()));
+		}
+
+		public void onReceivePoi(BDLocation poiLocation) {
+		}
+	}
 
 	@Override
 	protected void onPause() {
@@ -148,6 +216,10 @@ public class MapActivity extends BaseSecondActivity implements OnGetGeoCoderResu
 
 	@Override
 	protected void onDestroy() {
+		// 退出时销毁定位
+		mLocClient.stop();
+		// 关闭定位图层
+		mBaiduMap.setMyLocationEnabled(false);
 		mMapView.onDestroy();
 		mSearch.destroy();
 		super.onDestroy();

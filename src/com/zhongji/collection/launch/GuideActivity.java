@@ -31,11 +31,11 @@ public class GuideActivity extends BaseActivity implements OnClickListener{
 	@Override
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
-		if(arg0.getId() == R.id.btn_skip){
-			//跳过
-			startActivity(new Intent(GuideActivity.this, EmptyActivity.class));
-			finish();
-		}
+//		if(arg0.getId() == R.id.btn_skip){
+//			//跳过
+//			startActivity(new Intent(GuideActivity.this, EmptyActivity.class));
+//			finish();
+//		}
 	}
 
 }

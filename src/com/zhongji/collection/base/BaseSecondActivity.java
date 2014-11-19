@@ -2,6 +2,7 @@ package com.zhongji.collection.base;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -46,34 +47,34 @@ public abstract class BaseSecondActivity extends BaseActivity implements OnClick
 	
 	public void setLeftBtn() {
 		tv_left = (TextView) findViewById(R.id.tv_left);
-		tv_left.setBackgroundResource(R.drawable.pro_back);
+		setDistanceLeft(tv_left, R.drawable.pro_back);
 		tv_left.setOnClickListener(this);
-		tv_left.setText("");
+		tv_left.setTextColor(Color.TRANSPARENT);
 		tv_left.setVisibility(View.VISIBLE);
 	}
 	
 	public void setRightBtn() {
 		tv_right = (TextView) findViewById(R.id.tv_right);
+		setDistanceRight(tv_right, R.drawable.pro_gou);
 		tv_right.setOnClickListener(this);
-		tv_right.setText("");
+		tv_right.setTextColor(Color.TRANSPARENT);
 		tv_right.setVisibility(View.VISIBLE);
-		tv_right.setBackgroundResource(R.drawable.pro_gou);
 	}
 	
 	public void setRightBtn(OnClickListener listener) {
 		tv_right = (TextView) findViewById(R.id.tv_right);
+		setDistanceRight(tv_right, R.drawable.pro_gou);
 		tv_right.setOnClickListener(listener);
-		tv_right.setText("");
+		tv_right.setTextColor(Color.TRANSPARENT);
 		tv_right.setVisibility(View.VISIBLE);
-		tv_right.setBackgroundResource(R.drawable.pro_gou);
 	}
 	
 	public void setRightBtnUpload(OnClickListener listener) {
 		tv_right = (TextView) findViewById(R.id.tv_right);
+		setDistanceRight(tv_right, R.drawable.ic_upload);
 		tv_right.setOnClickListener(listener);
-		tv_right.setText("");
+		tv_right.setTextColor(Color.TRANSPARENT);
 		tv_right.setVisibility(View.VISIBLE);
-		tv_right.setBackgroundResource(R.drawable.ic_upload);
 	}
 	
 	public void setRightBtnGone() {
@@ -83,10 +84,24 @@ public abstract class BaseSecondActivity extends BaseActivity implements OnClick
 	
 	public void setRightBtnEdit(OnClickListener listener) {
 		tv_right = (TextView) findViewById(R.id.tv_right);
+		setDistanceRight(tv_right, R.drawable.ic_edit);
 		tv_right.setOnClickListener(listener);
-		tv_right.setText("");
+		tv_right.setTextColor(Color.TRANSPARENT);
 		tv_right.setVisibility(View.VISIBLE);
-		tv_right.setBackgroundResource(R.drawable.ic_edit);
+	}
+	
+	private void setDistanceLeft(TextView tv, int resId) {
+		Drawable drawable = getResources().getDrawable(resId);
+		drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+		tv.setCompoundDrawables(drawable, null, null, null);
+		tv.setText("间距");
+	}
+	
+	private void setDistanceRight(TextView tv, int resId) {
+		Drawable drawable = getResources().getDrawable(resId);
+		drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+		tv.setCompoundDrawables(null, null, drawable, null);
+		tv.setText("间距");
 	}
 	
 	/**

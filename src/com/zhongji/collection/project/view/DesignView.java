@@ -79,13 +79,12 @@ public class DesignView extends BaseView implements OnClickListener {
 		} else if (arg0.getId() == R.id.tv_designphases) {
 			// 主体设计阶段
 			final String[] items = context.getResources().getStringArray(R.array.Themaindesignphase);
-			final boolean[] checkedItems = new boolean[] { false, false, false,false, false, false,false,false };
-			DialogUtils.showMultiChoiceDialog(context, "主体设计阶段", items, checkedItems, new DialogInterface.OnClickListener() {
+			DialogUtils.showChoiceDialog(context, "主体设计阶段", items, new DialogInterface.OnClickListener() {
 				
 				@Override
 				public void onClick(DialogInterface arg0, int arg1) {
 					// TODO Auto-generated method stub
-					tv_designphases_value.setText(getCheckedText(items, checkedItems));
+					tv_designphases_value.setText(items[arg1]);
 					project.setMainDesignStage(tv_designphases_value.getText().toString());
 				}
 			});

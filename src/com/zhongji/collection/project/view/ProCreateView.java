@@ -163,8 +163,18 @@ public class ProCreateView extends BaseView implements OnClickListener {
 				@Override
 				public void sure(String date, String time) {
 					// TODO Auto-generated method stub
+//					String endtime = tv_endtime.getText().toString().replace("预计竣工时间: ", "");
+//					long end = TimeUtils.strtolong(endtime);
+//					long start = TimeUtils.strtolong(date);
+					
 					tv_starttime.setText("预计开工时间: " + date);
 					project.setExpectedStartTime(tv_starttime.getText().toString().replace("预计开工时间: ", ""));
+					
+//					if(start > end){
+//						tv_endtime.setText("预计竣工时间: " + date);
+//						project.setExpectedFinishTime(tv_endtime.getText().toString().replace("预计竣工时间: ", ""));
+//					}
+					
 				}
 
 				@Override
@@ -182,8 +192,19 @@ public class ProCreateView extends BaseView implements OnClickListener {
 				@Override
 				public void sure(String date, String time) {
 					// TODO Auto-generated method stub
+//					String starttime = tv_starttime.getText().toString().replace("预计开工时间: ", "");
+//					long start = TimeUtils.strtolong(starttime);
+//					long end = TimeUtils.strtolong(date);
+					
 					tv_endtime.setText("预计竣工时间: " + date);
 					project.setExpectedFinishTime(tv_endtime.getText().toString().replace("预计竣工时间: ", ""));
+					
+//					if(start > end){
+//						tv_starttime.setText("预计开工时间: " + date);
+//						project.setExpectedStartTime(tv_starttime.getText().toString().replace("预计开工时间: ", ""));
+//					}
+					
+					
 				}
 
 				@Override

@@ -1,10 +1,14 @@
 package com.zhongji.collection.project.detial;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,6 +17,7 @@ import com.zhongji.collection.android.phone.R;
 import com.zhongji.collection.entity.Images;
 import com.zhongji.collection.entity.ImagesListBean;
 import com.zhongji.collection.entity.Project;
+import com.zhongji.collection.project.BigPhotoActivity;
 import com.zhongji.collection.util.BitmapUtil;
 
 /**
@@ -44,11 +49,27 @@ public class DetialImgsView{
 	 * @param context
 	 * @param view_detial_imgs
 	 */
-	private void initial(Context context, View view_detial_imgs) {
+	private void initial(final Context context, View view_detial_imgs) {
 		this.lists = new ArrayList<Images>();
 		this.context = context;
 		iv_imgs = (ImageView) view_detial_imgs.findViewById(R.id.iv_imgs);
 		tv_number = (TextView) view_detial_imgs.findViewById(R.id.tv_number);
+		
+		view_detial_imgs.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				if(lists.size()>0){
+					Activity act = (Activity) context;
+					Intent intent = new Intent();
+					intent.setClass(context, BigPhotoActivity.class);
+					intent.putExtra("count", lists.size());
+					intent.putExtra("imgslists", (Serializable) lists);
+					act.startActivity(intent);
+				}
+			}
+		});
 	}
 	
 	/**
@@ -88,7 +109,6 @@ public class DetialImgsView{
 			if(imglists!=null && imglists.size()>0){
 				for(Images img : imglists){
 					if(type.equals(img.getCategory())){
-						//土地规划 plan
 						lists.add(img);
 					}
 				}

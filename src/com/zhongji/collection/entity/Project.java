@@ -57,6 +57,7 @@ public class Project implements Serializable{
 	private String url;//页面url　
 	private String usage;//地块用途
 	/*－－－－－*/
+	private String projectStage;
 	private String projectVersion;//版本号
 	private String district;//所在区域
 	private String auctionUnit;//拍卖单位
@@ -130,6 +131,14 @@ public class Project implements Serializable{
 		}
 		return baseContacts;
 	}
+	public String getProjectStage() {
+		return projectStage;
+	}
+
+	public void setProjectStage(String projectStage) {
+		this.projectStage = projectStage;
+	}
+
 	public void setBaseContacts(List<ContactsListBean> baseContacts) {
 		this.baseContacts = baseContacts;
 	}

@@ -16,7 +16,7 @@ public class Images implements Serializable{
 	private String projectID;				//1d821c60-25fe-4e66-aef9-f7fcc39a3f51
 	private String projectName;				//
 	private String url;						//ProjectImgs\/4aa933de-d1f0-4b85-a6be-b10959c6108f?imgID=5dde6935-fd91-4afa-91e1-28f4eb4744e2
-	
+	private String imgContent;	
 	
 	public Images(String category, String device, String imgCompressionContent) {
 		super();
@@ -27,6 +27,12 @@ public class Images implements Serializable{
 	public Images() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	public String getImgContent() {
+		return imgContent;
+	}
+	public void setImgContent(String imgContent) {
+		this.imgContent = imgContent;
 	}
 	public String getCategory() {
 		return category;
@@ -82,7 +88,7 @@ public class Images implements Serializable{
 				+ ", imgCompressionContent=" + imgCompressionContent
 				+ ", imgID=" + imgID + ", imgName=" + imgName + ", projectID="
 				+ projectID + ", projectName=" + projectName + ", url=" + url
-				+ "]";
+				+ ", imgContent=" + imgContent + "]";
 	}
 
 

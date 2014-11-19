@@ -1,5 +1,6 @@
 package com.zhongji.collection.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -15,4 +16,15 @@ public class TimeUtils {
 	public static String longtostr2(long lon){
 		return sdf2.format(new Date(lon));
 	}
+	
+	public static long strtolong(String string){
+		try {
+			return sdf2.parse(string).getTime();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }
+

@@ -17,6 +17,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BaiduMap.OnMapClickListener;
 import com.baidu.mapapi.map.BaiduMap.OnMarkerClickListener;
@@ -48,6 +52,8 @@ import com.zhongji.collection.widget.MyView;
 
 public class SeachMapActivity extends BaseSecondActivity implements OnClickListener {
 
+	private LocationClient mLocClient = null;
+	public MyLocationListenner myListener = new MyLocationListenner();
 	private MapView mMapView;
 	private BaiduMap mBaiduMap;
 	@ViewInject(id=R.id.myview)
@@ -204,20 +210,79 @@ public class SeachMapActivity extends BaseSecondActivity implements OnClickListe
 		});
 		
 		
-		// 设定中心点坐标
-
-		LatLng cenpt = new LatLng(31.297253, 121.473012);
-		// 定义地图状态
-		MapStatus mMapStatus = new MapStatus.Builder().target(cenpt).zoom(18)
-				.build();
-		// 定义MapStatusUpdate对象，以便描述地图状态将要发生的变化
-
-		MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory
-				.newMapStatus(mMapStatus);
-		// 改变地图状态
-		mBaiduMap.setMapStatus(mMapStatusUpdate);
+//		// 设定中心点坐标
+//
+//		LatLng cenpt = new LatLng(31.297253, 121.473012);
+//		// 定义地图状态
+//		MapStatus mMapStatus = new MapStatus.Builder().target(cenpt).zoom(18)
+//				.build();
+//		// 定义MapStatusUpdate对象，以便描述地图状态将要发生的变化
+//
+//		MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory
+//				.newMapStatus(mMapStatus);
+//		// 改变地图状态
+//		mBaiduMap.setMapStatus(mMapStatusUpdate);
+		
+		// 开启定位图层
+		mBaiduMap.setMyLocationEnabled(true);
+		// 定位初始化
+		mLocClient = new LocationClient(this);
+		mLocClient.registerLocationListener(myListener);
+		LocationClientOption option = new LocationClientOption();
+		option.setOpenGps(true);// 打开gps
+		option.setCoorType("bd09ll"); // 设置坐标类型
+		option.setScanSpan(1000);
+		option.setAddrType("all");
+		mLocClient.setLocOption(option);
+		mLocClient.start();
 	}
 	
+	/**
+	 * 定位SDK监听函数
+	 */
+	public class MyLocationListenner implements BDLocationListener {
+
+		@Override
+		public void onReceiveLocation(BDLocation location) {
+			// map view 销毁后不在处理新接收的位置
+			if (location == null || mMapView == null){
+				showShortToast("抱歉，定位失败");
+				return;
+			}
+			//定位icon
+//			MyLocationData locData = new MyLocationData.Builder()
+//					.accuracy(location.getRadius())
+//					// 此处设置开发者获取到的方向信息，顺时针0-360
+//					.direction(100).latitude(location.getLatitude())
+//					.longitude(location.getLongitude()).build();
+//			
+//			mBaiduMap.setMyLocationData(locData);
+//			if (isFirstLoc) {
+//				isFirstLoc = false;
+//				LatLng ll = new LatLng(location.getLatitude(),
+//						location.getLongitude());
+//				MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
+//				mBaiduMap.animateMapStatus(u);
+//			}
+			
+			//默认中心位置
+			LatLng ll = new LatLng(location.getLatitude(), location.getLongitude());
+			MapStatus mMapStatus = new MapStatus.Builder()
+	        .target(ll)
+	        .zoom(16)
+	        .build();
+			MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
+			mBaiduMap.setMapStatus(mMapStatusUpdate);
+			
+			mLocClient.stop();
+			mLocClient.unRegisterLocationListener(myListener);
+			mBaiduMap.setMyLocationEnabled(false);
+			
+		}
+
+		public void onReceivePoi(BDLocation poiLocation) {
+		}
+	}
 	
 	private TextView createTextView() {
 		count = count + 1;
@@ -353,5 +418,27 @@ public class SeachMapActivity extends BaseSecondActivity implements OnClickListe
 		if(count == 0){
 			showShortToast("没有数据");
 		}
+	}
+	
+	@Override
+	protected void onPause() {
+		mMapView.onPause();
+		super.onPause();
+	}
+
+	@Override
+	protected void onResume() {
+		mMapView.onResume();
+		super.onResume();
+	}
+
+	@Override
+	protected void onDestroy() {
+		// 退出时销毁定位
+		mLocClient.stop();
+		// 关闭定位图层
+		mBaiduMap.setMyLocationEnabled(false);
+		mMapView.onDestroy();
+		super.onDestroy();
 	}
 }
