@@ -8,6 +8,9 @@ import net.tsz.afinal.annotation.view.ViewInject;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.TextUtils;
@@ -73,6 +76,37 @@ public class NewProActivity extends BaseSecondActivity implements
 	private int position=0;
 	private String type = "edit";
 	
+	public Handler mInHandler;
+	
+	private Handler mHandler = new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			switch (msg.what) {
+			case 0:
+				viewList.add(view_planview.getView());
+				viewList.add(view_procreate.getView());
+				viewList.add(view_explorationstage.getView());
+				viewList.add(view_design.getView());
+				viewList.add(view_drawstage.getView());
+				viewList.add(view_horizon.getView());
+				viewList.add(view_foundation.getView());
+				viewList.add(view_constuct.getView());
+				viewList.add(view_afforesview.getView());
+				viewList.add(view_fitment.getView());
+
+				adapter = new ProViewPager(viewList);
+				viewPager.setAdapter(adapter);
+				viewPager.setCurrentItem(0);
+				viewPager.setOnPageChangeListener(new MyPageChangeListener());
+				
+				setSpeed();
+				break;
+			}
+			super.handleMessage(msg);
+		}
+	};
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +131,8 @@ public class NewProActivity extends BaseSecondActivity implements
 			project.setProvince(province);
 			project.setCity(city);
 			project.setDistrict(district);
+		}else if("edit".equals(type)){
+			project = PreferencesUtils.getObjectPro(NewProActivity.this, position);
 		}
 		
 		setTitle("新建项目");
@@ -104,40 +140,58 @@ public class NewProActivity extends BaseSecondActivity implements
 		setRightBtn(this);
 
 		getProStageList();
-		viewList = new ArrayList<View>();
-		view_planview = new LandPlanView(NewProActivity.this, project);
-		view_procreate = new ProCreateView(NewProActivity.this, project);
-		view_explorationstage = new ExplorationStageView(NewProActivity.this,project);
-		view_design = new DesignView(NewProActivity.this,project);
-		view_drawstage = new DrawStageView(NewProActivity.this,project);
-		view_horizon = new HorizonView(NewProActivity.this,project);
-		view_foundation = new FoundationView(NewProActivity.this,project);
-		view_constuct = new ConstuctView(NewProActivity.this,project);
-		view_afforesview = new AfforestView(NewProActivity.this,project);
-		view_fitment = new FitmentView(NewProActivity.this,project);
-
-		viewList.add(view_planview.getView());
-		viewList.add(view_procreate.getView());
-		viewList.add(view_explorationstage.getView());
-		viewList.add(view_design.getView());
-		viewList.add(view_drawstage.getView());
-		viewList.add(view_horizon.getView());
-		viewList.add(view_foundation.getView());
-		viewList.add(view_constuct.getView());
-		viewList.add(view_afforesview.getView());
-		viewList.add(view_fitment.getView());
-
-		adapter = new ProViewPager(viewList);
-		viewPager.setAdapter(adapter);
-		viewPager.setCurrentItem(0);
-		viewPager.setOnPageChangeListener(new MyPageChangeListener());
 		
-		setSpeed();
-
 		updateTitle(0);
+		
+		
+		showProgressDialog("加载中...");
+		new Thread(new MyThread()).start();
 		
 	}
 
+	class MyThread implements Runnable{
+		
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			Looper.prepare();
+			System.out.println("prepare");
+			//MyTheard线程的handler
+			mInHandler = new Handler(){
+				@Override
+				public void handleMessage(Message msg) {
+					// TODO Auto-generated method stub
+					
+					switch(msg.what){
+					case 0:
+						viewList = new ArrayList<View>();
+						view_planview = new LandPlanView(NewProActivity.this, project);
+						view_procreate = new ProCreateView(NewProActivity.this, project);
+						view_explorationstage = new ExplorationStageView(NewProActivity.this,project);
+						view_design = new DesignView(NewProActivity.this,project);
+						view_drawstage = new DrawStageView(NewProActivity.this,project);
+						view_horizon = new HorizonView(NewProActivity.this,project);
+						view_foundation = new FoundationView(NewProActivity.this,project);
+						view_constuct = new ConstuctView(NewProActivity.this,project);
+						view_afforesview = new AfforestView(NewProActivity.this,project);
+						view_fitment = new FitmentView(NewProActivity.this,project);
+						
+						mInHandler.getLooper().quit();
+						break;
+					}
+					super.handleMessage(msg);
+				}
+			};
+			
+			mInHandler.sendEmptyMessage(0);
+			//注：写在Looper.loop()之后的代码不会被立即执行，当调用后mHandler.getLooper().quit()后，loop才会中止，其后的代码才能得以运行。Looper对象通过MessageQueue来存放消息和事件。一个线程只能有一个Looper，对应一个MessageQueue。
+			Looper.loop();	
+			dismissProgressDialog();
+			mHandler.sendEmptyMessage(0);
+			System.out.println("loop");
+			
+		}}
+	
 	@SuppressWarnings({ "unchecked" })
 	@Override
 	public void onClick(View v) {
@@ -151,31 +205,39 @@ public class NewProActivity extends BaseSecondActivity implements
 			startActivityForResult(intent, 10);
 		}else if (v.getId() == R.id.tv_right) {
 			// 右
-			System.out.println(project.toString());
-			List<Project> plists = (List<Project>) PreferencesUtils.getObject(NewProActivity.this, PreferencesUtils.PREFERENCE_KEY);
-			if(plists==null){
-				plists = new ArrayList<Project>();
-			}
+//			System.out.println(project.toString());
+//			List<Project> plists = PreferencesUtils.getProjectLists(NewProActivity.this);
+//			if(plists==null){
+//				plists = new ArrayList<Project>();
+//			}
 			if("add".equals(type)){
 				//添加
 				showShortToast("保存完毕,请到本地保存项目查看！");
-				plists.add(0, project);
-				PreferencesUtils.saveObject(NewProActivity.this, PreferencesUtils.PREFERENCE_KEY, plists);
+				
+				PreferencesUtils.saveObjectPro(NewProActivity.this, System.currentTimeMillis()+"", project);
+//				plists.add(0, project);
+//				PreferencesUtils.saveObject(NewProActivity.this, PreferencesUtils.PREFERENCE_KEY, plists);
 				finish();
 			}else if("edit".equals(type)){
 				//本地修改
 				showShortToast("保存完毕,请到本地保存项目查看！");
-				plists.set(position, project);
-				PreferencesUtils.saveObject(NewProActivity.this, PreferencesUtils.PREFERENCE_KEY, plists);
+				
+				PreferencesUtils.saveObjectPro(NewProActivity.this, "", project, position);
+				
+//				plists.set(position, project);
+//				PreferencesUtils.saveObject(NewProActivity.this, PreferencesUtils.PREFERENCE_KEY, plists);
 				Intent intent = new Intent();
-				intent.putExtra("project", project);
+				intent.putExtra("position", position);
+//				intent.putExtra("project", project);
 				setResult(30,intent);
 				finish();
 			}else if("publish".equals(type)){
 				//发布修改
 				showShortToast("保存完毕,请到本地保存项目查看！");
-				plists.add(0, project);
-				PreferencesUtils.saveObject(NewProActivity.this, PreferencesUtils.PREFERENCE_KEY, plists);
+				
+				PreferencesUtils.saveObjectPro(NewProActivity.this, System.currentTimeMillis()+"", project);
+//				plists.add(0, project);
+//				PreferencesUtils.saveObject(NewProActivity.this, PreferencesUtils.PREFERENCE_KEY, plists);
 				finish();
 			}
 			

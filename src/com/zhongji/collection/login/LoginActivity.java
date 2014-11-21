@@ -41,6 +41,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+
+		HttpRestClient.TOKEN = PreferencesUtils.getString(LoginActivity.this, PreferencesUtils.PREFERENCE_KEY_TOKEN, "");
 		
 		if(!"".equals(HttpRestClient.TOKEN)){
 			User user = (User) PreferencesUtils.getObject(LoginActivity.this, PreferencesUtils.PREFERENCE_KEY_USERS);
@@ -116,6 +118,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 							if(lists!=null && lists.size()>0){
 								User user = lists.get(0);
 								HttpRestClient.TOKEN = user.getUserToken();
+								
+								PreferencesUtils.putString(LoginActivity.this, PreferencesUtils.PREFERENCE_KEY_TOKEN, HttpRestClient.TOKEN);
 								PreferencesUtils.saveObject(LoginActivity.this, PreferencesUtils.PREFERENCE_KEY_USERS, user);
 
 								Intent intent = new Intent(LoginActivity.this,  HomeActivity.class);

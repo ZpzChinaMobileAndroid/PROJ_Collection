@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zhongji.collection.android.phone.R;
@@ -111,6 +112,11 @@ public abstract class BaseSecondActivity extends BaseActivity implements OnClick
 	 */
 	public void setTitlebackgroud(String title, OnClickListener listener) {
 		LinearLayout layout_title = (LinearLayout) findViewById(R.id.layout_title);
+		RelativeLayout.LayoutParams rl = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+		rl.addRule(RelativeLayout.LEFT_OF, R.id.tv_right);
+		rl.addRule(RelativeLayout.RIGHT_OF, R.id.tv_left);
+		rl.addRule(RelativeLayout.CENTER_IN_PARENT);
+		layout_title.setLayoutParams(rl);
 		layout_title.setOnClickListener(listener);
 		layout_title.setBackgroundResource(R.drawable.seach_basemap);
 		TextView tv_title = (TextView) findViewById(R.id.tv_title);

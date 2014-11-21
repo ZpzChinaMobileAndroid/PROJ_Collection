@@ -60,15 +60,24 @@ public class BigPhotoActivity extends BaseSecondActivity  {
 				// TODO Auto-generated method stub
 				position = pos;
 				Images imgs = imgslists.get(position);
-				showProgressDialog();
-				getProject(imgs.getUrl());
+				if(imgs.getUrl() != null){
+					showProgressDialog();
+					getProject(imgs.getUrl());
+				}else{
+					advertview.updateVIew(position,imgs);
+				}
 			}
 		});
 		
 		position = 0;
 		Images imgs = imgslists.get(position);
-		showProgressDialog();
-		getProject(imgs.getUrl());
+		if(imgs.getUrl() != null){
+			showProgressDialog();
+			getProject(imgs.getUrl());
+		}else{
+			advertview.updateVIew(position,imgs);
+		}
+		
 		
 	}
 	

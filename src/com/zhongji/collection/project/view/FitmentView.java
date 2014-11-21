@@ -86,6 +86,7 @@ public class FitmentView extends BaseView implements OnClickListener{
 						@Override
 						public void onClick(DialogInterface arg0, int arg1) {
 							// TODO Auto-generated method stub
+							project.setProjectStage("4");
 							tv_fitmemtweak_value.setText(items[arg1]);
 							project.setElectroweakInstallation(items[arg1]);
 						}
@@ -100,6 +101,7 @@ public class FitmentView extends BaseView implements OnClickListener{
 						@Override
 						public void onClick(DialogInterface arg0, int arg1) {
 							// TODO Auto-generated method stub
+							project.setProjectStage("4");
 							tv_fitmentcondition_value.setText(items[arg1]);
 							project.setDecorationSituation(items[arg1]);
 						}
@@ -114,6 +116,7 @@ public class FitmentView extends BaseView implements OnClickListener{
 						@Override
 						public void onClick(DialogInterface arg0, int arg1) {
 							// TODO Auto-generated method stub
+							project.setProjectStage("4");
 							tv_fitmentstage_value.setText(items[arg1]);
 							project.setDecorationProgress(items[arg1]);
 						}

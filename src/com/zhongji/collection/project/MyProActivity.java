@@ -7,6 +7,8 @@ import net.tsz.afinal.annotation.view.ViewInject;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -69,7 +71,8 @@ public class MyProActivity extends BaseSecondActivity implements OnRefreshListen
 	protected void init() {
 		// TODO Auto-generated method stub
 		
-		plists = (List<Project>) PreferencesUtils.getObject(MyProActivity.this, PreferencesUtils.PREFERENCE_KEY);
+//		plists = PreferencesUtils.getProjectLists(MyProActivity.this);
+//		plists = (List<Project>) PreferencesUtils.getObject(MyProActivity.this, PreferencesUtils.PREFERENCE_KEY);
 		if(plists==null){
 			plists = new ArrayList<Project>();
 		}
@@ -102,7 +105,7 @@ public class MyProActivity extends BaseSecondActivity implements OnRefreshListen
 					intent.setClass(MyProActivity.this, ProjectDetialActivity.class);
 					intent.putExtra("url", pro.getUrl());
 					intent.putExtra("position", arg2-1);
-					intent.putExtra("project", pro);
+//					intent.putExtra("project", pro);
 					intent.putExtra("type", type);
 					startActivityForResult(intent, 10);
 				}
@@ -146,7 +149,7 @@ public class MyProActivity extends BaseSecondActivity implements OnRefreshListen
 									public void onClick(DialogInterface dialog,
 											int which) {
 										// TODO Auto-generated method stub
-										showProgressDialog();
+										showProgressDialog("上传中...");
 										uploadProject();
 									}
 								});
@@ -156,15 +159,11 @@ public class MyProActivity extends BaseSecondActivity implements OnRefreshListen
 						}
 
 					});
-					plists = (List<Project>) PreferencesUtils.getObject(MyProActivity.this, PreferencesUtils.PREFERENCE_KEY);
-					if(plists==null){
-						plists = new ArrayList<Project>();
-					}
-					uploadIndex = 0;
-					page = 0;
-					adapter.setLists(plists);
-					adapter.notifyDataSetChanged();
-					listView.setSelection(0);
+					
+					showProgressDialog();
+					new Thread(new LoadThread()).start();
+//					plists = (List<Project>) PreferencesUtils.getObject(MyProActivity.this, PreferencesUtils.PREFERENCE_KEY);
+					
 				}
 			}
 
@@ -173,9 +172,37 @@ public class MyProActivity extends BaseSecondActivity implements OnRefreshListen
 		((RadioButton)radioGroup1.getChildAt(0)).setChecked(true);
 	}
 
+	class LoadThread implements Runnable{
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			plists = PreferencesUtils.getProjectLists(MyProActivity.this);
+			mHandler.sendEmptyMessage(0);
+		}
+	}
 	
+	private Handler mHandler = new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			switch (msg.what) {
+			case 0:
+				dismissProgressDialog();
+				if(plists==null){
+					plists = new ArrayList<Project>();
+				}
+				uploadIndex = 0;
+				page = 0;
+				adapter.setLists(plists);
+				adapter.notifyDataSetChanged();
+				listView.setSelection(0);
+				break;
+			}
+			super.handleMessage(msg);
+		}
+	};
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
@@ -185,7 +212,8 @@ public class MyProActivity extends BaseSecondActivity implements OnRefreshListen
 		}
 
 		if (requestCode == 10 && resultCode == 40) {
-			plists = (List<Project>) PreferencesUtils.getObject(MyProActivity.this, PreferencesUtils.PREFERENCE_KEY);
+			plists = PreferencesUtils.getProjectLists(MyProActivity.this);
+//			plists = (List<Project>) PreferencesUtils.getObject(MyProActivity.this, PreferencesUtils.PREFERENCE_KEY);
 			adapter.setLists(plists);
 			adapter.notifyDataSetChanged();
 		}
@@ -238,7 +266,8 @@ public class MyProActivity extends BaseSecondActivity implements OnRefreshListen
 			});
 		}else{
 			plists.clear();
-			PreferencesUtils.saveObject(MyProActivity.this, PreferencesUtils.PREFERENCE_KEY, plists);
+			PreferencesUtils.removeObject(MyProActivity.this);
+//			PreferencesUtils.saveObject(MyProActivity.this, PreferencesUtils.PREFERENCE_KEY, plists);
 			adapter.setLists(plists);
 			adapter.notifyDataSetChanged();
 //			showShortToast("完");

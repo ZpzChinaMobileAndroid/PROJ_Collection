@@ -102,7 +102,7 @@ public class DrawStageView extends BaseView implements OnClickListener,OnChecked
 //					String endtime = tv_endtime.getText().toString().replace("预计竣工时间: ", "");
 //					long end = TimeUtils.strtolong(endtime);
 //					long start = TimeUtils.strtolong(date);
-					
+					project.setProjectStage("2");
 					tv_starttime.setText("预计开工时间: " + date);
 					project.setExpectedStartTime(tv_starttime.getText().toString().replace("预计开工时间: ", ""));
 					
@@ -129,7 +129,7 @@ public class DrawStageView extends BaseView implements OnClickListener,OnChecked
 //					String starttime = tv_starttime.getText().toString().replace("预计开工时间: ", "");
 //					long start = TimeUtils.strtolong(starttime);
 //					long end = TimeUtils.strtolong(date);
-					
+					project.setProjectStage("2");
 					tv_endtime.setText("预计竣工时间: " + date);
 					project.setExpectedFinishTime(tv_endtime.getText().toString().replace("预计竣工时间: ", ""));
 					
@@ -150,6 +150,7 @@ public class DrawStageView extends BaseView implements OnClickListener,OnChecked
 	@Override
 	public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 		// TODO Auto-generated method stub
+		project.setProjectStage("2");
 		switch (arg0.getId()) {
 		case R.id.cb_lift:
 			//电梯

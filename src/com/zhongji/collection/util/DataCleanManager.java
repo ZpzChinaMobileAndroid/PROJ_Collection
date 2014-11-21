@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.os.Environment;
 
-import com.zhongji.collection.entity.Project;
-
 /** * 本应用数据清除管理器 */
 public class DataCleanManager {
     /** * 清除本应用内部缓存(/data/data/com.xxx.xxx/cache) * * @param context */
@@ -33,7 +31,7 @@ public class DataCleanManager {
         deleteFilesByDirectory(new File("/data/data/"
                 + context.getPackageName() + "/shared_prefs"));
         PreferencesUtils.saveObject(context, PreferencesUtils.PREFERENCE_KEY_SEARCH, new ArrayList<String>());
-        PreferencesUtils.saveObject(context, PreferencesUtils.PREFERENCE_KEY, new ArrayList<Project>());
+        PreferencesUtils.removeObject(context);
 		
     }
 

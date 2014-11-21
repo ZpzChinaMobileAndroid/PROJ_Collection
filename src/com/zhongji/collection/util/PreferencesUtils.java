@@ -2,11 +2,15 @@ package com.zhongji.collection.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -14,6 +18,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
+
+import com.zhongji.collection.entity.Project;
 
 /**
  * @package com.ananda.tailing.bike.util
@@ -26,9 +32,11 @@ import android.util.Log;
 public class PreferencesUtils {
 	
 	public static final String PREFERENCE_NAME = "collection";
-	public static final String PREFERENCE_KEY = "projectlists";
+	public static final String PREFERENCE_NAME_PRO = "projectlists";
+	public static final String PREFERENCE_KEY_PRO = "pro";
 	public static final String PREFERENCE_KEY_SEARCH = "searchlists";
 	public static final String PREFERENCE_KEY_USERS = "users";
+	public static final String PREFERENCE_KEY_TOKEN = "token";
 	
 	public static void saveObject(Context context, String key, Object object) {  
 	    SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME,  Context.MODE_PRIVATE);  
@@ -83,6 +91,119 @@ public class PreferencesUtils {
 	        e.printStackTrace();  
 	    }  
 	    return object;  
+	} 
+	
+	public static void saveObjectPro(Context context, String key, Object object) {  
+	    SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME_PRO,  Context.MODE_PRIVATE);  
+	    // 创建字节输出流  
+	    ByteArrayOutputStream baos = new ByteArrayOutputStream();  
+	    try {  
+	        // 创建对象输出流，并封装字节流  
+	        ObjectOutputStream oos = new ObjectOutputStream(baos);  
+	        // 将对象写入字节流  
+	        oos.writeObject(object);  
+	        // 将字节流编码成base64的字符窜   
+	        String oAuth_Base64 = new String(Base64.encodeBase64(baos.toByteArray()));  
+	        Editor editor = preferences.edit();  
+	        editor.putString(key, oAuth_Base64);  
+	  
+	        editor.commit();  
+	        oos.close();
+	        baos.close();
+	    } catch (IOException e) {  
+	        // TODO Auto-generated  
+	    }  
+	    Log.i("ok", "存储成功");  
+	}   
+	
+	public static void removeObject(Context context) {  
+		File file = new File("/data/data/"
+				+ context.getPackageName().toString() + "/shared_prefs/",
+				PREFERENCE_NAME_PRO + ".xml");
+		if (file.exists()) {
+			file.delete();
+		}
+
+//	    SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME_PRO,  Context.MODE_PRIVATE);  
+//	    preferences.getAll().clear();
+//	    preferences.edit().clear();
+//	    preferences.edit().commit();
+	} 
+	
+	public static List<Project> getProjectLists(Context context) {  
+		List<Project> lists = new ArrayList<Project>();
+		SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME_PRO,  Context.MODE_PRIVATE);   
+		Iterator<String> istr = preferences.getAll().keySet().iterator();
+		while (istr.hasNext()) {
+			String key = istr.next();
+			Project pro = (Project) getObjectPro(context, key);
+			lists.add(pro);
+		}
+	    return lists;
+	} 
+	
+	public static void saveObjectPro(Context context, String key, Object object, int position) {  
+	    SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME_PRO,  Context.MODE_PRIVATE);  
+	    String[] keys = preferences.getAll().keySet().toArray(new String[0]);
+//	    String[] keys = (String[]) preferences.getAll().keySet().toArray();
+	    // 创建字节输出流  
+	    ByteArrayOutputStream baos = new ByteArrayOutputStream();  
+	    try {  
+	        // 创建对象输出流，并封装字节流  
+	        ObjectOutputStream oos = new ObjectOutputStream(baos);  
+	        // 将对象写入字节流  
+	        oos.writeObject(object);  
+	        // 将字节流编码成base64的字符窜   
+	        String oAuth_Base64 = new String(Base64.encodeBase64(baos.toByteArray()));  
+	        Editor editor = preferences.edit();  
+	        editor.putString(keys[position], oAuth_Base64);  
+	  
+	        editor.commit();  
+	        oos.close();
+	        baos.close();
+	    } catch (IOException e) {  
+	        // TODO Auto-generated  
+	    }  
+	    Log.i("ok", "存储成功");  
+	}  
+	
+	public static Object getObjectPro(Context context, String key) {  
+		Object object = null;  
+		SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME_PRO,  Context.MODE_PRIVATE);   
+	    String productBase64 = preferences.getString(key, "");  
+	              
+	    //读取字节  
+	    byte[] base64 = Base64.decodeBase64(productBase64.getBytes());  
+	      
+	    //封装到字节流  
+	    ByteArrayInputStream bais = new ByteArrayInputStream(base64);  
+	    try {  
+	        //再次封装  
+	        ObjectInputStream bis = new ObjectInputStream(bais);  
+	        try {  
+	            //读取对象  
+	        	object = (Object) bis.readObject();  
+	        } catch (ClassNotFoundException e) {  
+	            // TODO Auto-generated catch block  
+	            e.printStackTrace();  
+	        }  
+	        bis.close();
+	        bais.close();
+	    } catch (StreamCorruptedException e) {  
+	        // TODO Auto-generated catch block  
+	        e.printStackTrace();  
+	    } catch (IOException e) {  
+	        // TODO Auto-generated catch block  
+	        e.printStackTrace();  
+	    }  
+	    return object;  
+	} 
+	
+	public static Project getObjectPro(Context context, int position) {  
+		SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME_PRO,  Context.MODE_PRIVATE);   
+		String[] keys = preferences.getAll().keySet().toArray(new String[0]);
+		
+	    return (Project) getObjectPro(context, keys[position]);  
 	} 
 	
 	/**

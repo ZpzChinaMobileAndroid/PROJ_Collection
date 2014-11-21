@@ -72,26 +72,29 @@ public class GridPhotoView {
 		setListViewHeight(gridView1);
 	}
 	
-	private void setListViewHeight(GridView gridview) {  
-		//获取ListView对应的Adapter  
-		ListAdapter listAdapter = gridview.getAdapter();  
-		if (listAdapter == null) {  
-		return;  
-		}  
-		int totalHeight = 0;  
-		int linecount = listAdapter.getCount() / 4 + 1;
-		for (int i = 0, len = linecount; i < len; i++) { //listAdapter.getCount()返回数据项的数目  
-		View listItem = listAdapter.getView(i, null, gridview);  
-		listItem.measure(0, 0); //计算子项View 的宽高  
-		totalHeight += listItem.getMeasuredHeight(); //统计所有子项的总高度  
-		
-		}  
-		  
-		ViewGroup.LayoutParams params = gridview.getLayoutParams();  
+	private void setListViewHeight(GridView gridview) {
+		// 获取ListView对应的Adapter
+		ListAdapter listAdapter = gridview.getAdapter();
+		if (listAdapter == null) {
+			return;
+		}
+		int totalHeight = 0;
+		int linecount = listAdapter.getCount() / 3 + (listAdapter.getCount() % 3 == 0 ? 0 : 1);
+		for (int i = 0; i < linecount; i++) { // listAdapter.getCount()返回数据项的数目
+			View listItem = listAdapter.getView(i, null, gridview);
+			listItem.measure(0, 0); // 计算子项View 的宽高
+			System.out.println("--->"+listItem.getMeasuredHeight());
+			totalHeight += listItem.getMeasuredHeight(); // 统计所有子项的总高度
+
+		}
+
+		ViewGroup.LayoutParams params = gridview.getLayoutParams();
 		gridview.measure(0, 0);
-		params.height = totalHeight + linecount * gridview.getHorizontalSpacing();  //+ ((listAdapter.getCount() - 1))
-		//listView.getDividerHeight()获取子项间分隔符占用的高度  
-		//params.height最后得到整个ListView完整显示需要的高度  
-		gridview.setLayoutParams(params);  
-		}  
+		params.height = totalHeight + linecount
+				* gridview.getHorizontalSpacing(); // + ((listAdapter.getCount()
+													// - 1))
+		// listView.getDividerHeight()获取子项间分隔符占用的高度
+		// params.height最后得到整个ListView完整显示需要的高度
+		gridview.setLayoutParams(params);
+	}
 }

@@ -21,6 +21,7 @@ import com.zhongji.collection.network.HttpRestClient;
 import com.zhongji.collection.network.ResponseUtils;
 import com.zhongji.collection.util.DataCleanManager;
 import com.zhongji.collection.util.JsonUtils;
+import com.zhongji.collection.util.PreferencesUtils;
 import com.zhongji.collection.util.ProgressDialogUtils;
 import com.zhongji.collection.util.ToastUtils;
 
@@ -106,6 +107,7 @@ public abstract class BaseActivity extends FinalActivity{
 							showShortToast("退出登录");
 							HttpRestClient.TOKEN = "";
 							DataCleanManager.cleanApplicationData(BaseActivity.this);
+							PreferencesUtils.putString(BaseActivity.this, PreferencesUtils.PREFERENCE_KEY_TOKEN, "");
 							Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
 							startActivity(intent);
 							finish();

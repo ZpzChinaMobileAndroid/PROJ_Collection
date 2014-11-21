@@ -6,7 +6,9 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.text.Editable;
+import android.text.TextUtils.TruncateAt;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -106,6 +108,12 @@ public class BaseView {
 					clists.set(pos, contacts);
 				}
 				
+				if("explorationUnitContacts".equals(type) || "designInstituteContacts".equals(type) || "ownerUnitContacts".equals(type)){
+					project.setProjectStage("2");
+				}else if("contractorUnitContacts".equals(type) || "pileFoundationUnitContacts".equals(type)){
+					project.setProjectStage("3");
+				}
+				
 				ContactsListBean clbean = new ContactsListBean();
 				clbean.setData(clists);
 				contactsLists.set(0, clbean);
@@ -128,9 +136,18 @@ public class BaseView {
 				final int pos = i;
 				final Contacts contacts = clists.get(i);
 				if(type.equals(contacts.getCategory())){
-					LinearLayout.LayoutParams lllp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-					lllp.setMargins(DensityUtil.dip2px(context, 20), 0, 0, 0);
+					int width = layout_contacts.getWidth();
+					int w = LinearLayout.LayoutParams.WRAP_CONTENT;
+					if(width!=0){
+						w = (width-DensityUtil.dip2px(context, 5)*2) / 3;
+					}
+					
+					LinearLayout.LayoutParams lllp = new LinearLayout.LayoutParams(w, LinearLayout.LayoutParams.MATCH_PARENT);
+					lllp.setMargins(DensityUtil.dip2px(context, 5), 0, 0, 0);
 					TextView tv = new TextView(context);
+					tv.setSingleLine(true);
+					tv.setEllipsize(TruncateAt.END);
+					tv.setGravity(Gravity.CENTER_VERTICAL);
 					tv.setLayoutParams(lllp);
 					tv.setText(contacts.getName());
 					tv.setOnClickListener(new OnClickListener() {
@@ -174,7 +191,6 @@ public class BaseView {
 	 */
 	protected void updateImg(GridPhotoView mGridView) {
 		// TODO Auto-generated method stub
-		System.out.println(imagesLists.toString());
 		if(imagesLists!=null && imagesLists.size()>0){
 			ImagesListBean bean = imagesLists.get(0);
 			if(bean!=null && bean.getData().size()>0){
@@ -200,6 +216,14 @@ public class BaseView {
 	public void setImages(String imgsType, String imgCompressionContent){
 		List<Images> imglists = imagesLists.get(0).getData();
 		imglists.add(new Images(imgsType, "android", imgCompressionContent));
+		
+		if("exploration".equals(imgsType)){
+			project.setProjectStage("2");
+		}else if("horizon".equals(imgsType) || "pileFoundation".equals(imgsType) || "mainPart".equals(imgsType) || "fireControl".equals(imgsType)){
+			project.setProjectStage("3");
+		}else if("electroweak".equals(imgsType)){
+			project.setProjectStage("4");
+		}
 		
 		ImagesListBean imgsbean = new ImagesListBean();
 		imgsbean.setData(imglists);

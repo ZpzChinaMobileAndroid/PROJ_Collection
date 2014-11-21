@@ -79,6 +79,7 @@ public class AfforestView extends BaseView implements OnClickListener{
 						@Override
 						public void onClick(DialogInterface arg0, int arg1) {
 							// TODO Auto-generated method stub
+							project.setProjectStage("3");
 							tv_afforestcontrol_value.setText(items[arg1]);
 							project.setFireControl(items[arg1]);
 						}
@@ -94,6 +95,7 @@ public class AfforestView extends BaseView implements OnClickListener{
 						@Override
 						public void onClick(DialogInterface arg0, int arg1) {
 							// TODO Auto-generated method stub
+							project.setProjectStage("3");
 							tv_afforestlandscape_value.setText(items[arg1]);
 							project.setGreen(items[arg1]);
 						}

@@ -58,14 +58,14 @@ public abstract class BaseIndexActivity extends BaseActivity implements OnClickL
 		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case KeyEvent.KEYCODE_BACK:
-			showAkertDialog("是否退出！", new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog,
-						int which) {
-					// TODO Auto-generated method stub
-					finish();
-				}
-			});
+//			showAkertDialog("是否退出！", new DialogInterface.OnClickListener() {
+//				@Override
+//				public void onClick(DialogInterface dialog,
+//						int which) {
+//					// TODO Auto-generated method stub
+//					finish();
+//				}
+//			});
 			break;
 		default:
 			break;

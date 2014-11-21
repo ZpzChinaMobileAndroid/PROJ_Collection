@@ -294,7 +294,14 @@ public class AdvertView extends LinearLayout {
 	public void updateVIew(int pos, Images img){
 		ImageView iv = imageViews.get(pos);
 		bools.set(pos, true);
-		iv.setImageBitmap(BitmapUtil.base64ToBitmap(img.getImgContent()));
+		if(img.getUrl() !=null){
+			//网络
+			iv.setImageBitmap(BitmapUtil.base64ToBitmap(img.getImgContent()));
+		}else{
+			//本地
+			iv.setImageBitmap(BitmapUtil.base64ToBitmap(img.getImgCompressionContent()));
+		}
+		
 		adapter.notifyDataSetChanged();
 	}
 

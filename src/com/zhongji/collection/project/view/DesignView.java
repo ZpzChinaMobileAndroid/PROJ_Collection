@@ -84,6 +84,7 @@ public class DesignView extends BaseView implements OnClickListener {
 				@Override
 				public void onClick(DialogInterface arg0, int arg1) {
 					// TODO Auto-generated method stub
+					project.setProjectStage("2");
 					tv_designphases_value.setText(items[arg1]);
 					project.setMainDesignStage(tv_designphases_value.getText().toString());
 				}

@@ -15,6 +15,7 @@ import com.zhongji.collection.entity.Project;
 
 public class ProjectAdapter extends BaseAdapter{
 	
+	private int[] stagesImgs = {R.drawable.pro_stage1,R.drawable.pro_stage2,R.drawable.pro_stage3,R.drawable.pro_stage4};
 	private Context context;
 	private List<Project> lists;
 	
@@ -71,6 +72,8 @@ public class ProjectAdapter extends BaseAdapter{
 		Project pro = lists.get(position);
 		if(pro!=null){
 //			ImageLoaderUtils.getInstance().displayImage(context, info.getTximg(), holder.IvHead);
+			int stage = Integer.parseInt(pro.getProjectStage());
+			holder.iv_prostage.setImageResource(stagesImgs[stage-1]);
 			holder.tv_proname.setText(pro.getProjectName());
 			holder.tv_investmentmoney.setText(pro.getInvestment());
 			holder.tv_buildarea.setText(pro.getAreaOfStructure());

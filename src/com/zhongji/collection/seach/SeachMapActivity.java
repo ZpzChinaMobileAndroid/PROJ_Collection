@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -51,7 +52,9 @@ import com.zhongji.collection.util.JsonUtils;
 import com.zhongji.collection.widget.MyView;
 
 public class SeachMapActivity extends BaseSecondActivity implements OnClickListener {
-
+	
+	
+	private int[] stagesImgs = {R.drawable.pro_stage1,R.drawable.pro_stage2,R.drawable.pro_stage3,R.drawable.pro_stage4};
 	private LocationClient mLocClient = null;
 	public MyLocationListenner myListener = new MyLocationListenner();
 	private MapView mMapView;
@@ -76,6 +79,8 @@ public class SeachMapActivity extends BaseSecondActivity implements OnClickListe
 	private TextView tv_district;
 	@ViewInject(id=R.id.tv_address)
 	private TextView tv_address;
+	@ViewInject(id=R.id.iv_prostage)
+	private ImageView iv_prostage;
 	private List<Project> prolists = new ArrayList<Project>();
 	private List<LatLng> lists = new ArrayList<LatLng>();
 	private LatLng startLL;
@@ -125,6 +130,8 @@ public class SeachMapActivity extends BaseSecondActivity implements OnClickListe
 				pos = bb.getInt("pos");
 				int count = bb.getInt("count");
 				Project pro = prolists.get(pos);
+				int stage = Integer.parseInt(pro.getProjectStage());
+				iv_prostage.setImageResource(stagesImgs[stage-1]);
 				tv_proname.setText(pro.getProjectName());
 				tv_investmentmoney.setText(pro.getInvestment());
 				tv_buildarea.setText(pro.getAreaOfStructure());

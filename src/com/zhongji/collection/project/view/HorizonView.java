@@ -78,6 +78,7 @@ public class HorizonView extends BaseView implements OnClickListener {
 				@Override
 				public void sure(String date, String time) {
 					// TODO Auto-generated method stub
+					project.setProjectStage("3");
 					tv_horizonStarttime.setText("实际施工时间: " + date);
 					project.setActualStartTime(tv_horizonStarttime.getText().toString().replace("实际施工时间: ", ""));
 				}

@@ -127,6 +127,7 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 		
 		if("edit".equals(type)){
 			//编辑
+			project = PreferencesUtils.getObjectPro(ProjectDetialActivity.this, position);
 			updateUI(project);
 		}else{
 			//显示、发布
@@ -189,11 +190,8 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 		int height = 0;
 		int scrollY = scrollView.getScrollY();
 		int count = mapsStage.keySet().toArray().length;
-		System.out.println("--"+count);
 		for(int i=0;i<count;i++){
 			height = height + mapsStage.get(i);
-			System.out.println("ab"+height);
-			System.out.println("aa"+(scrollY + scrollView.getHeight()));
 			if((scrollY + scrollView.getHeight()) <= height){
 				String str = prostageList.get(i);
 				String[] items = str.split(",");
@@ -252,8 +250,6 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 							initial_9();
 						}
 					}
-					System.out.println("-->"+tag);
-					System.out.println("--"+layout_content.getChildCount());
 					for(int i=0;i<tag;i++){
 						View view = layout_content.getChildAt(i);
 						view.measure(0, 0);
@@ -268,7 +264,9 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 		
 		if (requestCode == 10 && resultCode == 30) {
 			setResult(40);
-			project = (Project) data.getSerializableExtra("project");
+//			project = (Project) data.getSerializableExtra("project");
+			int position = data.getIntExtra("position", 0);
+			project = PreferencesUtils.getObjectPro(ProjectDetialActivity.this, position);
 			updateUI(project);
 		}
 	}
@@ -450,7 +448,10 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 						Intent intent = new Intent();
 						intent.setClass(ProjectDetialActivity.this, NewProActivity.class);
 						intent.putExtra("position", position);
-						intent.putExtra("project", project);
+						if("publish".equals(type)){
+							intent.putExtra("project", project);
+						}
+//						intent.putExtra("project", project);
 						intent.putExtra("type", type);
 						startActivityForResult(intent, 10);
 					}else{
@@ -482,9 +483,9 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 
 	}
 	
-	@SuppressWarnings("unchecked")
 	public boolean checkProjectID(){
-		List<Project> plists = (List<Project>) PreferencesUtils.getObject(ProjectDetialActivity.this, PreferencesUtils.PREFERENCE_KEY);
+		List<Project> plists = PreferencesUtils.getProjectLists(ProjectDetialActivity.this);
+//		List<Project> plists = (List<Project>) PreferencesUtils.getObject(ProjectDetialActivity.this, PreferencesUtils.PREFERENCE_KEY);
 		if(plists!=null && plists.size()>0){
 			for(Project pro : plists){
 				String projectid = pro.getProjectID();
