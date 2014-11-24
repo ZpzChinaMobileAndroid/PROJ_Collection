@@ -74,17 +74,18 @@
         <activity 
             android:name="com.zhongji.collection.launch.EmptyActivity" android:launchMode="singleTask"
             android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         
         <!-- 登录页 -->
         <activity 
             android:name="com.zhongji.collection.login.LoginActivity"
-            android:screenOrientation="portrait" >
-             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:screenOrientation="portrait" 
+            android:launchMode="singleTask">
         </activity>
         
         <!-- 首页 -->
@@ -176,6 +177,13 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" >
             
+        </activity>
+        
+         <!-- 大图 -->
+         <activity
+            android:name="com.zhongji.collection.project.BigPhotoActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" >
         </activity>
         
          <service
