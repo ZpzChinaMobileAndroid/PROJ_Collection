@@ -237,7 +237,10 @@ public class Project implements Serializable{
 		if(TextUtils.isEmpty(area)){
 			return "0";
 		}
-		return area;
+		Double double2= new Double(area);
+		java.text.NumberFormat nfFormat=java.text.NumberFormat.getInstance();
+		nfFormat.setGroupingUsed(false);
+		return nfFormat.format(double2);
 	}
 	public void setArea(String area) {
 		this.area = area;
@@ -299,7 +302,10 @@ public class Project implements Serializable{
 		if(TextUtils.isEmpty(investment)){
 			return "0";
 		}
-		return investment;
+		Double double1= new Double(investment);
+		java.text.NumberFormat nfFormat=java.text.NumberFormat.getInstance();
+		nfFormat.setGroupingUsed(false);
+		return nfFormat.format(double1);
 	}
 	public void setInvestment(String investment) {
 		this.investment = investment;
@@ -308,7 +314,10 @@ public class Project implements Serializable{
 		if(TextUtils.isEmpty(areaOfStructure)){
 			return "0";
 		}
-		return areaOfStructure;
+		Double double1= new Double(areaOfStructure);
+		java.text.NumberFormat nfFormat=java.text.NumberFormat.getInstance();
+		nfFormat.setGroupingUsed(false);
+		return nfFormat.format(double1);
 	}
 	public void setAreaOfStructure(String areaOfStructure) {
 		this.areaOfStructure = areaOfStructure;

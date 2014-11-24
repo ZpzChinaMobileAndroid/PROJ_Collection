@@ -178,6 +178,13 @@
             
         </activity>
         
+         <!-- 大图 -->
+         <activity
+            android:name="com.zhongji.collection.project.BigPhotoActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" >
+        </activity>
+        
          <service
             android:name="com.baidu.location.f"
             android:enabled="true"

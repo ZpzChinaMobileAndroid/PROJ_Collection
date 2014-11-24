@@ -1,5 +1,7 @@
 package com.zhongji.collection.adapter;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,9 +72,16 @@ public class ProjectAdapter extends BaseAdapter{
 		}
 		
 		Project pro = lists.get(position);
+		
+		
 		if(pro!=null){
 //			ImageLoaderUtils.getInstance().displayImage(context, info.getTximg(), holder.IvHead);
 			int stage = Integer.parseInt(pro.getProjectStage());
+			
+			Double double1= new Double(pro.getAreaOfStructure());
+			java.text.NumberFormat nfFormat=java.text.NumberFormat.getInstance();
+			nfFormat.setGroupingUsed(false);
+			
 			holder.iv_prostage.setImageResource(stagesImgs[stage-1]);
 			holder.tv_proname.setText(pro.getProjectName());
 			holder.tv_investmentmoney.setText(pro.getInvestment());

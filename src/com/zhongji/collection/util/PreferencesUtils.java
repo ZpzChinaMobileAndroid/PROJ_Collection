@@ -37,6 +37,9 @@ public class PreferencesUtils {
 	public static final String PREFERENCE_KEY_SEARCH = "searchlists";
 	public static final String PREFERENCE_KEY_USERS = "users";
 	public static final String PREFERENCE_KEY_TOKEN = "token";
+	private static String spName = "SharedPreferences"; 
+	private static SharedPreferences dataBase; 
+
 	
 	public static void saveObject(Context context, String key, Object object) {  
 	    SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME,  Context.MODE_PRIVATE);  
@@ -117,17 +120,15 @@ public class PreferencesUtils {
 	}   
 	
 	public static void removeObject(Context context) {  
-		File file = new File("/data/data/"
-				+ context.getPackageName().toString() + "/shared_prefs/",
-				PREFERENCE_NAME_PRO + ".xml");
+		File file = new File("/data/data/"+ context.getPackageName().toString() + "/shared_prefs/",PREFERENCE_NAME_PRO + ".xml");
 		if (file.exists()) {
-			file.delete();
+			file.delete();	
 		}
 
-//	    SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME_PRO,  Context.MODE_PRIVATE);  
-//	    preferences.getAll().clear();
-//	    preferences.edit().clear();
-//	    preferences.edit().commit();
+	    SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME_PRO,  Context.MODE_PRIVATE); 
+	    preferences.getAll().clear();
+        preferences.edit().clear(); 
+	    preferences.edit().commit();
 	} 
 	
 	public static List<Project> getProjectLists(Context context) {  

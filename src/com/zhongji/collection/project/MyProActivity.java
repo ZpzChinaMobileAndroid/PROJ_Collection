@@ -73,9 +73,9 @@ public class MyProActivity extends BaseSecondActivity implements OnRefreshListen
 		
 //		plists = PreferencesUtils.getProjectLists(MyProActivity.this);
 //		plists = (List<Project>) PreferencesUtils.getObject(MyProActivity.this, PreferencesUtils.PREFERENCE_KEY);
-		if(plists==null){
-			plists = new ArrayList<Project>();
-		}
+//		if(plists==null){
+//			plists = new ArrayList<Project>();
+//		}
 		
 		setTitle("我的任务");
 		setLeftBtn();
@@ -252,7 +252,6 @@ public class MyProActivity extends BaseSecondActivity implements OnRefreshListen
 							pro.setProjectID(res.getProjectID());
 							List<ContactsListBean> blists = pro.getBaseContacts();
 							uploadContacts(pro, blists);
-							
 						}else{
 							showShortToast("上传失败");
 							dismissProgressDialog();

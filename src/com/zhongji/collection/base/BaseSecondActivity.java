@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.zhongji.collection.android.phone.R;
 import com.zhongji.collection.login.EditPasswordActivity;
 import com.zhongji.collection.util.DataCleanManager;
