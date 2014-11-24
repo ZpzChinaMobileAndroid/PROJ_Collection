@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.zhongji.collection.base.BaseActivity;
+import com.zhongji.collection.login.LoginActivity;
 
 /**
  * 空
@@ -11,13 +12,19 @@ import com.zhongji.collection.base.BaseActivity;
  *
  */
 public class EmptyActivity extends BaseActivity{
+	
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		
-//		startActivity(new Intent(EmptyActivity.this, QuestionAnswerActivity.class));
+		startActivity(new Intent(EmptyActivity.this, LoginActivity.class));
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -75,6 +76,7 @@ public class NewProActivity extends BaseSecondActivity implements
 	private Project project;
 	private int position=0;
 	private String type = "edit";
+	private Bitmap bit;
 	
 	public Handler mInHandler;
 	
@@ -101,6 +103,11 @@ public class NewProActivity extends BaseSecondActivity implements
 				viewPager.setOnPageChangeListener(new MyPageChangeListener());
 				
 				setSpeed();
+				break;
+			case 1:
+				dismissProgressDialog();
+				showShortToast("保存完毕,请到本地保存项目查看！");
+				finish();
 				break;
 			}
 			super.handleMessage(msg);
@@ -192,11 +199,9 @@ public class NewProActivity extends BaseSecondActivity implements
 			
 		}}
 	
-	@SuppressWarnings({ "unchecked" })
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		super.onClick(v);
 		if (v.getId() == R.id.layout_prostage) {
 			// 项目阶段
 			Intent intent = new Intent();
@@ -210,19 +215,36 @@ public class NewProActivity extends BaseSecondActivity implements
 //			if(plists==null){
 //				plists = new ArrayList<Project>();
 //			}
+			
+			showProgressDialog("保存中...");
+			new Thread(new LoadThread()).start();
+			
+		}else if(v.getId() == R.id.tv_left){
+			Intent intent = new Intent();
+			setResult(40, intent);
+			finish();
+		}
+		super.onClick(v);
+	}
+	
+	class LoadThread implements Runnable{
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			List<Project> plists = PreferencesUtils.getProjectLists(NewProActivity.this);
+			if(plists==null){
+				plists = new ArrayList<Project>();
+			}
+			
 			if("add".equals(type)){
 				//添加
-				showShortToast("保存完毕,请到本地保存项目查看！");
-				
-				PreferencesUtils.saveObjectPro(NewProActivity.this, System.currentTimeMillis()+"", project);
+				PreferencesUtils.saveObjectPro(NewProActivity.this, plists.size()+"-"+PreferencesUtils.PREFERENCE_KEY_PRO, project);
 //				plists.add(0, project);
 //				PreferencesUtils.saveObject(NewProActivity.this, PreferencesUtils.PREFERENCE_KEY, plists);
-				finish();
 			}else if("edit".equals(type)){
 				//本地修改
-				showShortToast("保存完毕,请到本地保存项目查看！");
-				
-				PreferencesUtils.saveObjectPro(NewProActivity.this, "", project, position);
+				PreferencesUtils.saveObjectPro(NewProActivity.this, position+"-"+PreferencesUtils.PREFERENCE_KEY_PRO, project);//, position
 				
 //				plists.set(position, project);
 //				PreferencesUtils.saveObject(NewProActivity.this, PreferencesUtils.PREFERENCE_KEY, plists);
@@ -230,20 +252,17 @@ public class NewProActivity extends BaseSecondActivity implements
 				intent.putExtra("position", position);
 //				intent.putExtra("project", project);
 				setResult(30,intent);
-				finish();
 			}else if("publish".equals(type)){
 				//发布修改
-				showShortToast("保存完毕,请到本地保存项目查看！");
 				
-				PreferencesUtils.saveObjectPro(NewProActivity.this, System.currentTimeMillis()+"", project);
+				PreferencesUtils.saveObjectPro(NewProActivity.this, plists.size()+"-"+PreferencesUtils.PREFERENCE_KEY_PRO, project);
 //				plists.add(0, project);
 //				PreferencesUtils.saveObject(NewProActivity.this, PreferencesUtils.PREFERENCE_KEY, plists);
-				finish();
 			}
-			
-			
+			mHandler.sendEmptyMessage(1);
 		}
 	}
+	
 
 	/**
 	 * 设置viewpager滑动速度
@@ -416,11 +435,39 @@ public class NewProActivity extends BaseSecondActivity implements
 	private void showBitmap(BaseView baseview, GridPhotoView view, int requestCode, int resultCode, Intent data) {
 		Bitmap bitmap = view.mPhotoUtils.onActivityResult(requestCode, resultCode, data);
 		if(bitmap!=null){
+			if(bit!=null){
+				bit.recycle();
+				bit = null;
+			}
 			String imgstr = BitmapUtil.bitmapToBase64(bitmap);
 			view.addString(imgstr);
 			view.notifyDataSetChanged();
 			baseview.setImages(baseview.imgsType, imgstr);
+			bit = bitmap;
 		}
 	}
 
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		if(bit!=null){
+			bit.recycle();
+			bit = null;
+		}
+		super.onDestroy();
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		switch (keyCode) {
+		case KeyEvent.KEYCODE_BACK:
+			Intent intent = new Intent();
+			setResult(40, intent);
+			break;
+		default:
+			break;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
 }

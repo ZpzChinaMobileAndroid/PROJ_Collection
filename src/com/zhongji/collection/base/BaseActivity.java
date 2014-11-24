@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.slidingmenu.lib.SlidingMenu;
 import com.zhongji.collection.android.phone.R;
+import com.zhongji.collection.entity.User;
 import com.zhongji.collection.entity.UserListBean;
 import com.zhongji.collection.login.LoginActivity;
 import com.zhongji.collection.network.HttpAPI;
@@ -80,7 +81,11 @@ public abstract class BaseActivity extends FinalActivity{
 	    menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);//使SlidingMenu附加在Activity上
 	    menu.setMenu(R.layout.activity_retreat);//设置menu的布局文件
 		tv_name = (TextView) menu.findViewById(R.id.tv_name);// 用户名显示
-	
+		
+		User user = (User) PreferencesUtils.getObject(BaseActivity.this, PreferencesUtils.PREFERENCE_KEY_USERS);
+		if(user!=null){
+			tv_name.setText(user.getRealName());
+		}
 	}
 	
 	/**

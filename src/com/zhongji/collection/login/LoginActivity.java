@@ -8,6 +8,7 @@ import net.tsz.afinal.annotation.view.ViewInject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import com.zhongji.collection.base.BaseActivity;
 import com.zhongji.collection.entity.User;
 import com.zhongji.collection.entity.UserListBean;
 import com.zhongji.collection.home.HomeActivity;
+import com.zhongji.collection.launch.EmptyActivity;
 import com.zhongji.collection.network.HttpAPI;
 import com.zhongji.collection.network.HttpRestClient;
 import com.zhongji.collection.network.ResponseUtils;
@@ -98,7 +100,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	private void login(String username,String password) {
 		Map<String, String> params = new LinkedHashMap<String, String>();
 		params.put("userName", username);
-		params.put("password", MD5.MD5(password).substring(8, 24));
+		params.put("password", MD5.md5(password).substring(8, 24));
 		params.put("deviceType", "android");
 		HttpRestClient.post(LoginActivity.this, HttpAPI.USERS_LOGIN,
 				JsonUtils.change(params,false),
@@ -125,7 +127,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 								Intent intent = new Intent(LoginActivity.this,  HomeActivity.class);
 								intent.putExtra("user", user);
 								startActivity(intent);
-								finish();
 							}
 
 						} else {
@@ -135,4 +136,24 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 				});
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		switch (keyCode) {
+		case KeyEvent.KEYCODE_BACK:
+			startActivity(new Intent(LoginActivity.this, EmptyActivity.class));
+			break;
+		default:
+			break;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	
+	@Override
+	protected void onNewIntent(Intent intent) {
+		// TODO Auto-generated method stub
+		super.onNewIntent(intent);
+		et_username.setText("");
+		et_password.setText("");
+	}
 }

@@ -97,8 +97,8 @@ public class EditPasswordActivity extends BaseSecondActivity implements
 			String newosecendpassword) {
 		// TODO 自动生成的方法存根
 		Map<String, String> parmas = new LinkedHashMap<String, String>();
-		parmas.put("oldPassword",  MD5.MD5(oldpassword).substring(8, 24));
-		parmas.put("newPassword",  MD5.MD5(newpassword).substring(8, 24));
+		parmas.put("oldPassword",  MD5.md5(oldpassword).substring(8, 24));
+		parmas.put("newPassword",  MD5.md5(newpassword).substring(8, 24));
 		HttpRestClient.put(EditPasswordActivity.this,
 				HttpAPI.USERS_MODIFICATION, JsonUtils.change(parmas, true),
 				new ResponseUtils(EditPasswordActivity.this) {

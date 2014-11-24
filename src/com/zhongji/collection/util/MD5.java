@@ -9,7 +9,7 @@ import java.security.NoSuchAlgorithmException;
 public class MD5 {
 	
 	
-	public static String MD5(String string) {
+	public static String md5(String string) {
 		// TODO Auto-generated method stub
 		StringBuffer sb=new StringBuffer();
 		try {

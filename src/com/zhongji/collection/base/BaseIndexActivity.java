@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zhongji.collection.android.phone.R;
+import com.zhongji.collection.launch.EmptyActivity;
 import com.zhongji.collection.login.EditPasswordActivity;
 import com.zhongji.collection.util.DataCleanManager;
 
@@ -58,6 +59,7 @@ public abstract class BaseIndexActivity extends BaseActivity implements OnClickL
 		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case KeyEvent.KEYCODE_BACK:
+			startActivity(new Intent(BaseIndexActivity.this, EmptyActivity.class));
 //			showAkertDialog("是否退出！", new DialogInterface.OnClickListener() {
 //				@Override
 //				public void onClick(DialogInterface dialog,

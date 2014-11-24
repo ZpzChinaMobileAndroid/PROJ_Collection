@@ -111,7 +111,7 @@ public class PhotoUtils {
 		intent.putExtra("outputX", outputX);
 		intent.putExtra("outputY", outputY);
 		intent.putExtra("scale", true);
-		intent.putExtra("return-data", true);
+		intent.putExtra("return-data", false);
 		intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
 		intent.putExtra("noFaceDetection", true); // no face detection
 		return intent;

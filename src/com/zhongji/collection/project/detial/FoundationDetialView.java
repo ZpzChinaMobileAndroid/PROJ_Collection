@@ -54,6 +54,7 @@ public class FoundationDetialView {
 	 */
 	public void updateUI(Project project) {
 		// TODO Auto-generated method stub
+		System.out.println("------------------------------------");
 		view_detial_title.updateUI_Foundation(project);
 		view_detial_imgs.updateUI(project, imgsType);
 		int count = layout_contacts.getChildCount();

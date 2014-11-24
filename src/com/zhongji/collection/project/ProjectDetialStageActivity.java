@@ -5,6 +5,7 @@ import java.util.Map;
 import net.tsz.afinal.annotation.view.ViewInject;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -58,7 +59,7 @@ public class ProjectDetialStageActivity extends BaseSecondActivity implements On
 	@Override
 	public void onClick(View v) {
 		// TODO 自动生成的方法存根
-		super.onClick(v);
+		
 		Object ob = v.getTag();
 		if(ob!=null){
 			int tag = Integer.parseInt(ob.toString());
@@ -67,9 +68,31 @@ public class ProjectDetialStageActivity extends BaseSecondActivity implements On
 				Intent intent = new Intent();
 				intent.putExtra("tag", tag);
 				setResult(10, intent);
+				finish();
+			}else{
+				Intent intent = new Intent();
+				setResult(40, intent);
+				finish();
 			}
+		}else if(v.getId() == R.id.tv_left){
+			Intent intent = new Intent();
+			setResult(40, intent);
 			finish();
-		
 		}
+		super.onClick(v);
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		switch (keyCode) {
+		case KeyEvent.KEYCODE_BACK:
+			Intent intent = new Intent();
+			setResult(40, intent);
+			break;
+		default:
+			break;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }

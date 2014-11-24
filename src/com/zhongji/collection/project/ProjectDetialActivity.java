@@ -10,6 +10,8 @@ import net.tsz.afinal.annotation.view.ViewInject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -48,7 +50,7 @@ import com.zhongji.collection.widget.XScrollView.OnScrollStateChanged;
  * @author admin
  *
  */
-public class ProjectDetialActivity extends BaseSecondActivity implements OnClickListener{
+public class ProjectDetialActivity extends BaseSecondActivity implements OnClickListener, OnScrollStateChanged{
 	
 	@ViewInject(id=R.id.tv_stagename)
 	private TextView tv_stagename;
@@ -71,6 +73,7 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 	private ConstuctDetialView view_constuct;		//主体施工
 	private AfforestDetialView view_afforest;		//消防/景观绿化
 	private FitmentDetialView view_fitment;			//装修阶段
+	private String url = "";
 	private Project project;
 	private boolean isShow = true;
 	private Map<Integer,boolean[]> maps = new LinkedHashMap<Integer, boolean[]>();
@@ -93,93 +96,139 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 		setLeftBtn();
 		initMenu();
 		
-		String url = getIntent().getStringExtra("url");
+		url = getIntent().getStringExtra("url");
 		project = (Project) getIntent().getSerializableExtra("project");
 		position = getIntent().getIntExtra("position", 0);
 		type = getIntent().getStringExtra("type");
 		
-		view_landplan = new LandPlanDetialView(ProjectDetialActivity.this, layout_content);
-		view_procreate = new ProCreateDetialView(ProjectDetialActivity.this, layout_content);
-//		view_explorationStage = new ExplorationStageDetialView(ProjectDetialActivity.this, layout_content);
-//		view_design = new DesignDetialView(ProjectDetialActivity.this, layout_content);
-//		view_drawStage = new DrawStageDetialView(ProjectDetialActivity.this, layout_content);
 		
-//		view_horizon = new HorizonDetialView(ProjectDetialActivity.this, layout_content);
-//		view_foundation = new FoundationDetialView(ProjectDetialActivity.this, layout_content);
-//		view_constuct = new ConstuctDetialView(ProjectDetialActivity.this, layout_content);
-//		view_afforest = new AfforestDetialView(ProjectDetialActivity.this, layout_content);
-		
-//		view_fitment = new FitmentDetialView(ProjectDetialActivity.this, layout_content);
-		
-		layout_content.addView(view_landplan.getView());
-		layout_content.addView(view_procreate.getView());
-		
-//		layout_content.addView(view_explorationStage.getView());
-//		layout_content.addView(view_design.getView());
-//		layout_content.addView(view_drawStage.getView());
-		
-//		layout_content.addView(view_horizon.getView());
-//		layout_content.addView(view_foundation.getView());
-//		layout_content.addView(view_constuct.getView());
-//		layout_content.addView(view_afforest.getView());
-		
-//		layout_content.addView(view_fitment.getView()); 
-		
-		if("edit".equals(type)){
-			//编辑
-			project = PreferencesUtils.getObjectPro(ProjectDetialActivity.this, position);
-			updateUI(project);
-		}else{
-			//显示、发布
-			showProgressDialog();
-			getProject(url);
-		}
-		
-		scrollView.setOnScrollStateChanged(new OnScrollStateChanged() {
-			
-			@Override
-			public void ScrollTop() {
-				// TODO Auto-generated method stub
-				Log.e("2", "top....");
-			}
-			
-			@Override
-			public void ScrollBottom() {
-				// TODO Auto-generated method stub
-				if(isShow){
-					isShow = false;
-					new Handler().postDelayed(new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							switch(layout_content.getChildCount()){
-							case 2:
-								initial2_4();
-								isShow = true;
-								break;
-							case 5:
-								initial5_8();
-								isShow = true;
-								break;
-							case 9:
-								initial_9();
-								isShow = true;
-								break;
-							}
-						}
-					}, 1500);
+		showProgressDialog("加载中...");
+		new Thread(new MyThread()).start();
+	}
+	
+	public Handler mInHandler;
+	
+	private Handler mHandler = new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			switch (msg.what) {
+			case 0:
+				layout_content.addView(view_landplan.getView());
+				layout_content.addView(view_procreate.getView());
+				
+//				layout_content.addView(view_explorationStage.getView());
+//				layout_content.addView(view_design.getView());
+//				layout_content.addView(view_drawStage.getView());
+				
+//				layout_content.addView(view_horizon.getView());
+//				layout_content.addView(view_foundation.getView());
+//				layout_content.addView(view_constuct.getView());
+//				layout_content.addView(view_afforest.getView());
+				
+//				layout_content.addView(view_fitment.getView()); 
+				
+				if("edit".equals(type)){
+					//编辑
+					project = PreferencesUtils.getObjectPro(ProjectDetialActivity.this, position);
+					updateUI(project);
+				}else{
+					//显示、发布
+					showProgressDialog();
+					getProject(url);
 				}
+				
+				scrollView.setOnScrollStateChanged(ProjectDetialActivity.this);
+				break;
 			}
-
-			@Override
-			public void Scroll() {
-				// TODO Auto-generated method stub
-				updateText();
-			}
-
-		});
+			super.handleMessage(msg);
+		}
+	};
+	
+	class MyThread implements Runnable{
 		
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			Looper.prepare();
+			System.out.println("prepare");
+			//MyTheard线程的handler
+			mInHandler = new Handler(){
+				@Override
+				public void handleMessage(Message msg) {
+					// TODO Auto-generated method stub
+					
+					switch(msg.what){
+					case 0:
+						view_landplan = new LandPlanDetialView(ProjectDetialActivity.this, layout_content);
+						view_procreate = new ProCreateDetialView(ProjectDetialActivity.this, layout_content);
+//						view_explorationStage = new ExplorationStageDetialView(ProjectDetialActivity.this, layout_content);
+//						view_design = new DesignDetialView(ProjectDetialActivity.this, layout_content);
+//						view_drawStage = new DrawStageDetialView(ProjectDetialActivity.this, layout_content);
+						
+//						view_horizon = new HorizonDetialView(ProjectDetialActivity.this, layout_content);
+//						view_foundation = new FoundationDetialView(ProjectDetialActivity.this, layout_content);
+//						view_constuct = new ConstuctDetialView(ProjectDetialActivity.this, layout_content);
+//						view_afforest = new AfforestDetialView(ProjectDetialActivity.this, layout_content);
+						
+//						view_fitment = new FitmentDetialView(ProjectDetialActivity.this, layout_content);
+						
+						
+						mInHandler.getLooper().quit();
+						break;
+					}
+					super.handleMessage(msg);
+				}
+			};
+			
+			mInHandler.sendEmptyMessage(0);
+			//注：写在Looper.loop()之后的代码不会被立即执行，当调用后mHandler.getLooper().quit()后，loop才会中止，其后的代码才能得以运行。Looper对象通过MessageQueue来存放消息和事件。一个线程只能有一个Looper，对应一个MessageQueue。
+			Looper.loop();	
+			dismissProgressDialog();
+			mHandler.sendEmptyMessage(0);
+			System.out.println("loop");
+			
+		}}
+	
+	@Override
+	public void ScrollTop() {
+		// TODO Auto-generated method stub
+		Log.e("2", "top....");
+	}
+	
+	@Override
+	public void ScrollBottom() {
+		// TODO Auto-generated method stub
+		if(isShow){
+			isShow = false;
+			new Handler().postDelayed(new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					switch(layout_content.getChildCount()){
+					case 2:
+						initial2_4();
+						isShow = true;
+						break;
+					case 5:
+						initial5_8();
+						isShow = true;
+						break;
+					case 9:
+						initial_9();
+						isShow = true;
+						break;
+					}
+				}
+			}, 1500);
+		}
+	}
+
+	@Override
+	public void Scroll() {
+		// TODO Auto-generated method stub
+		updateText();
 	}
 	
 	/**
@@ -269,6 +318,10 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 			project = PreferencesUtils.getObjectPro(ProjectDetialActivity.this, position);
 			updateUI(project);
 		}
+		
+		if (requestCode == 10 && resultCode == 40) {
+			updateUI(project);
+		}
 	}
 
 	private void initial_9() {
@@ -288,6 +341,7 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 		layout_content.addView(view_foundation.getView());
 		layout_content.addView(view_constuct.getView());
 		layout_content.addView(view_afforest.getView());
+		view_horizon.updateUI(ProjectDetialActivity.this.project);
 		view_foundation.updateUI(ProjectDetialActivity.this.project);
 		view_constuct.updateUI(ProjectDetialActivity.this.project);
 		view_afforest.updateUI(ProjectDetialActivity.this.project);
@@ -496,5 +550,5 @@ public class ProjectDetialActivity extends BaseSecondActivity implements OnClick
 		}
 		return true;
 	}
-	
+
 }

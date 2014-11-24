@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.tsz.afinal.annotation.view.ViewInject;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -66,7 +68,6 @@ public class MyProActivity extends BaseSecondActivity implements OnRefreshListen
 		setContentView(R.layout.activity_mypro);
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
@@ -135,6 +136,8 @@ public class MyProActivity extends BaseSecondActivity implements OnRefreshListen
 					getProject();
 				}else if(arg1 == R.id.radio1){
 					//本地项目
+					 SharedPreferences preferences = getSharedPreferences(PreferencesUtils.PREFERENCE_NAME_PRO,  Context.MODE_PRIVATE);  
+					 System.out.println(preferences.getAll().keySet().toString());
 					listView.setRefreshable(false);
 					listView.removeFootView();
 					type = "edit";

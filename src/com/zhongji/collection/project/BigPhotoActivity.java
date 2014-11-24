@@ -1,6 +1,5 @@
 package com.zhongji.collection.project;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.tsz.afinal.annotation.view.ViewInject;
@@ -29,7 +28,6 @@ public class BigPhotoActivity extends BaseSecondActivity  {
 	@ViewInject(id=R.id.advertview)
 	private AdvertView advertview;
 	private List<Images> imgslists;
-	private List<Images> lists = new ArrayList<Images>();
 	private int position = 0;
 	
 	@Override
@@ -39,6 +37,7 @@ public class BigPhotoActivity extends BaseSecondActivity  {
 		setContentView(R.layout.launch_activity_guide);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub

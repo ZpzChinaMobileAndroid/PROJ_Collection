@@ -28,8 +28,8 @@ public class DataCleanManager {
      * context
      */
     public static void cleanSharedPreference(Context context) {
-        deleteFilesByDirectory(new File("/data/data/"
-                + context.getPackageName() + "/shared_prefs"));
+//        deleteFilesByDirectory(new File("/data/data/"
+//                + context.getPackageName() + "/shared_prefs"));
         PreferencesUtils.saveObject(context, PreferencesUtils.PREFERENCE_KEY_SEARCH, new ArrayList<String>());
         PreferencesUtils.removeObject(context);
 		
@@ -63,10 +63,10 @@ public class DataCleanManager {
 
     /** * 清除本应用所有的数据 * * @param context * @param filepath */
     public static void cleanApplicationData(Context context, String... filepath) {
+    	cleanSharedPreference(context);
         cleanInternalCache(context);
         cleanExternalCache(context);
         cleanDatabases(context);
-        cleanSharedPreference(context);
         cleanFiles(context);
         for (String filePath : filepath) {
             cleanCustomCache(filePath);

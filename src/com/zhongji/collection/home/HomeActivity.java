@@ -60,7 +60,6 @@ public class HomeActivity extends BaseIndexActivity implements OnClickListener {
 		tv_mobile.setText(user.getCellphone());
 		tv_company.setText(user.getCompany());
 		
-		setMenuName(user.getRealName());
 	}
 	
 	@Override

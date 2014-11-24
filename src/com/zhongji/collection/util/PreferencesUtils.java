@@ -2,7 +2,6 @@ package com.zhongji.collection.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -10,7 +9,9 @@ import java.io.StreamCorruptedException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -112,31 +113,41 @@ public class PreferencesUtils {
 	        baos.close();
 	    } catch (IOException e) {  
 	        // TODO Auto-generated  
-	    }  
+	    }
 	    Log.i("ok", "存储成功");  
-	}   
+	}
 	
 	public static void removeObject(Context context) {  
-		File file = new File("/data/data/"
-				+ context.getPackageName().toString() + "/shared_prefs/",
-				PREFERENCE_NAME_PRO + ".xml");
-		if (file.exists()) {
-			file.delete();
-		}
-
-//	    SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME_PRO,  Context.MODE_PRIVATE);  
-//	    preferences.getAll().clear();
-//	    preferences.edit().clear();
-//	    preferences.edit().commit();
+		SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME_PRO,  Context.MODE_PRIVATE);  
+		Editor editor = preferences.edit();
+		editor.clear();
+		editor.commit();
+//		File file = new File("/data/data/"
+//				+ context.getPackageName().toString() + "/shared_prefs/",
+//				PREFERENCE_NAME_PRO + ".xml");
+//		if (file.exists()) {
+//			file.delete();
+//		}
+//		SharedPreferences ps = context.getSharedPreferences(PREFERENCE_NAME_PRO,  Context.MODE_PRIVATE);  
+//		Editor ed = ps.edit();
+//		ed.putString("1", "1");
+//		ed.commit();
+//		String s = ps.getString("0-pro", "");
+//		System.out.println("---"+s);
 	} 
 	
 	public static List<Project> getProjectLists(Context context) {  
+		Map<String, String> keys = new LinkedHashMap<String, String>();
 		List<Project> lists = new ArrayList<Project>();
 		SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME_PRO,  Context.MODE_PRIVATE);   
 		Iterator<String> istr = preferences.getAll().keySet().iterator();
 		while (istr.hasNext()) {
 			String key = istr.next();
-			Project pro = (Project) getObjectPro(context, key);
+			keys.put(key.split("-")[0], key);
+		}
+		for(int i=0;i<keys.size();i++){
+			Project pro = (Project) getObjectPro(context, keys.get(i+""));
+			System.out.println(pro.toString());
 			lists.add(pro);
 		}
 	    return lists;

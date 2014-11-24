@@ -72,7 +72,7 @@ public class SearchProActivity extends BaseSecondActivity implements
 	private List<String> strlists = new ArrayList<String>();
 	private boolean key_enter = false;
 	private InputMethodManager manager; // 隐藏软键盘
-	private int keystate = KeyboardLayout.KEYBOARD_STATE_HIDE;
+//	private int keystate = KeyboardLayout.KEYBOARD_STATE_HIDE;
 	private String content="";
 	private boolean isRes = false;
 
@@ -113,6 +113,7 @@ public class SearchProActivity extends BaseSecondActivity implements
 				if("str".equals(type)){
 					//文本信息
 					page = 0;
+					isSave = false;
 					isRes = true;
 					content = adapterSearch.getItem(arg2-1);
 					lists.clear();
@@ -189,6 +190,7 @@ public class SearchProActivity extends BaseSecondActivity implements
 	 */
 	private void layoutchange(boolean bool) {
 		if (bool) {
+			System.out.println(strlists.toString());
 			lv_seachpro_message.setRefreshable(false);
 			lv_seachpro_message.removeFootView();
 			type = "str";
@@ -197,6 +199,7 @@ public class SearchProActivity extends BaseSecondActivity implements
 			layout_view.setVisibility(View.VISIBLE);
 			mainView.setBackgroundColor(getResources().getColor(R.color.white));
 			lv_seachpro_message.setDividerHeight(DensityUtil.dip2px(this, 1));
+			
 		} else {
 			if(isRes){
 				isRes = false;
@@ -207,7 +210,7 @@ public class SearchProActivity extends BaseSecondActivity implements
 //				lists.clear();
 				adapter.setLists(lists);
 				lv_seachpro_message.setAdapter(adapter);
-				layout_view.setVisibility(View.GONE);
+				layout_view.setVisibility(View.INVISIBLE);
 				mainView.setBackgroundColor(getResources().getColor(R.color.gray_proall_bg));
 				lv_seachpro_message.setDividerHeight(DensityUtil.dip2px(this, 10));
 			}else{
@@ -227,13 +230,13 @@ public class SearchProActivity extends BaseSecondActivity implements
 			public void onKeyBoardStateChange(int state) {
 				switch (state) {
 				case KeyboardLayout.KEYBOARD_STATE_HIDE:
-					keystate = KeyboardLayout.KEYBOARD_STATE_HIDE;
+//					keystate = KeyboardLayout.KEYBOARD_STATE_HIDE;
 					layoutchange(false);
 //					 Toast.makeText(getApplicationContext(), "软键盘隐藏",
 //					 Toast.LENGTH_SHORT).show();
 					break;
 				case KeyboardLayout.KEYBOARD_STATE_SHOW:
-					keystate = KeyboardLayout.KEYBOARD_STATE_SHOW;
+//					keystate = KeyboardLayout.KEYBOARD_STATE_SHOW;
 					layoutchange(true);
 //					 Toast.makeText(getApplicationContext(), "软键盘弹起",
 //					 Toast.LENGTH_SHORT).show();

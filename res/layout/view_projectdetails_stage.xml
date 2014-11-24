@@ -68,19 +68,19 @@
                 android:text="土地规划/拍卖" />
 
             <ImageView
-                android:id="@+id/iv_0"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/project_details_photo"
-                android:visibility="invisible" />
-
-            <ImageView
                 android:id="@+id/iv_1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/project_details_users"
+                android:visibility="invisible" />
+            
+            <ImageView
+                android:id="@+id/iv_0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
                 android:visibility="invisible" />
         </LinearLayout>
 
@@ -104,19 +104,19 @@
                 android:text="项目立项" />
 
             <ImageView
-                android:id="@+id/iv_2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/project_details_photo"
-                android:visibility="invisible" />
-
-            <ImageView
                 android:id="@+id/iv_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/project_details_users"
+                android:visibility="invisible" />
+            
+            <ImageView
+                android:id="@+id/iv_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
                 android:visibility="invisible" />
         </LinearLayout>
 
@@ -178,19 +178,19 @@
                 android:text="地勘阶段" />
 
             <ImageView
-                android:id="@+id/iv_4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/project_details_photo"
-                android:visibility="invisible" />
-
-            <ImageView
                 android:id="@+id/iv_5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/project_details_users"
+                android:visibility="invisible" />
+            
+            <ImageView
+                android:id="@+id/iv_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
                 android:visibility="invisible" />
         </LinearLayout>
 
@@ -214,19 +214,19 @@
                 android:text="设计阶段" />
 
             <ImageView
-                android:id="@+id/iv_6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/project_details_photo"
-                android:visibility="invisible" />
-
-            <ImageView
                 android:id="@+id/iv_7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/project_details_users"
+                android:visibility="invisible" />
+            
+            <ImageView
+                android:id="@+id/iv_6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
                 android:visibility="invisible" />
         </LinearLayout>
 
@@ -250,19 +250,19 @@
                 android:text="出图阶段" />
 
             <ImageView
-                android:id="@+id/iv_8"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/project_details_photo"
-                android:visibility="invisible" />
-
-            <ImageView
                 android:id="@+id/iv_9"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/project_details_users"
+                android:visibility="invisible" />
+            
+            <ImageView
+                android:id="@+id/iv_8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
                 android:visibility="invisible" />
         </LinearLayout>
 
@@ -324,19 +324,19 @@
                 android:text="地平" />
 
             <ImageView
-                android:id="@+id/iv_10"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/project_details_photo"
-                android:visibility="invisible" />
-
-            <ImageView
                 android:id="@+id/iv_11"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/project_details_users"
+                android:visibility="invisible" />
+            
+            <ImageView
+                android:id="@+id/iv_10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
                 android:visibility="invisible" />
         </LinearLayout>
 
@@ -360,19 +360,19 @@
                 android:text="桩基基坑" />
 
             <ImageView
-                android:id="@+id/iv_12"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/project_details_photo"
-                android:visibility="invisible" />
-
-            <ImageView
                 android:id="@+id/iv_13"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/project_details_users"
+                android:visibility="invisible" />
+            
+            <ImageView
+                android:id="@+id/iv_12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
                 android:visibility="invisible" />
         </LinearLayout>
 
@@ -396,19 +396,19 @@
                 android:text="主体施工" />
 
             <ImageView
-                android:id="@+id/iv_14"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/project_details_photo"
-                android:visibility="invisible" />
-
-            <ImageView
                 android:id="@+id/iv_15"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/project_details_users"
+                android:visibility="invisible" />
+            
+            <ImageView
+                android:id="@+id/iv_14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
                 android:visibility="invisible" />
         </LinearLayout>
 
@@ -432,19 +432,19 @@
                 android:text="消防/景观绿化" />
 
             <ImageView
-                android:id="@+id/iv_16"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/project_details_photo"
-                android:visibility="invisible" />
-
-            <ImageView
                 android:id="@+id/iv_17"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/project_details_users"
+                android:visibility="invisible" />
+            
+            <ImageView
+                android:id="@+id/iv_16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
                 android:visibility="invisible" />
         </LinearLayout>
 
@@ -506,19 +506,19 @@
                 android:text="装修阶段" />
 
             <ImageView
-                android:id="@+id/iv_18"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/project_details_photo"
-                android:visibility="invisible" />
-
-            <ImageView
                 android:id="@+id/iv_19"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/project_details_users"
+                android:visibility="invisible" />
+            
+            <ImageView
+                android:id="@+id/iv_18"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/project_details_photo"
                 android:visibility="invisible" />
         </LinearLayout>
 

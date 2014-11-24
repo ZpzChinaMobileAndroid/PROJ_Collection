@@ -2,11 +2,15 @@ package com.zhongji.collection.network;
 
 import org.apache.http.Header;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.zhongji.collection.entity.BaseBean;
+import com.zhongji.collection.login.LoginActivity;
+import com.zhongji.collection.util.PreferencesUse;
 import com.zhongji.collection.util.ToastUtils;
 
 public abstract class ResponseUtils extends AsyncHttpResponseHandler {
@@ -69,12 +73,33 @@ public abstract class ResponseUtils extends AsyncHttpResponseHandler {
 	public boolean getData(BaseBean bean) {
 		
 		if (!"200".equals(bean.getStatus().getStatusCode())) {
-			ToastUtils.getStance(context).showShortToast(bean.getStatus().getErrors());
+			if("1301".equals(bean.getStatus().getStatusCode())){
+				ToastUtils.getStance(context).showShortToast("参数异常");
+			}else if("1302".equals(bean.getStatus().getStatusCode())){
+				ToastUtils.getStance(context).showShortToast("数据库没数据");
+			}else if("1303".equals(bean.getStatus().getStatusCode())){
+				ToastUtils.getStance(context).showShortToast("注册失败");
+			}else if("1304".equals(bean.getStatus().getStatusCode())){
+				ToastUtils.getStance(context).showShortToast("登录失败");
+			}else if("1312".equals(bean.getStatus().getStatusCode())){
+				ToastUtils.getStance(context).showShortToast("token过期");
+				HttpRestClient.TOKEN = "";
+				PreferencesUse.saveToken(context, HttpRestClient.TOKEN);
+				toLogin();
+			}else{
+				ToastUtils.getStance(context).showShortToast(bean.getStatus().getErrors());
+			}
 			return true;
 		}
 
 		return false;
 	}
 
-
+	public void toLogin(){
+		Intent intent = new Intent();
+		Activity act = (Activity) context;
+//		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intent.setClass(act, LoginActivity.class);
+		act.startActivity(intent);
+	}
 }
