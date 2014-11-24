@@ -23,7 +23,7 @@ public class ProjectAdapter extends BaseAdapter{
 		this.context = context;
 		this.lists = new ArrayList<Project>();
 	}
-
+ 
 	public void setLists(List<Project> lists) {
 		this.lists = lists;
 	}
