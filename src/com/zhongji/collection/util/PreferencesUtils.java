@@ -2,6 +2,7 @@ package com.zhongji.collection.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -12,9 +13,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.commons.codec.binary.Base64;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -121,7 +120,6 @@ public class PreferencesUtils {
 	}
 	
 	public static void removeObject(Context context) {  
-<<<<<<< HEAD
 		SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME_PRO,  Context.MODE_PRIVATE);  
 		Editor editor = preferences.edit();
 		editor.clear();
@@ -138,17 +136,15 @@ public class PreferencesUtils {
 //		ed.commit();
 //		String s = ps.getString("0-pro", "");
 //		System.out.println("---"+s);
-=======
 		File file = new File("/data/data/"+ context.getPackageName().toString() + "/shared_prefs/",PREFERENCE_NAME_PRO + ".xml");
 		if (file.exists()) {
 			file.delete();	
 		}
 
-	    SharedPreferences preferences = context.getSharedPreferences(PREFERENCE_NAME_PRO,  Context.MODE_PRIVATE); 
-	    preferences.getAll().clear();
-        preferences.edit().clear(); 
-	    preferences.edit().commit();
->>>>>>> FETCH_HEAD
+	    SharedPreferences preferences1 = context.getSharedPreferences(PREFERENCE_NAME_PRO,  Context.MODE_PRIVATE); 
+	    preferences1.getAll().clear();
+        preferences1.edit().clear(); 
+	    preferences1.edit().commit();
 	} 
 	
 	public static List<Project> getProjectLists(Context context) {  

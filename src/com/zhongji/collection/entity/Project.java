@@ -302,17 +302,14 @@ public class Project implements Serializable{
 		if(TextUtils.isEmpty(investment)){
 			return "0";
 		}
-<<<<<<< HEAD
 		Double double2= new Double(investment);
 		java.text.NumberFormat nfFormat=java.text.NumberFormat.getInstance();
 		nfFormat.setGroupingUsed(false);
 		return nfFormat.format(double2);
-=======
-		Double double1= new Double(investment);
-		java.text.NumberFormat nfFormat=java.text.NumberFormat.getInstance();
-		nfFormat.setGroupingUsed(false);
-		return nfFormat.format(double1);
->>>>>>> FETCH_HEAD
+//		Double double1= new Double(investment);
+//		java.text.NumberFormat nfFormat=java.text.NumberFormat.getInstance();
+//		nfFormat.setGroupingUsed(false);
+//		return nfFormat.format(double1);
 	}
 	public void setInvestment(String investment) {
 		this.investment = investment;
@@ -321,17 +318,14 @@ public class Project implements Serializable{
 		if(TextUtils.isEmpty(areaOfStructure)){
 			return "0";
 		}
-<<<<<<< HEAD
 		Double double2= new Double(areaOfStructure);
 		java.text.NumberFormat nfFormat=java.text.NumberFormat.getInstance();
 		nfFormat.setGroupingUsed(false);
 		return nfFormat.format(double2);
-=======
-		Double double1= new Double(areaOfStructure);
-		java.text.NumberFormat nfFormat=java.text.NumberFormat.getInstance();
-		nfFormat.setGroupingUsed(false);
-		return nfFormat.format(double1);
->>>>>>> FETCH_HEAD
+//		Double double1= new Double(areaOfStructure);
+//		java.text.NumberFormat nfFormat1=java.text.NumberFormat.getInstance();
+//		nfFormat1.setGroupingUsed(false);
+//		return nfFormat1.format(double1);
 	}
 	public void setAreaOfStructure(String areaOfStructure) {
 		this.areaOfStructure = areaOfStructure;

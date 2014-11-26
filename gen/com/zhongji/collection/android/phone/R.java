@@ -227,7 +227,6 @@ public final class R {
         public static final int imageView1=0x7f0b0010;
         public static final int iv_0=0x7f0b0023;
         public static final int iv_1=0x7f0b0024;
-<<<<<<< HEAD
         public static final int iv_10=0x7f0b00c9;
         public static final int iv_11=0x7f0b00c8;
         public static final int iv_12=0x7f0b00cb;
@@ -238,18 +237,6 @@ public final class R {
         public static final int iv_17=0x7f0b00ce;
         public static final int iv_18=0x7f0b00d1;
         public static final int iv_19=0x7f0b00d0;
-=======
-        public static final int iv_10=0x7f0b00c8;
-        public static final int iv_11=0x7f0b00c9;
-        public static final int iv_12=0x7f0b00ca;
-        public static final int iv_13=0x7f0b00cb;
-        public static final int iv_14=0x7f0b00cc;
-        public static final int iv_15=0x7f0b00cd;
-        public static final int iv_16=0x7f0b00ce;
-        public static final int iv_17=0x7f0b00cf;
-        public static final int iv_18=0x7f0b00d0;
-        public static final int iv_19=0x7f0b00d1;
->>>>>>> FETCH_HEAD
         public static final int iv_2=0x7f0b0025;
         public static final int iv_3=0x7f0b0026;
         public static final int iv_4=0x7f0b0027;
