@@ -249,7 +249,10 @@ public class Project implements Serializable{
 		if(TextUtils.isEmpty(plotRatio)){
 			return "0";
 		}
-		return plotRatio;
+		Double double2= new Double(plotRatio);
+		java.text.NumberFormat nfFormat=java.text.NumberFormat.getInstance();
+		nfFormat.setGroupingUsed(false);
+		return nfFormat.format(double2);
 	}
 	public void setPlotRatio(String plotRatio) {
 		this.plotRatio = plotRatio;
