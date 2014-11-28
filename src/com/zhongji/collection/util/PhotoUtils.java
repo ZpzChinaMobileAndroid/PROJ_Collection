@@ -105,14 +105,19 @@ public class PhotoUtils {
 	 */
 	private Intent setIntent(Intent intent) {
 		intent.setType("image/*");
+		// 设置了参数，就会调用裁剪，如果不设置，就会跳过裁剪的过程。
 		intent.putExtra("crop", "true");
+		// 设置aspectX 与 aspectY 后，裁剪框会按照所指定的比例出现，放大缩小都不会更改。如果不指定，那么 裁剪框就可以随意调整了。
 		intent.putExtra("aspectX", 1);
 		intent.putExtra("aspectY", 1);
+		// 可以不传/图片自身大小
 		intent.putExtra("outputX", outputX);
 		intent.putExtra("outputY", outputY);
 		intent.putExtra("scale", true);
+		//是否要返回值。 一般都要
 		intent.putExtra("return-data", false);
 		intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+		// 是否去除面部检测， 如果你需要特定的比例去裁剪图片，那么这个一定要去掉，因为它会破坏掉特定的比例。
 		intent.putExtra("noFaceDetection", true); // no face detection
 		return intent;
 	}
