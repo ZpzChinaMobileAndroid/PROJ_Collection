@@ -443,6 +443,7 @@ public class NewProActivity extends BaseSecondActivity implements
 			view.addString(imgstr);
 			view.notifyDataSetChanged();
 			baseview.setImages(baseview.imgsType, imgstr);
+//			BitmapUtil.saveBitmap(NewProActivity.this, "aaa.jpg", bitmap);
 			bit = bitmap;
 		}
 	}

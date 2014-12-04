@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.zhongji.collection.android.phone.R;
 import com.zhongji.collection.interfaces.OnItemViewCilck;
 import com.zhongji.collection.util.BitmapUtil;
+import com.zhongji.collection.util.ImageLoaderUtils;
 
 public class PhotoAdapter extends BaseAdapter{
 	
@@ -71,7 +72,13 @@ public class PhotoAdapter extends BaseAdapter{
 		if(position != lists.size() - 1){
 			String str = lists.get(position);
 			if(str!=null){
-				holder.iv_photo.setImageBitmap(BitmapUtil.base64ToBitmap(str));
+				if(str.startsWith("/9j/")){
+					//本地
+					holder.iv_photo.setImageBitmap(BitmapUtil.base64ToBitmap(str));
+				}else{
+					//网络
+					ImageLoaderUtils.getInstance(context).displayImage(str, holder.iv_photo);
+				}
 			}
 			holder.iv_photo.setOnClickListener(null);
 		}else{

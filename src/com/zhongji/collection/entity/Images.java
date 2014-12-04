@@ -23,6 +23,7 @@ public class Images implements Serializable{
 		this.category = category;
 		this.device = device;
 		this.imgCompressionContent = imgCompressionContent;
+		this.imgContent = imgCompressionContent;
 	}
 	public Images() {
 		super();

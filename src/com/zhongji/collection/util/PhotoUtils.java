@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -111,8 +112,8 @@ public class PhotoUtils {
 		intent.putExtra("aspectX", 1);
 		intent.putExtra("aspectY", 1);
 		// 可以不传/图片自身大小
-		intent.putExtra("outputX", outputX);
-		intent.putExtra("outputY", outputY);
+//		intent.putExtra("outputX", outputX);
+//		intent.putExtra("outputY", outputY);
 		intent.putExtra("scale", true);
 		//是否要返回值。 一般都要
 		intent.putExtra("return-data", false);
@@ -167,10 +168,18 @@ public class PhotoUtils {
 	}
 
 	private Bitmap decodeUriAsBitmap(Uri uri) {
+		Options options = new Options();
+		options.inSampleSize = 4;
 		Bitmap bitmap = null;
 		try {
-			bitmap = BitmapFactory.decodeStream(context.getContentResolver()
-					.openInputStream(uri));
+			bitmap = BitmapFactory.decodeStream(context.getContentResolver().openInputStream(uri));
+			System.out.println(bitmap.getDensity());
+			System.out.println(bitmap.getRowBytes());
+			System.out.println(bitmap.getByteCount());
+			if(bitmap.getByteCount() > 5000000){
+				bitmap = BitmapFactory.decodeStream(context.getContentResolver()
+						.openInputStream(uri), null, options);
+			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return null;

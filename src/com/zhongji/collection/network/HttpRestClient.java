@@ -18,8 +18,11 @@ import com.loopj.android.http.RequestParams;
  */
 public class HttpRestClient {
 
-	private static final String BASE_URL = "http://EIPQAS.zhongjichina.com/";
+//	private static final String BASE_URL = "http://EIPQAS.zhongjichina.com/";
+	private static final String BASE_URL = "http://192.168.222.95:802/";
 	private static final String PRO_URL = "ZPZChina.svc/";
+	public static final String PIC_URL = "http://192.168.222.95:801/";
+	
 	private static final int TIME_OUT = 10 * 1000;// 10s 超时
 	public static String TOKEN = "";
 	private static AsyncHttpClient httpClient = new AsyncHttpClient();

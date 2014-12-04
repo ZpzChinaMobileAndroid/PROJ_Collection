@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -329,6 +330,14 @@ public class MyProActivity extends BaseSecondActivity implements OnRefreshListen
 		if(imgl!=null && imagesIndex<imgl.size()){
 			Images cbean = imgl.get(imagesIndex);
 			String params = pro.projectImgsToJsonString(cbean);
+			if(!TextUtils.isEmpty(cbean.getImgID())){
+				//更新项目图片包含url和base64
+				//已经上传的项目图片
+				imagesIndex = imagesIndex + 1;
+				uploadImages(pro, imglists);
+				return;
+			}
+			
 			HttpRestClient.upload(cbean.getImgID(), MyProActivity.this, HttpAPI.PROJECTIMGS, JsonUtils.uploadproject(params), new ResponseUtils(MyProActivity.this) {
 				
 				@Override

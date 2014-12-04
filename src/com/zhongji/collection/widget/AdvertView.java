@@ -28,6 +28,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 import com.zhongji.collection.android.phone.R;
 import com.zhongji.collection.entity.Images;
 import com.zhongji.collection.util.BitmapUtil;
+import com.zhongji.collection.util.ImageLoaderUtils;
 
 /**
  * 广告viewpager
@@ -296,10 +297,11 @@ public class AdvertView extends LinearLayout {
 		bools.set(pos, true);
 		if(img.getUrl() !=null){
 			//网络
-			iv.setImageBitmap(BitmapUtil.base64ToBitmap(img.getImgContent()));
+			ImageLoaderUtils.getInstance(context).displayImage(img.getImgContent(), iv);
+//			iv.setImageBitmap(BitmapUtil.base64ToBitmap(img.getImgContent()));
 		}else{
 			//本地
-			iv.setImageBitmap(BitmapUtil.base64ToBitmap(img.getImgCompressionContent()));
+			iv.setImageBitmap(BitmapUtil.base64ToBitmap(img.getImgContent()));
 		}
 		
 		adapter.notifyDataSetChanged();

@@ -1,7 +1,5 @@
 package com.zhongji.collection.adapter;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 

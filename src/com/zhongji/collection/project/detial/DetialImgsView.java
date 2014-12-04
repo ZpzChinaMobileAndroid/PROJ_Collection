@@ -19,6 +19,7 @@ import com.zhongji.collection.entity.ImagesListBean;
 import com.zhongji.collection.entity.Project;
 import com.zhongji.collection.project.BigPhotoActivity;
 import com.zhongji.collection.util.BitmapUtil;
+import com.zhongji.collection.util.ImageLoaderUtils;
 
 /**
  * 详情图片集合
@@ -50,6 +51,7 @@ public class DetialImgsView{
 	 * @param view_detial_imgs
 	 */
 	private void initial(final Context context, View view_detial_imgs) {
+		
 		this.lists = new ArrayList<Images>();
 		this.context = context;
 		iv_imgs = (ImageView) view_detial_imgs.findViewById(R.id.iv_imgs);
@@ -90,7 +92,14 @@ public class DetialImgsView{
 		
 		if(lists.size()>0){
 			Images img = lists.get(0);
-			iv_imgs.setImageBitmap(BitmapUtil.base64ToBitmap(img.getImgCompressionContent()));
+			if(img.getImgContent().startsWith("/9j/")){
+				//本地
+				iv_imgs.setImageBitmap(BitmapUtil.base64ToBitmap(img.getImgContent()));
+			}else{
+				//网络
+				ImageLoaderUtils.getInstance(context).displayImage(img.getImgContent(), iv_imgs);
+			}
+			
 		}
 		
 		tv_number.setText(lists.size()+"张");

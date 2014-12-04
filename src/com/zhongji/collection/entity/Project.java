@@ -90,7 +90,7 @@ public class Project implements Serializable{
 		String s = JSON.toJSONString(cbean);
 		JSONObject jb = JSONObject.parseObject(s);
 		jb.put("projectID", projectID);
-		jb.put("imgContent", jb.get("imgCompressionContent"));
+//		jb.put("imgContent", jb.get("imgCompressionContent"));
 		jb.put("imgCompressionContent", "");
 		System.out.println(jb.toJSONString());
 		return jb.toJSONString();
